@@ -1,0 +1,44 @@
+{
+  "name": "parity-signer-companion",
+  "description": "Parity Signer Companion",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "polkadot-exec-webpack --config webpack.watch.js --mode development --watch",
+    "lint:ts": "eslint ./src",
+    "lint:css": "stylelint ./src",
+    "lint": "yarn lint:ts && yarn lint:css",
+    "fix": "prettier ./src -w"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.3",
+    "@polkadot/extension-base": "^0.39.4-11",
+    "@polkadot/extension-inject": "^0.39.4-11",
+    "@polkadot/extension-ui": "./polkadot-js-extension/packages/extension-ui/"
+  },
+  "devDependencies": {
+    "@polkadot/dev": "^0.62.62",
+    "babel-loader": "^8.2.2",
+    "browser-resolve": "^2.0.0",
+    "buffer": "^6.0.3",
+    "copy-webpack-plugin": "^9.0.1",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "path-browserify": "^1.0.1",
+    "prettier": "^2.4.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "thread-loader": "^3.0.4",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-extension-manifest-plugin": "^0.8.0"
+  }
+}

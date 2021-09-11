@@ -1,0 +1,3 @@
+[submodule "polkadot-js-extension"]
+	path = polkadot-js-extension
+	url = git@github.com:polkadot-js/extension.git
