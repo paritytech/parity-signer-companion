@@ -1,6 +1,6 @@
 import type { Message } from '@polkadot/extension-base/types'
 import { PORT_CONTENT } from '@polkadot/extension-base/defaults'
-import chrome from './chrome'
+import chrome from './utils/chrome'
 
 // connect to the extension
 const port = chrome.runtime.connect({ name: PORT_CONTENT })
