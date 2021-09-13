@@ -5,6 +5,7 @@ import {
   redirectIfPhishing,
 } from '@polkadot/extension-base/page'
 import { injectExtension } from '@polkadot/extension-inject'
+import { PKG_NAME, PKG_VERSION } from './utils/constants'
 
 // setup a response listener (events created by the loader for extension responses)
 window.addEventListener('message', ({ data, source }: Message): void => {
@@ -38,7 +39,7 @@ redirectIfPhishing()
 
 function inject() {
   injectExtension(enable, {
-    name: 'polkadot-js',
-    version: process.env.PKG_VERSION as string,
+    name: PKG_NAME,
+    version: PKG_VERSION,
   })
 }
