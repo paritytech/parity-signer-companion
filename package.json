@@ -7,7 +7,11 @@
     "lint:ts": "eslint ./src",
     "lint:css": "stylelint ./src",
     "lint": "yarn lint:ts && yarn lint:css",
-    "fix": "prettier ./src -w"
+    "fix": "prettier ./src -w",
+    "build": "polkadot-dev-build-ts && yarn build:zip",
+    "build:zip": "yarn build:zip:dst && yarn build:zip:src",
+    "build:zip:dst": "rm -rf ./master-build.zip && cd packages/extension/build && zip -r -FS ../../../master-build.zip .",
+    "build:zip:src": "rm -rf ./master-src.zip && zip -r -x '*build/*' -x '*node_modules*' -FS ./master-src.zip packages .editorconfig .eslintignore .eslintrc.js babel.config.cjs CHANGELOG.md CONTRIBUTING.md i18next-scanner.config.js jest.config.cjs LICENSE package.json README.md tsconfig.json yarn.lock"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
@@ -17,6 +21,8 @@
   },
   "devDependencies": {
     "@polkadot/dev": "^0.62.62",
+    "@types/chrome": "^0.0.157",
+    "@types/firefox-webext-browser": "^82.0.1",
     "babel-loader": "^8.2.2",
     "browser-resolve": "^2.0.0",
     "buffer": "^6.0.3",
