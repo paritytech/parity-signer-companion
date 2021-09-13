@@ -2,16 +2,15 @@
   "name": "parity-signer-companion",
   "description": "Parity Signer Companion",
   "version": "0.1.0",
+  "license": "GPL-3.0",
   "scripts": {
-    "dev": "polkadot-exec-webpack --config webpack.watch.js --mode development --watch",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production && yarn build:zip",
+    "build:zip": "rm -rf ./build.zip && zip -r -FS ./build.zip ./build",
     "lint:ts": "eslint ./src",
     "lint:css": "stylelint ./src",
     "lint": "yarn lint:ts && yarn lint:css",
-    "fix": "prettier ./src -w",
-    "build": "polkadot-dev-build-ts && yarn build:zip",
-    "build:zip": "yarn build:zip:dst && yarn build:zip:src",
-    "build:zip:dst": "rm -rf ./master-build.zip && cd packages/extension/build && zip -r -FS ../../../master-build.zip .",
-    "build:zip:src": "rm -rf ./master-src.zip && zip -r -x '*build/*' -x '*node_modules*' -FS ./master-src.zip packages .editorconfig .eslintignore .eslintrc.js babel.config.cjs CHANGELOG.md CONTRIBUTING.md i18next-scanner.config.js jest.config.cjs LICENSE package.json README.md tsconfig.json yarn.lock"
+    "fix": "prettier ./src -w"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
