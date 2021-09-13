@@ -1618,9 +1618,6 @@
     "@polkadot/phishing" "^0.6.281"
     "@polkadot/ui-keyring" "^0.85.4-2"
 
-"@polkadot/extension-chains@./polkadot-js-extension/packages/extension-chains/src/":
-  version "0.0.0"
-
 "@polkadot/extension-dapp@^0.39.4-11":
   version "0.39.4-11"
   resolved "https://registry.yarnpkg.com/@polkadot/extension-dapp/-/extension-dapp-0.39.4-11.tgz#5afb7bd417414105f58c5d763361a6208760d09a"
