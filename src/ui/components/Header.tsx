@@ -1,16 +1,10 @@
-import {
-  faArrowLeft,
-  faCog,
-  faPlusCircle,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from '@polkadot/extension-ui/components/Link'
 import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick'
-import MenuAdd from '@polkadot/extension-ui/partials/MenuAdd'
 import MenuSettings from '@polkadot/extension-ui/partials/MenuSettings'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
+import { EXT_NAME } from '../../utils/constants'
 import type { ExtThemeProps } from '../types'
+import { goTo } from '../utils/goTo'
 
 interface Props extends ExtThemeProps {
   showAdd?: boolean
@@ -21,70 +15,51 @@ interface Props extends ExtThemeProps {
 }
 
 const Header: React.FC<Props> = ({
-  children,
   className,
   showAdd,
   showBackArrow,
   showSettings,
-  smallMargin = false,
+  smallMargin,
   text,
 }) => {
-  const [isAddOpen, setShowAdd] = useState(false)
   const [isSettingsOpen, setShowSettings] = useState(false)
-  const addRef = useRef(null)
   const setRef = useRef(null)
-
-  useOutsideClick(addRef, (): void => {
-    isAddOpen && setShowAdd(!isAddOpen)
-  })
 
   useOutsideClick(setRef, (): void => {
     isSettingsOpen && setShowSettings(!isSettingsOpen)
   })
 
-  const toggleAdd = () => setShowAdd((isAddOpen) => !isAddOpen)
+  const toggleAdd = () => goTo('/account/import-qr')
 
   const toggleSettings = () =>
     setShowSettings((isSettingsOpen) => !isSettingsOpen)
+
+  const toggleBack = () => goTo('/')
 
   return (
     <div className={`${className} ${smallMargin ? 'smallMargin' : ''}`}>
       <div className='container'>
         <div className='branding'>
           {showBackArrow && (
-            <Link className='backlink' to='/'>
-              <FontAwesomeIcon className='arrowLeftIcon' icon={faArrowLeft} />
-            </Link>
+            <button className='backlink' onClick={toggleBack}>
+              Back
+            </button>
           )}
-          <span className='logoText'>{text || 'polkadot{.js}'}</span>
+          <span className='logoText'>{text || EXT_NAME}</span>
         </div>
         <div className='popupMenus'>
           {showAdd && (
-            <div className='popupToggle' onClick={toggleAdd}>
-              <FontAwesomeIcon
-                className={`plusIcon ${isAddOpen ? 'selected' : ''}`}
-                icon={faPlusCircle}
-                size='lg'
-              />
-            </div>
+            <button className='popupToggle' onClick={toggleAdd}>
+              Add
+            </button>
           )}
           {showSettings && (
-            <div
-              className='popupToggle'
-              data-toggle-settings
-              onClick={toggleSettings}
-            >
-              <FontAwesomeIcon
-                className={`cogIcon ${isSettingsOpen ? 'selected' : ''}`}
-                icon={faCog}
-                size='lg'
-              />
-            </div>
+            <button className='popupToggle' onClick={toggleSettings}>
+              Settings
+            </button>
           )}
         </div>
-        {isAddOpen && <MenuAdd reference={addRef} />}
         {isSettingsOpen && <MenuSettings reference={setRef} />}
-        {children}
       </div>
     </div>
   )
@@ -119,18 +94,17 @@ export default styled(Header)`
       text-align: center;
       margin-left: 24px;
 
-      .logo {
-        height: 28px;
-        width: 28px;
-        margin: 8px 12px 12px 0;
-      }
-
       .logoText {
         color: ${({ theme }: ExtThemeProps) => theme.textColor};
         font-family: ${({ theme }: ExtThemeProps) => theme.fontFamily};
         font-size: 20px;
         line-height: 27px;
       }
+    }
+
+    .backLink {
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .popupMenus {
@@ -143,40 +117,11 @@ export default styled(Header)`
         &:last-child {
           margin-right: 24px;
         }
-
-        &:hover {
-          cursor: pointer;
-        }
       }
 
       .popupToggle + .popupToggle {
         margin-left: 8px;
       }
-    }
-  }
-
-  .plusIcon,
-  .cogIcon {
-    color: ${({ theme }: ExtThemeProps) => theme.iconNeutralColor};
-
-    &.selected {
-      color: ${({ theme }: ExtThemeProps) => theme.primaryColor};
-    }
-  }
-
-  .arrowLeftIcon {
-    color: ${({ theme }: ExtThemeProps) => theme.labelColor};
-    margin-right: 1rem;
-  }
-
-  .backlink {
-    color: ${({ theme }: ExtThemeProps) => theme.labelColor};
-    min-height: 52px;
-    text-decoration: underline;
-    width: min-content;
-
-    &:visited {
-      color: ${({ theme }: ExtThemeProps) => theme.labelColor};
     }
   }
 
