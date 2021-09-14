@@ -1,11 +1,11 @@
 import { AccountContext } from '@polkadot/extension-ui/components'
 import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import Header from '../components/Header'
-import AccountsTree from '@polkadot/extension-ui/Popup/Accounts/AccountsTree'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ExtThemeProps } from '../types'
 import AddAccount from './AddAccount'
+import AccountsTree from './AccountsTree'
 
 const Accounts: React.FC<ExtThemeProps> = ({ className }) => {
   const { t } = useTranslation()
