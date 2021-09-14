@@ -24,7 +24,7 @@ import {
 } from '@polkadot/extension-ui/messaging'
 import uiSettings from '@polkadot/ui-settings'
 import type { SettingsStruct } from '@polkadot/ui-settings/types'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { initAccountContext } from './utils/initAccountContext'
 import { Router } from './Router'
 import { requestMediaAccess } from './utils/requestMediaAccess'
@@ -47,16 +47,11 @@ export default function Layout(): React.ReactElement {
   const [signRequests, setSignRequests] = useState<null | SigningRequest[]>(
     null
   )
-  const [isWelcomeDone, setWelcomeDone] = useState(false)
   const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings)
 
-  const _onAction = useCallback((to?: string): void => {
-    setWelcomeDone(window.localStorage.getItem('welcome_read') === 'ok')
-
-    if (to) {
-      window.location.hash = to
-    }
-  }, [])
+  const _onAction = (to?: string) => {
+    if (to) window.location.hash = to
+  }
 
   useEffect((): void => {
     Promise.all([
@@ -94,7 +89,6 @@ export default function Layout(): React.ReactElement {
                     <SigningReqContext.Provider value={signRequests}>
                       <ToastProvider>
                         <Router
-                          isWelcomeDone={isWelcomeDone}
                           authRequests={authRequests}
                           metaRequests={metaRequests}
                           signRequests={signRequests}
