@@ -1,5 +1,5 @@
 import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
-import Header from '@polkadot/extension-ui/partials/Header'
+import Header from '../components/Header'
 import React from 'react'
 import styled from 'styled-components'
 import type { ExtThemeProps } from '../types'
@@ -28,31 +28,29 @@ const AddAccount: React.FC<ExtThemeProps> = ({ className }) => {
   )
 }
 
-export default styled(AddAccount)(
-  ({ theme }: ExtThemeProps) => `
-    color: ${theme.textColor};
-    height: 100%;
+export default styled(AddAccount)`
+  color: ${({ theme }: ExtThemeProps) => theme.textColor};
+  height: 100%;
 
-    h3 {
-      color: ${theme.textColor};
-      margin-top: 0;
-      font-weight: normal;
-      font-size: 24px;
-      line-height: 33px;
-      text-align: center;
-    }
+  h3 {
+    color: ${({ theme }: ExtThemeProps) => theme.textColor};
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    text-align: center;
+  }
 
-    > .image {
-      display: flex;
-      justify-content: center;
-    }
+  > .image {
+    display: flex;
+    justify-content: center;
+  }
 
-    > .no-accounts p {
-      text-align: center;
-      font-size: 16px;
-      line-height: 26px;
-      margin: 0 30px;
-      color: ${theme.subTextColor};
-    }
+  > .no-accounts p {
+    text-align: center;
+    font-size: 16px;
+    line-height: 26px;
+    margin: 0 30px;
+    color: ${({ theme }: ExtThemeProps) => theme.subTextColor};
+  }
 `
-)
