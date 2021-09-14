@@ -5,7 +5,6 @@ import {
 } from '@polkadot/extension-base/background/types'
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
 import { ErrorBoundary } from '@polkadot/extension-ui/components'
-import Accounts from '@polkadot/extension-ui/Popup/Accounts'
 import AuthList from '@polkadot/extension-ui/Popup/AuthManagement'
 import Authorize from '@polkadot/extension-ui/Popup/Authorize'
 import CreateAccount from '@polkadot/extension-ui/Popup/CreateAccount'
@@ -20,16 +19,15 @@ import Metadata from '@polkadot/extension-ui/Popup/Metadata'
 import PhishingDetected from '@polkadot/extension-ui/Popup/PhishingDetected'
 import RestoreJson from '@polkadot/extension-ui/Popup/RestoreJson'
 import Signing from '@polkadot/extension-ui/Popup/Signing'
-import Welcome from '@polkadot/extension-ui/Popup/Welcome'
 import React from 'react'
 import { Route, Switch } from 'react-router'
+import Accounts from './accounts/Accounts'
 
 export const Router: React.FC<{
-  isWelcomeDone: boolean
   authRequests: AuthorizeRequest[]
   metaRequests: MetadataRequest[]
   signRequests: SigningRequest[]
-}> = ({ isWelcomeDone, authRequests, metaRequests, signRequests }) => (
+}> = ({ authRequests, metaRequests, signRequests }) => (
   <Switch>
     <Route path='/auth-list'>
       <ErrorBoundary trigger={'auth-list'}>
@@ -92,26 +90,21 @@ export const Router: React.FC<{
       </ErrorBoundary>
     </Route>
     <Route exact path='/'>
-      {isWelcomeDone && authRequests && authRequests.length ? (
+      {authRequests?.length ? (
         <ErrorBoundary trigger={'authorize'}>
           <Authorize />
         </ErrorBoundary>
-      ) : isWelcomeDone && metaRequests && metaRequests.length ? (
+      ) : metaRequests?.length ? (
         <ErrorBoundary trigger={'metadata'}>
           <Metadata />
         </ErrorBoundary>
-      ) : isWelcomeDone && signRequests && signRequests.length ? (
+      ) : signRequests?.length ? (
         <ErrorBoundary trigger={'signing'}>
           <Signing />
         </ErrorBoundary>
       ) : (
         <ErrorBoundary trigger={'accounts'}>
           <Accounts />
-        </ErrorBoundary>
-      )}
-      {!isWelcomeDone && (
-        <ErrorBoundary trigger={'welcome'}>
-          <Welcome />
         </ErrorBoundary>
       )}
     </Route>

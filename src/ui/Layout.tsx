@@ -24,11 +24,12 @@ import {
 } from '@polkadot/extension-ui/messaging'
 import uiSettings from '@polkadot/ui-settings'
 import type { SettingsStruct } from '@polkadot/ui-settings/types'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { initAccountContext } from './utils/initAccountContext'
 import { Router } from './Router'
 import { requestMediaAccess } from './utils/requestMediaAccess'
 import { startSettings } from './utils/startSettings'
+import { goTo } from './utils/goTo'
 
 export default function Layout(): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null)
@@ -47,18 +48,9 @@ export default function Layout(): React.ReactElement {
   const [signRequests, setSignRequests] = useState<null | SigningRequest[]>(
     null
   )
-  const [isWelcomeDone, setWelcomeDone] = useState(false)
   const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings)
 
-  const _onAction = useCallback((to?: string): void => {
-    setWelcomeDone(window.localStorage.getItem('welcome_read') === 'ok')
-
-    if (to) {
-      window.location.hash = to
-    }
-  }, [])
-
-  useEffect((): void => {
+  useEffect(() => {
     Promise.all([
       subscribeAccounts(setAccounts),
       subscribeAuthorizeRequests(setAuthRequests),
@@ -66,26 +58,24 @@ export default function Layout(): React.ReactElement {
       subscribeSigningRequests(setSignRequests),
     ]).catch(console.error)
 
-    uiSettings.on('change', (settings): void => {
+    uiSettings.on('change', (settings) => {
       setSettingsCtx(settings)
       setCameraOn(settings.camera === 'on')
     })
-
-    _onAction()
   }, [])
 
-  useEffect((): void => {
+  useEffect(() => {
     setAccountCtx(initAccountContext(accounts || []))
   }, [accounts])
 
-  useEffect((): void => {
+  useEffect(() => {
     requestMediaAccess(cameraOn).then(setMediaAllowed).catch(console.error)
   }, [cameraOn])
 
   return (
     <Loading>
       {accounts && authRequests && metaRequests && signRequests && (
-        <ActionContext.Provider value={_onAction}>
+        <ActionContext.Provider value={goTo}>
           <SettingsContext.Provider value={settingsCtx}>
             <AccountContext.Provider value={accountCtx}>
               <AuthorizeReqContext.Provider value={authRequests}>
@@ -94,7 +84,6 @@ export default function Layout(): React.ReactElement {
                     <SigningReqContext.Provider value={signRequests}>
                       <ToastProvider>
                         <Router
-                          isWelcomeDone={isWelcomeDone}
                           authRequests={authRequests}
                           metaRequests={metaRequests}
                           signRequests={signRequests}
