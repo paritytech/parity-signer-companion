@@ -10,7 +10,7 @@ import Forget from './accounts/Forget'
 import ImportQr from './accounts/ImportQr'
 import Metadata from '@polkadot/extension-ui/Popup/Metadata' // TODO: Replace it
 import PhishingDetected from '@polkadot/extension-ui/Popup/PhishingDetected' // TODO: Replace it
-import Signing from '@polkadot/extension-ui/Popup/Signing' // TODO: Replace it
+import Signing from './signing/Signing'
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import Accounts from './accounts/Accounts'
