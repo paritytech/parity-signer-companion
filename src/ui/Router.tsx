@@ -4,13 +4,13 @@ import {
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
-import { ErrorBoundary } from '@polkadot/extension-ui/components'
-import Authorize from '@polkadot/extension-ui/Popup/Authorize'
-import Forget from '@polkadot/extension-ui/Popup/Forget'
+import { ErrorBoundary } from '@polkadot/extension-ui/components' // TODO: Replace it
+import Authorize from '@polkadot/extension-ui/Popup/Authorize' // TODO: Replace it
+import Forget from './accounts/Forget'
 import ImportQr from './accounts/ImportQr'
-import Metadata from '@polkadot/extension-ui/Popup/Metadata'
-import PhishingDetected from '@polkadot/extension-ui/Popup/PhishingDetected'
-import Signing from '@polkadot/extension-ui/Popup/Signing'
+import Metadata from '@polkadot/extension-ui/Popup/Metadata' // TODO: Replace it
+import PhishingDetected from '@polkadot/extension-ui/Popup/PhishingDetected' // TODO: Replace it
+import Signing from '@polkadot/extension-ui/Popup/Signing' // TODO: Replace it
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import Accounts from './accounts/Accounts'
