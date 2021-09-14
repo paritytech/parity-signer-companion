@@ -4,7 +4,7 @@ import {
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
-import { ErrorBoundary } from '@polkadot/extension-ui/components' // TODO: Replace it
+import ErrorBoundary from './components/ErrorBoundary'
 import Authorize from '@polkadot/extension-ui/Popup/Authorize' // TODO: Replace it
 import Forget from './accounts/Forget'
 import ImportQr from './accounts/ImportQr'
@@ -20,40 +20,28 @@ export const Router: React.FC<{
   metaRequests: MetadataRequest[]
   signRequests: SigningRequest[]
 }> = ({ authRequests, metaRequests, signRequests }) => (
-  <Switch>
-    <Route path='/account/forget/:address'>
-      <ErrorBoundary trigger={'forget-address'}>
+  <ErrorBoundary>
+    <Switch>
+      <Route path='/account/forget/:address'>
         <Forget />
-      </ErrorBoundary>
-    </Route>
-    <Route path='/account/import-qr'>
-      <ErrorBoundary trigger={'import-qr'}>
+      </Route>
+      <Route path='/account/import-qr'>
         <ImportQr />
-      </ErrorBoundary>
-    </Route>
-    <Route path={`${PHISHING_PAGE_REDIRECT}/:website`}>
-      <ErrorBoundary trigger={'phishing-page-redirect'}>
+      </Route>
+      <Route path={`${PHISHING_PAGE_REDIRECT}/:website`}>
         <PhishingDetected />
-      </ErrorBoundary>
-    </Route>
-    <Route exact path='/'>
-      {authRequests?.length ? (
-        <ErrorBoundary trigger={'authorize'}>
+      </Route>
+      <Route exact path='/'>
+        {authRequests?.length ? (
           <Authorize />
-        </ErrorBoundary>
-      ) : metaRequests?.length ? (
-        <ErrorBoundary trigger={'metadata'}>
+        ) : metaRequests?.length ? (
           <Metadata />
-        </ErrorBoundary>
-      ) : signRequests?.length ? (
-        <ErrorBoundary trigger={'signing'}>
+        ) : signRequests?.length ? (
           <Signing />
-        </ErrorBoundary>
-      ) : (
-        <ErrorBoundary trigger={'accounts'}>
+        ) : (
           <Accounts />
-        </ErrorBoundary>
-      )}
-    </Route>
-  </Switch>
+        )}
+      </Route>
+    </Switch>
+  </ErrorBoundary>
 )
