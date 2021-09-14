@@ -29,6 +29,7 @@ import { initAccountContext } from './utils/initAccountContext'
 import { Router } from './Router'
 import { requestMediaAccess } from './utils/requestMediaAccess'
 import { startSettings } from './utils/startSettings'
+import { goTo } from './utils/goTo'
 
 export default function Layout(): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null)
@@ -49,11 +50,7 @@ export default function Layout(): React.ReactElement {
   )
   const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings)
 
-  const _onAction = (to?: string) => {
-    if (to) window.location.hash = to
-  }
-
-  useEffect((): void => {
+  useEffect(() => {
     Promise.all([
       subscribeAccounts(setAccounts),
       subscribeAuthorizeRequests(setAuthRequests),
@@ -61,26 +58,24 @@ export default function Layout(): React.ReactElement {
       subscribeSigningRequests(setSignRequests),
     ]).catch(console.error)
 
-    uiSettings.on('change', (settings): void => {
+    uiSettings.on('change', (settings) => {
       setSettingsCtx(settings)
       setCameraOn(settings.camera === 'on')
     })
-
-    _onAction()
   }, [])
 
-  useEffect((): void => {
+  useEffect(() => {
     setAccountCtx(initAccountContext(accounts || []))
   }, [accounts])
 
-  useEffect((): void => {
+  useEffect(() => {
     requestMediaAccess(cameraOn).then(setMediaAllowed).catch(console.error)
   }, [cameraOn])
 
   return (
     <Loading>
       {accounts && authRequests && metaRequests && signRequests && (
-        <ActionContext.Provider value={_onAction}>
+        <ActionContext.Provider value={goTo}>
           <SettingsContext.Provider value={settingsCtx}>
             <AccountContext.Provider value={accountCtx}>
               <AuthorizeReqContext.Provider value={authRequests}>
