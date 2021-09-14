@@ -1716,6 +1716,23 @@
     "@polkadot/util-crypto" "^7.3.1"
     "@polkadot/x-fetch" "^7.3.1"
 
+"@polkadot/react-identicon@^0.85.3":
+  version "0.85.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/react-identicon/-/react-identicon-0.85.3.tgz#ab57a98ead2eddbcef954ff35d4ffafe097a11d5"
+  integrity sha512-NduuUd+KUHNBxUHD/LZwW+ZQBlNlE/SP/EdjAZWcpXtR/foJdSy25iJerXuiHjveYwfHeD3uCfs7ek9E1L/bFA==
+  dependencies:
+    "@babel/runtime" "^7.15.3"
+    "@polkadot/keyring" "^7.3.1"
+    "@polkadot/ui-settings" "0.85.3"
+    "@polkadot/ui-shared" "0.85.3"
+    "@polkadot/util" "^7.3.1"
+    "@polkadot/util-crypto" "^7.3.1"
+    color "^3.2.1"
+    ethereum-blockies-base64 "^1.0.2"
+    jdenticon "3.1.1"
+    react-copy-to-clipboard "^5.0.4"
+    styled-components "^5.3.1"
+
 "@polkadot/react-identicon@^0.85.4-2":
   version "0.85.4-2"
   resolved "https://registry.yarnpkg.com/@polkadot/react-identicon/-/react-identicon-0.85.4-2.tgz#3bfc622802d88aebe6aab8befa9f9a600790bd4a"
@@ -1804,6 +1821,17 @@
     rxjs "^7.3.0"
     store "^2.0.12"
 
+"@polkadot/ui-settings@0.85.3":
+  version "0.85.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/ui-settings/-/ui-settings-0.85.3.tgz#1ef5500d31f2c5f8b5be282a2ba5330668564a46"
+  integrity sha512-2hIAceVvD0eNAXO90MtvE1R9JDez2qFKmFwJgRZDrzRxyqp6RvYWBWFaUVKG5h0mXWBUHRE0T3LCdv3lEl6DVA==
+  dependencies:
+    "@babel/runtime" "^7.15.3"
+    "@polkadot/networks" "^7.3.1"
+    "@polkadot/util" "^7.3.1"
+    eventemitter3 "^4.0.7"
+    store "^2.0.12"
+
 "@polkadot/ui-settings@0.85.4-2":
   version "0.85.4-2"
   resolved "https://registry.yarnpkg.com/@polkadot/ui-settings/-/ui-settings-0.85.4-2.tgz#62eb6ea8c89dde4132d83e458813f93b291aa5d5"
@@ -1814,6 +1842,14 @@
     "@polkadot/util" "^7.3.1"
     eventemitter3 "^4.0.7"
     store "^2.0.12"
+
+"@polkadot/ui-shared@0.85.3":
+  version "0.85.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/ui-shared/-/ui-shared-0.85.3.tgz#4d1bc4a1de3697d79ffbebeb1391c04b939da9c8"
+  integrity sha512-UWlutLWBf9c7ZPw9uBAnDkwaRdjbsci1fjAsq9v/z8pFe7aem4TPA61R1uPo5gpFs1D2Qx5ijFpTChvO+rOXPQ==
+  dependencies:
+    "@babel/runtime" "^7.15.3"
+    color "^3.2.1"
 
 "@polkadot/ui-shared@0.85.4-2":
   version "0.85.4-2"
@@ -2149,6 +2185,14 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.9.tgz#1cfb6d60ef3822c589f18e70f8b12f9a28ce8724"
   integrity sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ==
 
+"@types/hoist-non-react-statics@*":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
+  integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
+  dependencies:
+    "@types/react" "*"
+    hoist-non-react-statics "^3.3.0"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -2282,6 +2326,15 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
+
+"@types/styled-components@^5.1.14":
+  version "5.1.14"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.14.tgz#e9cf8cdb5eef9d139628183a84c083f630635d67"
+  integrity sha512-d6P1/tyNytqKwam3cQXq7a9uPtovc/mdAs7dBiz1YbDdNIT3X4WmuFU78YdSYh84TXVuhOwezZ3EeKuNBhwsHQ==
+  dependencies:
+    "@types/hoist-non-react-statics" "*"
+    "@types/react" "*"
+    csstype "^3.0.2"
 
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.6"
@@ -6285,7 +6338,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0:
+hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
