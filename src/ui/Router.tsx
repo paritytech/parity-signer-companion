@@ -5,7 +5,6 @@ import {
 } from '@polkadot/extension-base/background/types'
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
 import { ErrorBoundary } from '@polkadot/extension-ui/components'
-import Accounts from '@polkadot/extension-ui/Popup/Accounts'
 import AuthList from '@polkadot/extension-ui/Popup/AuthManagement'
 import Authorize from '@polkadot/extension-ui/Popup/Authorize'
 import CreateAccount from '@polkadot/extension-ui/Popup/CreateAccount'
@@ -22,6 +21,7 @@ import RestoreJson from '@polkadot/extension-ui/Popup/RestoreJson'
 import Signing from '@polkadot/extension-ui/Popup/Signing'
 import React from 'react'
 import { Route, Switch } from 'react-router'
+import Accounts from './accounts/Accounts'
 
 export const Router: React.FC<{
   authRequests: AuthorizeRequest[]
