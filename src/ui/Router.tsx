@@ -5,12 +5,12 @@ import {
 } from '@polkadot/extension-base/background/types'
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
 import ErrorBoundary from './components/ErrorBoundary'
-import Authorize from '@polkadot/extension-ui/Popup/Authorize' // TODO: Replace it
+import Authorize from './requests/Authorize'
 import Forget from './accounts/Forget'
 import ImportQr from './accounts/ImportQr'
-import Metadata from '@polkadot/extension-ui/Popup/Metadata' // TODO: Replace it
+import Metadata from './requests/Metadata'
 import PhishingDetected from './security/PhishingDetected'
-import Signing from './signing/Signing'
+import Signing from './requests/Signing'
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import Accounts from './accounts/Accounts'
