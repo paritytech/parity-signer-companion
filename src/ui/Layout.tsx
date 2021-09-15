@@ -5,7 +5,7 @@ import type {
   MetadataRequest,
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
-import { Loading } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import Loading from './components/Loading'
 import {
   AccountContext,
   ActionContext,

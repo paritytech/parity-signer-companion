@@ -1,7 +1,8 @@
-import { Loading, MetadataReqContext } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import { MetadataReqContext } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
 import Request from '@polkadot/extension-ui/Popup/Metadata/Request' // TODO: Replace extension-ui
 import React, { useContext } from 'react'
 import Header from '../components/Header'
+import Loading from '../components/Loading'
 
 const Metadata: React.FC = () => {
   const requests = useContext(MetadataReqContext)
