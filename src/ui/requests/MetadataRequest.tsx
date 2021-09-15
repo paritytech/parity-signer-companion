@@ -1,11 +1,11 @@
 import type { MetadataDef } from '@polkadot/extension-inject/types'
-import useMetadata from '@polkadot/extension-ui/hooks/useMetadata' // TODO: Replace hooks
 import {
   approveMetaRequest,
   rejectMetaRequest,
 } from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
 import React from 'react'
 import styled from 'styled-components'
+import useMetadata from '../hooks/useMetadata'
 import type { ExtThemeProps, ThemeProps } from '../types'
 
 type Props = ExtThemeProps & {
