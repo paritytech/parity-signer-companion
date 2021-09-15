@@ -1,7 +1,4 @@
-import {
-  AccountContext,
-  SettingsContext,
-} from '@polkadot/extension-ui/components/contexts' // TODO: Replace contexts
+import { AccountContext, SettingsContext } from '../contexts'
 import useMetadata from '../hooks/useMetadata'
 import useToast from '../hooks/useToast'
 import { DEFAULT_TYPE } from '../utils/defaultType'

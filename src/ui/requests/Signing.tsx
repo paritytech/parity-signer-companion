@@ -1,4 +1,4 @@
-import { SigningReqContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
+import { SigningReqContext } from '../contexts'
 import type { SignerPayloadJSON } from '@polkadot/types/types'
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'

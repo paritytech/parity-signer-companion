@@ -1,4 +1,4 @@
-import { MetadataReqContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
+import { MetadataReqContext } from '../contexts'
 import React, { useContext } from 'react'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
