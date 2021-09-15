@@ -1,6 +1,6 @@
-import { AuthorizeReqContext } from '@polkadot/extension-ui/components'
+import { AuthorizeReqContext } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
 import Header from '../components/Header'
-import Request from '@polkadot/extension-ui/Popup/Authorize/Request'
+import Request from '@polkadot/extension-ui/Popup/Authorize/Request' // TODO: Replace extension-ui
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ExtThemeProps } from '../types'

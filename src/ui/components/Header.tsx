@@ -1,5 +1,5 @@
-import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick'
-import MenuSettings from '@polkadot/extension-ui/partials/MenuSettings'
+import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick' // TODO: Replace extension-ui
+import MenuSettings from '@polkadot/extension-ui/partials/MenuSettings' // TODO: Replace extension-ui
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'

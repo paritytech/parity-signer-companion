@@ -1,4 +1,4 @@
-import { AccountContext } from '@polkadot/extension-ui/components'
+import { AccountContext } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'

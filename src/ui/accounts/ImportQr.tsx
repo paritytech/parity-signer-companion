@@ -1,5 +1,5 @@
-import { Address } from '@polkadot/extension-ui/components'
-import { createAccountExternal } from '@polkadot/extension-ui/messaging'
+import { Address } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import { createAccountExternal } from '@polkadot/extension-ui/messaging' // TODO: Replace extension-ui
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
 import Header from '../components/Header'

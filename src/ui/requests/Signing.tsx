@@ -1,6 +1,6 @@
-import { Loading, SigningReqContext } from '@polkadot/extension-ui/components'
-import Request from '@polkadot/extension-ui/Popup/Signing/Request'
-import TransactionIndex from '@polkadot/extension-ui/Popup/Signing/TransactionIndex'
+import { Loading, SigningReqContext } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import Request from '@polkadot/extension-ui/Popup/Signing/Request' // TODO: Replace extension-ui
+import TransactionIndex from '@polkadot/extension-ui/Popup/Signing/TransactionIndex' // TODO: Replace extension-ui
 import type { SignerPayloadJSON } from '@polkadot/types/types'
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'

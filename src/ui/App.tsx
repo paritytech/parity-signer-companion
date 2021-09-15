@@ -1,5 +1,5 @@
-import { View } from '@polkadot/extension-ui/components'
-import '@polkadot/extension-ui/i18n/i18n'
+import { View } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import '@polkadot/extension-ui/i18n/i18n' // TODO: Replace extension-ui
 import React, { Suspense } from 'react'
 import { HashRouter } from 'react-router-dom'
 import Layout from './Layout'
