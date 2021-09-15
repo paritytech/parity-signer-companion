@@ -1,11 +1,9 @@
 import { Loading, MetadataReqContext } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import Request from '@polkadot/extension-ui/Popup/Metadata/Request'
 import React, { useContext } from 'react'
 import Header from '../components/Header'
 
-export default function Metadata(): React.ReactElement {
-  const { t } = useTranslation()
+const Metadata: React.FC = () => {
   const requests = useContext(MetadataReqContext)
   const request = requests[0]
 
@@ -13,7 +11,7 @@ export default function Metadata(): React.ReactElement {
 
   return (
     <>
-      <Header text={t<string>('Metadata')} />
+      <Header text={'Metadata'} />
       <Request
         key={request.id}
         metaId={request.id}
@@ -23,3 +21,5 @@ export default function Metadata(): React.ReactElement {
     </>
   )
 }
+
+export default Metadata
