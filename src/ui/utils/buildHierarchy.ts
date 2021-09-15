@@ -2,17 +2,7 @@ import type {
   AccountJson,
   AccountWithChildren,
 } from '@polkadot/extension-base/background/types'
-import type { MetadataDefBase } from '@polkadot/extension-inject/types'
-import { selectableNetworks } from '@polkadot/networks'
-
-const chains: MetadataDefBase[] = selectableNetworks
-  .filter(({ genesisHash }) => !!genesisHash.length)
-  .map((network) => ({
-    chain: network.displayName,
-    genesisHash: network.genesisHash[0],
-    icon: network.icon,
-    ss58Format: network.prefix,
-  }))
+import { chains } from './chains'
 
 function getNetworkMap(): Map<string, string> {
   const res = new Map<string, string>()

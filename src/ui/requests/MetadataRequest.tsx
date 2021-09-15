@@ -1,8 +1,5 @@
 import type { MetadataDef } from '@polkadot/extension-inject/types'
-import {
-  approveMetaRequest,
-  rejectMetaRequest,
-} from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
+import { approveMetaRequest, rejectMetaRequest } from '../utils/messaging'
 import React from 'react'
 import styled from 'styled-components'
 import useMetadata from '../hooks/useMetadata'

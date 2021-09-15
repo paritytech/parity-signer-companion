@@ -21,7 +21,7 @@ import {
   subscribeAuthorizeRequests,
   subscribeMetadataRequests,
   subscribeSigningRequests,
-} from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
+} from './utils/messaging'
 import uiSettings from '@polkadot/ui-settings'
 import type { SettingsStruct } from '@polkadot/ui-settings/types'
 import React, { useEffect, useState } from 'react'

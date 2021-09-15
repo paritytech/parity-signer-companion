@@ -1,5 +1,5 @@
 import Address from '../components/Address'
-import { forgetAccount } from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
+import { forgetAccount } from '../utils/messaging'
 import React, { useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 import styled from 'styled-components'
