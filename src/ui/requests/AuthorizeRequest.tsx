@@ -1,7 +1,6 @@
 import type { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import { approveAuthRequest, rejectAuthRequest } from '../utils/messaging'
 import React from 'react'
-import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import type { ThemeProps } from '../types'
 
@@ -28,15 +27,13 @@ const AuthorizeRequest: React.FC<Props> = ({
       <div className='requestInfo'>
         <div className='info'>
           <div className='tab-info'>
-            <Trans key='accessRequest'>
-              {'An application, self-identifying as '}
-              <span className='tab-name'>{origin}</span> is requesting access
-              {'from '}
-              <a href={url} rel='noopener noreferrer' target='_blank'>
-                <span className='tab-url'>{url}</span>
-              </a>
-              {'.'}
-            </Trans>
+            {'An application, self-identifying as '}
+            <span className='tab-name'>{origin}</span> is requesting access
+            {'from '}
+            <a href={url} rel='noopener noreferrer' target='_blank'>
+              <span className='tab-url'>{url}</span>
+            </a>
+            {'.'}
           </div>
         </div>
         {isFirst && (

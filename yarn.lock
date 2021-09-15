@@ -966,7 +966,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.14.5", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -1051,46 +1051,6 @@
     js-yaml "^3.13.1"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
-
-"@fortawesome/fontawesome-common-types@^0.2.36":
-  version "0.2.36"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"
-  integrity sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==
-
-"@fortawesome/fontawesome-svg-core@^1.2.36":
-  version "1.2.36"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.36.tgz#4f2ea6f778298e0c47c6524ce2e7fd58eb6930e3"
-  integrity sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.36"
-
-"@fortawesome/free-brands-svg-icons@^5.15.4":
-  version "5.15.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.4.tgz#ec8a44dd383bcdd58aa7d1c96f38251e6fec9733"
-  integrity sha512-f1witbwycL9cTENJegcmcZRYyawAFbm8+c6IirLmwbbpqz46wyjbQYLuxOc7weXFXfB7QR8/Vd2u5R3q6JYD9g==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.36"
-
-"@fortawesome/free-regular-svg-icons@^5.15.4":
-  version "5.15.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.15.4.tgz#b97edab436954333bbeac09cfc40c6a951081a02"
-  integrity sha512-9VNNnU3CXHy9XednJ3wzQp6SwNwT3XaM26oS4Rp391GsxVYA+0oDR2J194YCIWf7jNRCYKjUCOduxdceLrx+xw==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.36"
-
-"@fortawesome/free-solid-svg-icons@^5.15.4":
-  version "5.15.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.4.tgz#2a68f3fc3ddda12e52645654142b9e4e8fbb6cc5"
-  integrity sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.36"
-
-"@fortawesome/react-fontawesome@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.15.tgz#1450b838f905981d721bf07e14e3b52c0e9a91ed"
-  integrity sha512-/HFHdcoLESxxMkqZAcZ6RXDJ69pVApwdwRos/B2kiMWxDSAX2dFK8Er2/+rG+RsrzWB/dsAyjefLmemgmfE18g==
-  dependencies:
-    prop-types "^15.7.2"
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
@@ -1643,39 +1603,6 @@
   dependencies:
     "@babel/runtime" "^7.15.3"
 
-"@polkadot/extension-ui-deps@./polkadot-js-extension/packages/extension-ui/":
-  version "0.39.4-11"
-  dependencies:
-    "@babel/runtime" "^7.15.3"
-    "@fortawesome/fontawesome-svg-core" "^1.2.36"
-    "@fortawesome/free-brands-svg-icons" "^5.15.4"
-    "@fortawesome/free-regular-svg-icons" "^5.15.4"
-    "@fortawesome/free-solid-svg-icons" "^5.15.4"
-    "@fortawesome/react-fontawesome" "^0.1.15"
-    "@polkadot/extension-base" "^0.39.4-11"
-    "@polkadot/extension-dapp" "^0.39.4-11"
-    "@polkadot/extension-inject" "^0.39.4-11"
-    "@polkadot/hw-ledger" "^7.3.1"
-    "@polkadot/keyring" "^7.3.1"
-    "@polkadot/networks" "^7.3.1"
-    "@polkadot/react-identicon" "^0.85.4-2"
-    "@polkadot/react-qr" "^0.85.4-2"
-    "@polkadot/util" "^7.3.1"
-    "@polkadot/util-crypto" "^7.3.1"
-    file-saver "^2.0.5"
-    i18next "^20.4.0"
-    react "^17.0.2"
-    react-dom "^17.0.2"
-    react-dropzone "^11.3.4"
-    react-i18next "^11.11.4"
-    react-is "^17.0.2"
-    react-router "^5.2.0"
-    react-router-dom "^5.2.0"
-    styled-components "^5.3.1"
-
-"@polkadot/extension-ui@./polkadot-js-extension/packages/extension-ui/src/":
-  version "0.0.0"
-
 "@polkadot/hw-ledger-transports@7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@polkadot/hw-ledger-transports/-/hw-ledger-transports-7.3.1.tgz#bbbed0048bb07eaf408b16479169c99d23ce3514"
@@ -1741,29 +1668,12 @@
     react-copy-to-clipboard "^5.0.4"
     styled-components "^5.3.1"
 
-"@polkadot/react-identicon@^0.85.4-2":
-  version "0.85.4-2"
-  resolved "https://registry.yarnpkg.com/@polkadot/react-identicon/-/react-identicon-0.85.4-2.tgz#3bfc622802d88aebe6aab8befa9f9a600790bd4a"
-  integrity sha512-ikymSPG5KP+T2kSFwMBRmKW0d18nxl9sfs+bL/sgtnEcrtz6f/t05y2Z5calYe40yXaopV8Zu9dzSYRLxpUk1g==
+"@polkadot/react-qr@^0.85.3":
+  version "0.85.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/react-qr/-/react-qr-0.85.3.tgz#21ee1e749e781bd32a407132ac43bf2717d8fca5"
+  integrity sha512-d5GCsuqQcIdKf8Oa7ygnJEAxPdeQYNki5h62DePt+3jhMLWSRyp3Rld0gXIvNv/qYSL1ly+xEsZGpTZmWBRwng==
   dependencies:
-    "@babel/runtime" "^7.15.4"
-    "@polkadot/keyring" "^7.3.1"
-    "@polkadot/ui-settings" "0.85.4-2"
-    "@polkadot/ui-shared" "0.85.4-2"
-    "@polkadot/util" "^7.3.1"
-    "@polkadot/util-crypto" "^7.3.1"
-    color "^3.2.1"
-    ethereum-blockies-base64 "^1.0.2"
-    jdenticon "3.1.1"
-    react-copy-to-clipboard "^5.0.4"
-    styled-components "^5.3.1"
-
-"@polkadot/react-qr@^0.85.4-2":
-  version "0.85.4-2"
-  resolved "https://registry.yarnpkg.com/@polkadot/react-qr/-/react-qr-0.85.4-2.tgz#c55f5d27a058b5d4d5c79fd01e4e127557b8b89d"
-  integrity sha512-pMtEq2gq0prZxz1W6f3Ib5CRUS/nc1Hj2iJaFKc8BCFFyUgiCvy235Ir0BZ8aFVyzu71Yd+wxqPZiDUqdKs9zA==
-  dependencies:
-    "@babel/runtime" "^7.15.4"
+    "@babel/runtime" "^7.15.3"
     "@polkadot/util" "^7.3.1"
     "@polkadot/util-crypto" "^7.3.1"
     qrcode-generator "^1.4.4"
@@ -1857,14 +1767,6 @@
   integrity sha512-UWlutLWBf9c7ZPw9uBAnDkwaRdjbsci1fjAsq9v/z8pFe7aem4TPA61R1uPo5gpFs1D2Qx5ijFpTChvO+rOXPQ==
   dependencies:
     "@babel/runtime" "^7.15.3"
-    color "^3.2.1"
-
-"@polkadot/ui-shared@0.85.4-2":
-  version "0.85.4-2"
-  resolved "https://registry.yarnpkg.com/@polkadot/ui-shared/-/ui-shared-0.85.4-2.tgz#c13996b6c61c78b4cb35bedff6aa2de89f5110c6"
-  integrity sha512-CJZIbDjG8Oz0btk3D/gsGMi9FmTopS124ome6EGtE1ldSOQlMXA2ky920wo97VwU7KyJypGLgCexqpSQH5pC8w==
-  dependencies:
-    "@babel/runtime" "^7.15.4"
     color "^3.2.1"
 
 "@polkadot/util-crypto@7.3.1", "@polkadot/util-crypto@^7.3.1":
@@ -2971,11 +2873,6 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-
-attr-accept@^2.2.1:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
-  integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
 
 autoprefixer@^9.8.6:
   version "9.8.6"
@@ -5682,18 +5579,6 @@ file-loader@^6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-file-saver@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
-  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
-
-file-selector@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.2.4.tgz#7b98286f9dbb9925f420130ea5ed0a69238d4d80"
-  integrity sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==
-  dependencies:
-    tslib "^2.0.3"
-
 file-uri-to-path@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
@@ -6413,13 +6298,6 @@ html-minifier-terser@^5.1.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-parse-stringify@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz#dfc1017347ce9f77c8141a507f233040c59c55d2"
-  integrity sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==
-  dependencies:
-    void-elements "3.1.0"
-
 html-tags@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.1.0.tgz#7b5e6f7e665e9fb41f30007ed9e0d41e97fb2140"
@@ -6472,13 +6350,6 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
-
-i18next@^20.4.0:
-  version "20.6.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-20.6.1.tgz#535e5f6e5baeb685c7d25df70db63bf3cc0aa345"
-  integrity sha512-yCMYTMEJ9ihCwEQQ3phLo7I/Pwycf8uAx+sRHwwk5U9Aui/IZYgQRyMqXafQOw5QQ7DM1Z+WyEXWIqSuJHhG2A==
-  dependencies:
-    "@babel/runtime" "^7.12.0"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
@@ -9266,29 +9137,12 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-dropzone@^11.3.4:
-  version "11.3.4"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-11.3.4.tgz#aeb098df5c4491e165042c9f0b5e2e7185484740"
-  integrity sha512-B1nzNRZ4F1cnrfEC0T6KXeBN1mCPinu4JCoTrp7NjB+442KSPxqfDrw41QIA2kAwlYs1+wj/0BTedeM5hc2+xw==
-  dependencies:
-    attr-accept "^2.2.1"
-    file-selector "^0.2.2"
-    prop-types "^15.7.2"
-
-react-i18next@^11.11.4:
-  version "11.12.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.12.0.tgz#2a053321b9b7a876d5baa7af55a12d986117bffc"
-  integrity sha512-M9BT+hqVG03ywrl+L7CK74ugK+4jIo7AeKJ17+g9BoqJz2+/aVbs8SIVXT4KMQ1rjIdcw+GcSRDy1CXjcz6tLQ==
-  dependencies:
-    "@babel/runtime" "^7.14.5"
-    html-parse-stringify "^3.0.1"
-
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-is@^17.0.1, react-is@^17.0.2:
+react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
@@ -9302,7 +9156,7 @@ react-qr-reader@^2.2.1:
     prop-types "^15.7.2"
     webrtc-adapter "^7.2.1"
 
-react-router-dom@^5.2.0, react-router-dom@^5.3.0:
+react-router-dom@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.3.0.tgz#da1bfb535a0e89a712a93b97dd76f47ad1f32363"
   integrity sha512-ObVBLjUZsphUUMVycibxgMdh5jJ1e3o+KpAZBVeHcNQZ4W+uUGGWsokurzlF4YOldQYRQL4y6yFRWM4m3svmuQ==
@@ -9315,7 +9169,7 @@ react-router-dom@^5.2.0, react-router-dom@^5.3.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.2.1, react-router@^5.2.0:
+react-router@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.2.1.tgz#4d2e4e9d5ae9425091845b8dbc6d9d276239774d"
   integrity sha512-lIboRiOtDLFdg1VTemMwud9vRVuOCZmUIT/7lUoZiSpPODiiH1UQlfXy+vPLC/7IWdFYnhRwAyNqA/+I7wnvKQ==
@@ -11169,11 +11023,6 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
-
-void-elements@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
-  integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
 
 vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"

@@ -78,10 +78,6 @@ module.exports = (env, argv) => ({
   resolve: {
     alias: {
       'react/jsx-runtime': require.resolve('react/jsx-runtime'),
-      '@polkadot/extension-ui': path.resolve(
-        __dirname,
-        './polkadot-js-extension/packages/extension-ui/src'
-      ),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     fallback: {
