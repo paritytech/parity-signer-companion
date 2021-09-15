@@ -1,21 +1,19 @@
 import { AccountContext } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
-import Header from '../components/Header'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import Header from '../components/Header'
 import { ExtThemeProps } from '../types'
-import AddAccount from './AddAccount'
 import AccountsTree from './AccountsTree'
+import AddAccount from './AddAccount'
 
 const Accounts: React.FC<ExtThemeProps> = ({ className }) => {
-  const { t } = useTranslation()
   const { hierarchy } = useContext(AccountContext)
 
   if (hierarchy.length === 0) return <AddAccount />
 
   return (
     <>
-      <Header showAdd showSettings text={t('Accounts')} />
+      <Header showAdd showSettings text={'Accounts'} />
       <div className={className}>
         {hierarchy.map((json, i) => (
           <AccountsTree {...json} key={`${i}:${json.address}`} />
