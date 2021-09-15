@@ -1,15 +1,13 @@
 import React from 'react'
-import { useParams } from 'react-router'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import type { ExtThemeProps } from '../types'
 
-interface WebsiteState {
+type Props = ExtThemeProps & {
   website: string
 }
 
-const PhishingDetected: React.FC<ExtThemeProps> = ({ className }) => {
-  const { website } = useParams<WebsiteState>()
+const PhishingDetected: React.FC<Props> = ({ className, website }) => {
   const decodedWebsite = decodeURIComponent(website)
 
   return (

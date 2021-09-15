@@ -1,5 +1,5 @@
 import React from 'react'
-import { goTo } from '../utils/goTo'
+import { goTo } from '../utils/routing'
 import Header from './Header'
 
 type Props = {}

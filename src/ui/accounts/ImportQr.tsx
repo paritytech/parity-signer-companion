@@ -3,7 +3,7 @@ import { createAccountExternal } from '../utils/messaging'
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
 import Header from '../components/Header'
-import { goTo } from '../utils/goTo'
+import { goTo } from '../utils/routing'
 
 interface QrAccount {
   isAddress: boolean

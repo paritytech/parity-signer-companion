@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import type { ExtThemeProps } from '../types'
-import { goTo } from '../utils/goTo'
+import { goTo } from '../utils/routing'
 
 interface Props extends ExtThemeProps {
   showAdd?: boolean
