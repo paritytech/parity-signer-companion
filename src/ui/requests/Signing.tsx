@@ -1,5 +1,4 @@
 import { Loading, SigningReqContext } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import Request from '@polkadot/extension-ui/Popup/Signing/Request'
 import TransactionIndex from '@polkadot/extension-ui/Popup/Signing/TransactionIndex'
 import type { SignerPayloadJSON } from '@polkadot/types/types'
@@ -7,7 +6,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 
 const Signing: React.FC = () => {
-  const { t } = useTranslation()
   const requests = useContext(SigningReqContext)
   const [requestIndex, setRequestIndex] = useState(0)
 
@@ -38,11 +36,7 @@ const Signing: React.FC = () => {
 
   return (
     <>
-      <Header
-        text={
-          isTransaction ? t<string>('Transaction') : t<string>('Sign message')
-        }
-      />
+      <Header text={isTransaction ? 'Transaction' : 'Sign message'} />
       {requests.length > 1 && (
         <TransactionIndex
           index={requestIndex}
@@ -53,9 +47,7 @@ const Signing: React.FC = () => {
       )}
       <Request
         account={request.account}
-        buttonText={
-          isTransaction ? t('Sign the transaction') : t('Sign the message')
-        }
+        buttonText={isTransaction ? 'Sign the transaction' : 'Sign the message'}
         isFirst={requestIndex === 0}
         request={request.request}
         signId={request.id}
