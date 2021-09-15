@@ -8,7 +8,7 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import styled from 'styled-components'
 import type { ExtThemeProps, ThemeProps } from '../types'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
-import { goTo } from '../utils/goTo'
+import { goTo } from '../utils/routing'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
 
 type Props = ExtThemeProps & {

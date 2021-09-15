@@ -1,20 +1,16 @@
-import Address from '../components/Address'
-import { forgetAccount } from '../utils/messaging'
 import React, { useState } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
 import styled from 'styled-components'
+import Address from '../components/Address'
 import Header from '../components/Header'
 import type { ExtThemeProps } from '../types'
-import { goTo } from '../utils/goTo'
+import { goTo } from '../utils/routing'
+import { forgetAccount } from '../utils/messaging'
 
-type Props = RouteComponentProps<{ address: string }> & ExtThemeProps
+type Props = ExtThemeProps & {
+  address: string
+}
 
-const Forget: React.FC<Props> = ({
-  className,
-  match: {
-    params: { address },
-  },
-}: Props) => {
+const Forget: React.FC<Props> = ({ className, address }) => {
   const [isBusy, setIsBusy] = useState(false)
 
   const goHome = () => goTo('/')
@@ -54,7 +50,7 @@ const Forget: React.FC<Props> = ({
   )
 }
 
-export default withRouter(styled(Forget)`
+export default styled(Forget)`
   .actionArea {
     padding: 10px 24px;
   }
@@ -70,4 +66,4 @@ export default withRouter(styled(Forget)`
   .withMarginTop {
     margin-top: 4px;
   }
-`)
+`

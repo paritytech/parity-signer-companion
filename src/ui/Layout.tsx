@@ -29,7 +29,8 @@ import { initAccountContext } from './utils/initAccountContext'
 import { Router } from './Router'
 import { requestMediaAccess } from './utils/requestMediaAccess'
 import { startSettings } from './utils/startSettings'
-import { goTo } from './utils/goTo'
+import { goTo } from './utils/routing'
+import ErrorBoundary from './components/ErrorBoundary'
 
 export default function Layout(): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null)
@@ -83,11 +84,13 @@ export default function Layout(): React.ReactElement {
                   <MetadataReqContext.Provider value={metaRequests}>
                     <SigningReqContext.Provider value={signRequests}>
                       <ToastProvider>
-                        <Router
-                          authRequests={authRequests}
-                          metaRequests={metaRequests}
-                          signRequests={signRequests}
-                        />
+                        <ErrorBoundary>
+                          <Router
+                            authRequests={authRequests}
+                            metaRequests={metaRequests}
+                            signRequests={signRequests}
+                          />
+                        </ErrorBoundary>
                       </ToastProvider>
                     </SigningReqContext.Provider>
                   </MetadataReqContext.Provider>
