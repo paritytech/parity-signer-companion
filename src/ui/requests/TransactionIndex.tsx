@@ -1,5 +1,3 @@
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import styled from 'styled-components'
 import { ExtThemeProps } from '../types'
@@ -22,7 +20,6 @@ const TransactionIndex: React.FC<Props> = ({
   const nextClickActive = index < totalItems - 1
 
   const prevClick = () => previousClickActive && onPreviousClick()
-
   const nextClick = () => nextClickActive && onNextClick()
 
   return (
@@ -32,18 +29,8 @@ const TransactionIndex: React.FC<Props> = ({
         <span className='totalSteps'>/{totalItems}</span>
       </div>
       <div>
-        <FontAwesomeIcon
-          className={`arrowLeft ${previousClickActive ? 'active' : ''}`}
-          icon={faArrowLeft}
-          onClick={prevClick}
-          size='sm'
-        />
-        <FontAwesomeIcon
-          className={`arrowRight ${nextClickActive ? 'active' : ''}`}
-          icon={faArrowRight}
-          onClick={nextClick}
-          size='sm'
-        />
+        <button onClick={prevClick}>Prev</button>
+        <button onClick={nextClick}>Next</button>
       </div>
     </div>
   )

@@ -14,9 +14,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.15",
     "@polkadot/extension-base": "^0.39.4-11",
     "@polkadot/extension-chains": "0.39.4-11",
     "@polkadot/extension-inject": "^0.39.4-11",
