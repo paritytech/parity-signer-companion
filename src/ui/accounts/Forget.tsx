@@ -1,4 +1,4 @@
-import { Address } from '@polkadot/extension-ui/components' // TODO: Replace extension-ui
+import Address from '../components/Address'
 import { forgetAccount } from '@polkadot/extension-ui/messaging' // TODO: Replace extension-ui
 import React, { useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
