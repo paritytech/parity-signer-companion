@@ -1,7 +1,7 @@
 import type { AccountJson } from '@polkadot/extension-base/background/types'
 import { AccountWithChildren } from '@polkadot/extension-base/background/types'
 import { Chain } from '@polkadot/extension-chains/types'
-import { DEFAULT_TYPE } from '@polkadot/extension-ui/util/defaultType' // TODO: Replace extension-ui
+import { DEFAULT_TYPE } from '../utils/defaultType'
 import { SettingsStruct } from '@polkadot/ui-settings/types'
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
 import type { KeypairType } from '@polkadot/util-crypto/types'
