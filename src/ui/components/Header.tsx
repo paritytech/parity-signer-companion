@@ -1,4 +1,4 @@
-import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick' // TODO: Replace extension-ui
+import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick' // TODO: Replace hooks
 import MenuSettings from '@polkadot/extension-ui/partials/MenuSettings' // TODO: Replace extension-ui
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'

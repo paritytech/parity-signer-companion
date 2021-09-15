@@ -1,4 +1,4 @@
-import '@polkadot/extension-ui/i18n/i18n' // TODO: Replace extension-ui
+import '@polkadot/extension-ui/i18n/i18n' // TODO: Remove i18n
 import React, { Suspense } from 'react'
 import { HashRouter } from 'react-router-dom'
 import View from './components/View'

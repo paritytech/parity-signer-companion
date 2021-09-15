@@ -14,14 +14,14 @@ import {
   MetadataReqContext,
   SettingsContext,
   SigningReqContext,
-} from '@polkadot/extension-ui/components/contexts' // TODO: Replace extension-ui
-import ToastProvider from '@polkadot/extension-ui/components/Toast/ToastProvider' // TODO: Replace extension-ui
+} from '@polkadot/extension-ui/components/contexts' // TODO: Replace contexts
+import ToastProvider from '@polkadot/extension-ui/components/Toast/ToastProvider' // TODO: Replace contexts
 import {
   subscribeAccounts,
   subscribeAuthorizeRequests,
   subscribeMetadataRequests,
   subscribeSigningRequests,
-} from '@polkadot/extension-ui/messaging' // TODO: Replace extension-ui
+} from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
 import uiSettings from '@polkadot/ui-settings'
 import type { SettingsStruct } from '@polkadot/ui-settings/types'
 import React, { useEffect, useState } from 'react'

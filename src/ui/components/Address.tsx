@@ -1,9 +1,9 @@
 import {
   AccountContext,
   SettingsContext,
-} from '@polkadot/extension-ui/components/contexts' // TODO: Replace extension-ui
-import useMetadata from '@polkadot/extension-ui/hooks/useMetadata' // TODO: Replace extension-ui
-import useToast from '@polkadot/extension-ui/hooks/useToast' // TODO: Replace extension-ui
+} from '@polkadot/extension-ui/components/contexts' // TODO: Replace contexts
+import useMetadata from '@polkadot/extension-ui/hooks/useMetadata' // TODO: Replace hooks
+import useToast from '@polkadot/extension-ui/hooks/useToast' // TODO: Replace hooks
 import { DEFAULT_TYPE } from '@polkadot/extension-ui/util/defaultType' // TODO: Replace extension-ui
 import type { KeypairType } from '@polkadot/util-crypto/types'
 import React, { useContext, useEffect, useState } from 'react'
