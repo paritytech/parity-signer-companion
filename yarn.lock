@@ -1618,6 +1618,14 @@
     "@polkadot/phishing" "^0.6.281"
     "@polkadot/ui-keyring" "^0.85.4-2"
 
+"@polkadot/extension-chains@0.39.4-11":
+  version "0.39.4-11"
+  resolved "https://registry.yarnpkg.com/@polkadot/extension-chains/-/extension-chains-0.39.4-11.tgz#e7fdee686a111bb7f7dadbb8dfc1b8b1895bb70c"
+  integrity sha512-qxhl9uGPG4Sa0oStvhYpZgPEPWHWKJrym8+7wVnPESdXp7AD+cYazAzwSa3AwRh2cojnjnDihhY/7sc8sG7rwQ==
+  dependencies:
+    "@babel/runtime" "^7.15.3"
+    "@polkadot/networks" "^7.3.1"
+
 "@polkadot/extension-dapp@^0.39.4-11":
   version "0.39.4-11"
   resolved "https://registry.yarnpkg.com/@polkadot/extension-dapp/-/extension-dapp-0.39.4-11.tgz#5afb7bd417414105f58c5d763361a6208760d09a"
@@ -2276,6 +2284,13 @@
   version "15.7.4"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
+
+"@types/react-copy-to-clipboard@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.1.tgz#7d9c2c0af52e2e8106ebe2b9fde4f02859af7a3d"
+  integrity sha512-CDuRrJWEIdfKFC4vbwpXT3vk0O4gA/I/Kxu/1npUvGc2Yey5swPvsgO3JEnQkIUwdnYUbwUYDE/fTFQVgqr4oA==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-dom@^17.0.9":
   version "17.0.9"
