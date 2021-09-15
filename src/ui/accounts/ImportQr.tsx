@@ -1,5 +1,4 @@
 import { Address } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import { createAccountExternal } from '@polkadot/extension-ui/messaging'
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
@@ -14,10 +13,9 @@ interface QrAccount {
 }
 
 const ImportQr: React.FC = () => {
-  const { t } = useTranslation()
   const [account, setAccount] = useState<QrAccount>()
 
-  const _onCreate = () => {
+  const onCreate = () => {
     if (account) {
       createAccountExternal(
         account.name || '',
@@ -31,7 +29,7 @@ const ImportQr: React.FC = () => {
 
   return (
     <>
-      <Header showBackArrow text={t('Scan Address Qr')} />
+      <Header showBackArrow text={'Scan Address Qr'} />
       {!account && <QrScanAddress onScan={setAccount} />}
       {account && (
         <>
@@ -41,8 +39,8 @@ const ImportQr: React.FC = () => {
             isExternal={true}
             name={account.name}
           />
-          <button disabled={!account.name} onClick={_onCreate}>
-            {t('Add the account with identified address')}
+          <button disabled={!account.name} onClick={onCreate}>
+            {'Add the account with identified address'}
           </button>
         </>
       )}

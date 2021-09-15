@@ -1,6 +1,5 @@
 import type { AccountJson } from '@polkadot/extension-base/background/types'
 import { Address, Link } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import React from 'react'
 import styled from 'styled-components'
 import { ThemeProps } from '../types'
@@ -20,14 +19,12 @@ const Account: React.FC<Props> = ({
   parentName,
   suri,
 }) => {
-  const { t } = useTranslation()
-
   return (
     <div className={className}>
       <Address
         actions={
           <Link className='menuItem' isDanger to={`/account/forget/${address}`}>
-            {t('Forget Account')}
+            {'Forget Account'}
           </Link>
         }
         address={address}
