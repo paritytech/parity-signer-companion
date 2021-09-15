@@ -1,8 +1,5 @@
 import type { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
-import {
-  approveAuthRequest,
-  rejectAuthRequest,
-} from '@polkadot/extension-ui/messaging' // TODO: replace messaging
+import { approveAuthRequest, rejectAuthRequest } from '../utils/messaging'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'

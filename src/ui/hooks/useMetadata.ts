@@ -1,5 +1,5 @@
 import type { Chain } from '@polkadot/extension-chains/types'
-import { getMetadata } from '@polkadot/extension-ui/messaging' // TODO: replace messaging
+import { getMetadata } from '../utils/messaging'
 import { useEffect, useState } from 'react'
 
 export default function useMetadata(

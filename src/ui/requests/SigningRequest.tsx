@@ -3,10 +3,7 @@ import type {
   RequestSign,
 } from '@polkadot/extension-base/background/types'
 import { AccountContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
-import {
-  approveSignSignature,
-  cancelSignRequest,
-} from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
+import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
 import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
 import { TypeRegistry } from '@polkadot/types'
 import type { ExtrinsicPayload } from '@polkadot/types/interfaces'
