@@ -1,7 +1,8 @@
 import type { AccountJson } from '@polkadot/extension-base/background/types'
-import { Address, Link } from '@polkadot/extension-ui/components'
+import { Address } from '@polkadot/extension-ui/components'
 import React from 'react'
 import styled from 'styled-components'
+import Link from '../components/Link'
 import { ThemeProps } from '../types'
 
 interface Props extends AccountJson {
