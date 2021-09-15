@@ -82,10 +82,6 @@ module.exports = (env, argv) => ({
         __dirname,
         './polkadot-js-extension/packages/extension-ui/src'
       ),
-      '@polkadot/extension-chains': path.resolve(
-        __dirname,
-        './polkadot-js-extension/packages/extension-chains/src'
-      ),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     fallback: {
