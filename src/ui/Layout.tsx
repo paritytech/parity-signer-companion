@@ -14,8 +14,8 @@ import {
   MetadataReqContext,
   SettingsContext,
   SigningReqContext,
-} from '@polkadot/extension-ui/components/contexts' // TODO: Replace contexts
-import ToastProvider from '@polkadot/extension-ui/components/Toast/ToastProvider' // TODO: Replace contexts
+} from './contexts'
+import ToastProvider from './components/ToastProvider'
 import {
   subscribeAccounts,
   subscribeAuthorizeRequests,

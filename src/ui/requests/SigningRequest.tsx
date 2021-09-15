@@ -2,7 +2,7 @@ import type {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
-import { AccountContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
+import { AccountContext } from '../contexts'
 import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
 import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
 import { TypeRegistry } from '@polkadot/types'
