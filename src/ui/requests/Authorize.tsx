@@ -1,5 +1,4 @@
 import { AuthorizeReqContext } from '@polkadot/extension-ui/components'
-import useTranslation from '@polkadot/extension-ui/hooks/useTranslation'
 import Header from '../components/Header'
 import Request from '@polkadot/extension-ui/Popup/Authorize/Request'
 import React, { useContext } from 'react'
@@ -7,7 +6,6 @@ import styled from 'styled-components'
 import { ExtThemeProps } from '../types'
 
 const Authorize: React.FC<ExtThemeProps> = ({ className }) => {
-  const { t } = useTranslation()
   const requests = useContext(AuthorizeReqContext)
 
   return (
@@ -15,7 +13,7 @@ const Authorize: React.FC<ExtThemeProps> = ({ className }) => {
       <div
         className={`${className} ${requests.length === 1 ? 'lastRequest' : ''}`}
       >
-        <Header text={t<string>('Authorize')} />
+        <Header text={'Authorize'} />
         {requests.map(
           ({ id, request, url }, index): React.ReactNode => (
             <Request
