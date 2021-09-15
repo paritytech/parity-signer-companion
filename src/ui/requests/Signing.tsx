@@ -1,9 +1,10 @@
-import { Loading, SigningReqContext } from '@polkadot/extension-ui/components'
-import Request from '@polkadot/extension-ui/Popup/Signing/Request'
-import TransactionIndex from '@polkadot/extension-ui/Popup/Signing/TransactionIndex'
+import { SigningReqContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
 import type { SignerPayloadJSON } from '@polkadot/types/types'
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
+import Loading from '../components/Loading'
+import SigningRequest from './SigningRequest'
+import TransactionIndex from './TransactionIndex'
 
 const Signing: React.FC = () => {
   const requests = useContext(SigningReqContext)
@@ -45,7 +46,7 @@ const Signing: React.FC = () => {
           totalItems={requests.length}
         />
       )}
-      <Request
+      <SigningRequest
         account={request.account}
         buttonText={isTransaction ? 'Sign the transaction' : 'Sign the message'}
         isFirst={requestIndex === 0}

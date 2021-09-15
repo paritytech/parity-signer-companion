@@ -1,5 +1,5 @@
-import { Address } from '@polkadot/extension-ui/components'
-import { createAccountExternal } from '@polkadot/extension-ui/messaging'
+import Address from '../components/Address'
+import { createAccountExternal } from '@polkadot/extension-ui/messaging' // TODO: Replace messaging
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
 import Header from '../components/Header'
@@ -33,12 +33,7 @@ const ImportQr: React.FC = () => {
       {!account && <QrScanAddress onScan={setAccount} />}
       {account && (
         <>
-          <Address
-            {...account}
-            address={account.content}
-            isExternal={true}
-            name={account.name}
-          />
+          <Address {...account} address={account.content} name={account.name} />
           <button disabled={!account.name} onClick={onCreate}>
             {'Add the account with identified address'}
           </button>

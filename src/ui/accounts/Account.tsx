@@ -1,5 +1,5 @@
 import type { AccountJson } from '@polkadot/extension-base/background/types'
-import { Address, Link } from '@polkadot/extension-ui/components'
+import Address from '../components/Address'
 import React from 'react'
 import styled from 'styled-components'
 import { ThemeProps } from '../types'
@@ -13,28 +13,15 @@ const Account: React.FC<Props> = ({
   address,
   className,
   genesisHash,
-  isExternal,
-  isHidden,
   name,
-  parentName,
-  suri,
 }) => {
   return (
     <div className={className}>
       <Address
-        actions={
-          <Link className='menuItem' isDanger to={`/account/forget/${address}`}>
-            {'Forget Account'}
-          </Link>
-        }
         address={address}
         className='address'
         genesisHash={genesisHash}
-        isExternal={isExternal}
-        isHidden={isHidden}
         name={name}
-        parentName={parentName}
-        suri={suri}
       />
     </div>
   )

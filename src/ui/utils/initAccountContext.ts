@@ -3,7 +3,7 @@ import {
   AccountsContext,
 } from '@polkadot/extension-base/background/types'
 import { canDerive } from '@polkadot/extension-base/utils'
-import { buildHierarchy } from '@polkadot/extension-ui/util/buildHierarchy'
+import { buildHierarchy } from './buildHierarchy'
 
 export const initAccountContext = (
   accounts: AccountJson[]

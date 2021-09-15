@@ -1,6 +1,4 @@
-import useOutsideClick from '@polkadot/extension-ui/hooks/useOutsideClick'
-import MenuSettings from '@polkadot/extension-ui/partials/MenuSettings'
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import type { ExtThemeProps } from '../types'
@@ -18,22 +16,10 @@ const Header: React.FC<Props> = ({
   className,
   showAdd,
   showBackArrow,
-  showSettings,
   smallMargin,
   text,
 }) => {
-  const [isSettingsOpen, setShowSettings] = useState(false)
-  const setRef = useRef(null)
-
-  useOutsideClick(setRef, (): void => {
-    isSettingsOpen && setShowSettings(!isSettingsOpen)
-  })
-
   const toggleAdd = () => goTo('/account/import-qr')
-
-  const toggleSettings = () =>
-    setShowSettings((isSettingsOpen) => !isSettingsOpen)
-
   const toggleBack = () => goTo('/')
 
   return (
@@ -53,13 +39,7 @@ const Header: React.FC<Props> = ({
               Add
             </button>
           )}
-          {showSettings && (
-            <button className='popupToggle' onClick={toggleSettings}>
-              Settings
-            </button>
-          )}
         </div>
-        {isSettingsOpen && <MenuSettings reference={setRef} />}
       </div>
     </div>
   )

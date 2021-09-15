@@ -1,9 +1,9 @@
-import { AuthorizeReqContext } from '@polkadot/extension-ui/components'
-import Header from '../components/Header'
-import Request from '@polkadot/extension-ui/Popup/Authorize/Request'
+import { AuthorizeReqContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import Header from '../components/Header'
 import { ExtThemeProps } from '../types'
+import AuthorizeRequest from './AuthorizeRequest'
 
 const Authorize: React.FC<ExtThemeProps> = ({ className }) => {
   const requests = useContext(AuthorizeReqContext)
@@ -16,7 +16,7 @@ const Authorize: React.FC<ExtThemeProps> = ({ className }) => {
         <Header text={'Authorize'} />
         {requests.map(
           ({ id, request, url }, index): React.ReactNode => (
-            <Request
+            <AuthorizeRequest
               authId={id}
               className='request'
               isFirst={index === 0}

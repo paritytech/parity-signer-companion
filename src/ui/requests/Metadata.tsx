@@ -1,7 +1,8 @@
-import { Loading, MetadataReqContext } from '@polkadot/extension-ui/components'
-import Request from '@polkadot/extension-ui/Popup/Metadata/Request'
+import { MetadataReqContext } from '@polkadot/extension-ui/components' // TODO: Replace contexts
 import React, { useContext } from 'react'
 import Header from '../components/Header'
+import Loading from '../components/Loading'
+import MetadataRequest from './MetadataRequest'
 
 const Metadata: React.FC = () => {
   const requests = useContext(MetadataReqContext)
@@ -12,7 +13,7 @@ const Metadata: React.FC = () => {
   return (
     <>
       <Header text={'Metadata'} />
-      <Request
+      <MetadataRequest
         key={request.id}
         metaId={request.id}
         request={request.request}
