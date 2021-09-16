@@ -1,4 +1,4 @@
-import { AccountContext, SettingsContext } from '../contexts'
+import { AccountContext } from '../contexts'
 import useMetadata from '../hooks/useMetadata'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import type { KeypairType } from '@polkadot/util-crypto/types'
@@ -34,7 +34,6 @@ const Address: React.FC<Props> = ({
   const [{ account, formatted, genesisHash: recodedGenesis }, setRecoded] =
     useState<Recoded>(defaultRecoded)
   const { accounts } = useContext(AccountContext)
-  const settings = useContext(SettingsContext)
   const chain = useMetadata(genesisHash || recodedGenesis, true)
 
   const onCopy = () => {
@@ -56,10 +55,10 @@ const Address: React.FC<Props> = ({
           formatted: address,
           type: 'ethereum',
         } as Recoded)
-      : recodeAddress(address, accounts, chain, settings)
+      : recodeAddress(address, accounts, chain)
 
     recoded && setRecoded(recoded)
-  }, [accounts, address, chain, givenType, settings])
+  }, [accounts, address, chain, givenType])
 
   return (
     <div className={className}>

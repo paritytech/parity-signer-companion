@@ -1,11 +1,7 @@
 /**
  * Request permission for video, based on access we can hide/show import
  */
-export const requestMediaAccess = async (
-  cameraOn: boolean
-): Promise<boolean> => {
-  if (!cameraOn) return false
-
+export const requestMediaAccess = async (): Promise<boolean> => {
   try {
     await navigator.mediaDevices.getUserMedia({ video: true })
     return true

@@ -5,8 +5,6 @@ import type {
   MetadataRequest,
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
-import uiSettings from '@polkadot/ui-settings'
-import type { SettingsStruct } from '@polkadot/ui-settings/types'
 import React, { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -17,7 +15,6 @@ import {
   AuthorizeReqContext,
   MediaContext,
   MetadataReqContext,
-  SettingsContext,
   SigningReqContext,
 } from './contexts'
 import { GlobalStyle } from './GlobalStyle'
@@ -31,7 +28,6 @@ import {
   subscribeSigningRequests,
 } from './utils/messaging'
 import { requestMediaAccess } from './utils/requestMediaAccess'
-import { startSettings } from './utils/startSettings'
 
 const Layout: React.FC = () => {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null)
@@ -42,7 +38,6 @@ const Layout: React.FC = () => {
   const [authRequests, setAuthRequests] = useState<null | AuthorizeRequest[]>(
     null
   )
-  const [cameraOn, setCameraOn] = useState(startSettings.camera === 'on')
   const [mediaAllowed, setMediaAllowed] = useState(false)
   const [metaRequests, setMetaRequests] = useState<null | MetadataRequest[]>(
     null
@@ -50,7 +45,6 @@ const Layout: React.FC = () => {
   const [signRequests, setSignRequests] = useState<null | SigningRequest[]>(
     null
   )
-  const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings)
 
   useEffect(() => {
     Promise.all([
@@ -59,11 +53,6 @@ const Layout: React.FC = () => {
       subscribeMetadataRequests(setMetaRequests),
       subscribeSigningRequests(setSignRequests),
     ]).catch(console.error)
-
-    uiSettings.on('change', (settings) => {
-      setSettingsCtx(settings)
-      setCameraOn(settings.camera === 'on')
-    })
   }, [])
 
   useEffect(() => {
@@ -71,36 +60,34 @@ const Layout: React.FC = () => {
   }, [accounts])
 
   useEffect(() => {
-    requestMediaAccess(cameraOn).then(setMediaAllowed).catch(console.error)
-  }, [cameraOn])
+    requestMediaAccess().then(setMediaAllowed).catch(console.error)
+  }, [])
 
   return (
     <Loading>
       {accounts && authRequests && metaRequests && signRequests && (
-        <SettingsContext.Provider value={settingsCtx}>
-          <AccountContext.Provider value={accountCtx}>
-            <AuthorizeReqContext.Provider value={authRequests}>
-              <MediaContext.Provider value={cameraOn && mediaAllowed}>
-                <MetadataReqContext.Provider value={metaRequests}>
-                  <SigningReqContext.Provider value={signRequests}>
-                    <ThemeProvider theme={theme}>
-                      <GlobalStyle theme={theme} />
-                      <Main>
-                        <ErrorBoundary>
-                          <Router
-                            authRequests={authRequests}
-                            metaRequests={metaRequests}
-                            signRequests={signRequests}
-                          />
-                        </ErrorBoundary>
-                      </Main>
-                    </ThemeProvider>
-                  </SigningReqContext.Provider>
-                </MetadataReqContext.Provider>
-              </MediaContext.Provider>
-            </AuthorizeReqContext.Provider>
-          </AccountContext.Provider>
-        </SettingsContext.Provider>
+        <AccountContext.Provider value={accountCtx}>
+          <AuthorizeReqContext.Provider value={authRequests}>
+            <MediaContext.Provider value={mediaAllowed}>
+              <MetadataReqContext.Provider value={metaRequests}>
+                <SigningReqContext.Provider value={signRequests}>
+                  <ThemeProvider theme={theme}>
+                    <GlobalStyle theme={theme} />
+                    <Main>
+                      <ErrorBoundary>
+                        <Router
+                          authRequests={authRequests}
+                          metaRequests={metaRequests}
+                          signRequests={signRequests}
+                        />
+                      </ErrorBoundary>
+                    </Main>
+                  </ThemeProvider>
+                </SigningReqContext.Provider>
+              </MetadataReqContext.Provider>
+            </MediaContext.Provider>
+          </AuthorizeReqContext.Provider>
+        </AccountContext.Provider>
       )}
     </Loading>
   )

@@ -13,7 +13,7 @@ const Accounts: React.FC<ExtThemeProps> = ({ className }) => {
 
   return (
     <>
-      <Header showAdd showSettings text={'Accounts'} />
+      <Header showAdd text={'Accounts'} />
       <div className={className}>
         {hierarchy.map((json, i) => (
           <AccountsTree {...json} key={`${i}:${json.address}`} />

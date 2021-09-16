@@ -6,7 +6,7 @@ import type { ExtThemeProps } from '../types'
 const AddAccount: React.FC<ExtThemeProps> = ({ className }) => {
   return (
     <>
-      <Header showAdd showSettings text={'Add Account'} />
+      <Header showAdd text={'Add Account'} />
       <div className={className}>
         {
           "You currently don't have any accounts. Create your first account to get started."
