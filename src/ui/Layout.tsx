@@ -4,12 +4,11 @@ import type {
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
 import { useStore } from 'nanostores/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import ErrorBoundary from './components/ErrorBoundary'
 import Loading from './components/Loading'
 import Main from './components/Main'
-import { MediaContext } from './contexts'
 import { GlobalStyle } from './GlobalStyle'
 import Router from './Router'
 import { setAccounts } from './stores/accounts'
@@ -17,6 +16,7 @@ import {
   authRequests as authRequestsStore,
   setAuthRequests,
 } from './stores/authRequests'
+import { setMediaAllowed } from './stores/media'
 import {
   metaRequests as metaRequestsStore,
   setMetaRequests,
@@ -38,7 +38,6 @@ const Layout: React.FC = () => {
   const authRequests = useStore(authRequestsStore) as AuthorizeRequest[]
   const metaRequests = useStore(metaRequestsStore) as MetadataRequest[]
   const signRequests = useStore(signRequestsStore) as SigningRequest[]
-  const [mediaAllowed, setMediaAllowed] = useState(false)
 
   useEffect(() => {
     Promise.all([
@@ -56,20 +55,18 @@ const Layout: React.FC = () => {
   return (
     <Loading>
       {authRequestsStore && metaRequests && signRequests && (
-        <MediaContext.Provider value={mediaAllowed}>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle theme={theme} />
-            <Main>
-              <ErrorBoundary>
-                <Router
-                  authRequests={authRequests}
-                  metaRequests={metaRequests}
-                  signRequests={signRequests}
-                />
-              </ErrorBoundary>
-            </Main>
-          </ThemeProvider>
-        </MediaContext.Provider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle theme={theme} />
+          <Main>
+            <ErrorBoundary>
+              <Router
+                authRequests={authRequests}
+                metaRequests={metaRequests}
+                signRequests={signRequests}
+              />
+            </ErrorBoundary>
+          </Main>
+        </ThemeProvider>
       )}
     </Loading>
   )
