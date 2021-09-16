@@ -20,9 +20,9 @@ const Router: React.FC = () => {
   const metaRequests = useStore(metaRequestsStore)
   const signRequests = useStore(signRequestsStore)
 
-  if (exact(path, '/') && authRequests?.length) return <Authorize />
-  if (exact(path, '/') && metaRequests?.length) return <Metadata />
-  if (exact(path, '/') && signRequests?.length) return <Signing />
+  if (exact(path, '') && authRequests?.length) return <Authorize />
+  if (exact(path, '') && metaRequests?.length) return <Metadata />
+  if (exact(path, '') && signRequests?.length) return <Signing />
   if (exact(path, '/account/import-qr')) return <ImportQr />
   if (exactWithParam(path, '/account/forget/:address')) return <Forget />
   if (exactWithParam(path, `${PHISHING_PAGE_REDIRECT}/:website`))

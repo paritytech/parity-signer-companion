@@ -1,47 +1,27 @@
 import { SignerPayloadJSON } from '@polkadot/types/types'
 import { useStore } from 'nanostores/react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
-import Loading from '../components/Loading'
 import { signRequests } from '../stores/signRequests'
 import SigningRequest from './SigningRequest'
 import TransactionIndex from './TransactionIndex'
 
 const Signing: React.FC = () => {
   const requests = useStore(signRequests)
-  const [requestIndex, setRequestIndex] = useState(0)
-
-  const onNextClick = () => setRequestIndex((requestIndex) => requestIndex + 1)
-
-  const onPreviousClick = () =>
-    setRequestIndex((requestIndex) => requestIndex - 1)
-
-  useEffect(() => {
-    setRequestIndex((requestIndex) =>
-      requestIndex < requests.length ? requestIndex : requests.length - 1
-    )
-  }, [requests])
-
-  // protect against removal overflows/underflows
-  const request =
-    requests.length !== 0
-      ? requestIndex >= 0
-        ? requestIndex < requests.length
-          ? requests[requestIndex]
-          : requests[requests.length - 1]
-        : requests[0]
-      : null
+  const [idx, setIdx] = useState(0)
+  const request = requests[idx]
   const isTransaction = !!(request?.request?.payload as SignerPayloadJSON)
     ?.blockNumber
 
-  if (!request) return <Loading />
+  const onNextClick = () => setIdx((i) => Math.min(i + 1, requests.length))
+  const onPreviousClick = () => setIdx((i) => Math.max(i - 1, 0))
 
   return (
     <>
       <Header text={isTransaction ? 'Transaction' : 'Sign message'} />
       {requests.length > 1 && (
         <TransactionIndex
-          index={requestIndex}
+          index={idx}
           onNextClick={onNextClick}
           onPreviousClick={onPreviousClick}
           totalItems={requests.length}
@@ -50,7 +30,7 @@ const Signing: React.FC = () => {
       <SigningRequest
         account={request.account}
         buttonText={isTransaction ? 'Sign the transaction' : 'Sign the message'}
-        isFirst={requestIndex === 0}
+        isFirst={idx === 0}
         request={request.request}
         signId={request.id}
         url={request.url}

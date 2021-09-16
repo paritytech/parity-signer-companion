@@ -29,13 +29,13 @@ const ImportQr: React.FC = () => {
 
   return (
     <>
-      <Header showBackArrow text={'Scan Address Qr'} />
+      <Header showBack text={'Scan Address Qr'} />
       {!account && <QrScanAddress onScan={setAccount} />}
       {account && (
         <>
           <Address {...account} address={account.content} name={account.name} />
           <button disabled={!account.name} onClick={onCreate}>
-            {'Add the account with identified address'}
+            Add the account with identified address
           </button>
         </>
       )}

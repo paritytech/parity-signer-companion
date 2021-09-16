@@ -27,19 +27,19 @@ const Forget: React.FC<BaseProps> = ({ className }) => {
 
   return (
     <>
-      <Header showBackArrow text={'Forget account'} />
+      <Header showBack text={'Forget account'} />
       <div className={className}>
         <Address address={address}>
-          <div className='movedWarning'>
-            {
-              'You are about to remove the account. This means that you will not be able to access it via this extension anymore. If you wish to recover it, you would need to use the seed.'
-            }
+          <div>
+            You are about to remove the account. This means that you will not be
+            able to access it via this extension anymore. If you wish to recover
+            it, you would need to use the seed.
           </div>
-          <div className='actionArea'>
+          <div>
             <button disabled={isBusy} onClick={onClick}>
-              {'I want to forget this account'}
+              I want to forget this account
             </button>
-            <button onClick={goHome}>{'Cancel'}</button>
+            <button onClick={goHome}>Cancel</button>
           </div>
         </Address>
       </div>
@@ -48,19 +48,5 @@ const Forget: React.FC<BaseProps> = ({ className }) => {
 }
 
 export default styled(Forget)`
-  .actionArea {
-    padding: 10px 24px;
-  }
-
-  .center {
-    margin: auto;
-  }
-
-  .movedWarning {
-    margin-top: 8px;
-  }
-
-  .withMarginTop {
-    margin-top: 4px;
-  }
+  height: 100%;
 `

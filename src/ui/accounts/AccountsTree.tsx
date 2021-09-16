@@ -1,20 +1,24 @@
 import { AccountWithChildren } from '@polkadot/extension-base/background/types'
 import React from 'react'
-import Account from './Account'
+import Address from '../components/Address'
 
 interface Props extends AccountWithChildren {
   parentName?: string
 }
 
-const AccountsTree: React.FC<Props> = ({ parentName, suri, ...account }) => {
+const AccountsTree: React.FC<Props> = (account) => {
   return (
     <>
-      <Account {...account} parentName={parentName} suri={suri} />
-      {account?.children?.map((child, index) => (
+      <Address
+        address={account.address}
+        genesisHash={account.genesisHash}
+        name={account.name}
+      />
+      {account.children?.map((child, index) => (
         <AccountsTree
           key={`${index}:${child.address}`}
-          {...child}
           parentName={account.name}
+          {...child}
         />
       ))}
     </>

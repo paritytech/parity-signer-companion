@@ -2,7 +2,6 @@ import {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
-import { TypeRegistry } from '@polkadot/types'
 import { ExtrinsicPayload } from '@polkadot/types/interfaces'
 import { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 import { decodeAddress } from '@polkadot/util-crypto'
@@ -11,9 +10,11 @@ import React, { useEffect, useState } from 'react'
 import Address from '../components/Address'
 import { accounts as accountsStore } from '../stores/accounts'
 import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
+import { isRawPayload } from '../utils/guards'
 import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
+import { registry } from '../utils/registry'
 
-interface Props {
+type Props = {
   account: AccountJson
   buttonText: string
   isFirst: boolean
@@ -22,49 +23,33 @@ interface Props {
   url: string
 }
 
-interface Data {
+type Data = {
   hexBytes: string | null
   payload: ExtrinsicPayload | null
 }
 
-// keep it global, we can and will re-use this across requests
-const registry = new TypeRegistry()
-
-function isRawPayload(
-  payload: SignerPayloadJSON | SignerPayloadRaw
-): payload is SignerPayloadRaw {
-  return !!(payload as SignerPayloadRaw).data
-}
-
 const Request: React.FC<Props> = ({ request, signId }) => {
+  const accounts = useStore(accountsStore)
   const [{ hexBytes, payload }, setData] = useState<Data>({
     hexBytes: null,
     payload: null,
   })
-  const accounts = useStore(accountsStore) as AccountJson[]
 
   const onSignature = ({ signature }: { signature: string }) =>
     approveSignSignature(signId, signature).catch(console.error)
-
   const onCancel = () => cancelSignRequest(signId).catch(console.error)
 
   useEffect(() => {
     const payload = request.payload
 
     if (isRawPayload(payload)) {
-      setData({
-        hexBytes: payload.data,
-        payload: null,
-      })
+      setData({ hexBytes: payload.data, payload: null })
     } else {
       registry.setSignedExtensions(payload.signedExtensions)
-
-      setData({
-        hexBytes: null,
-        payload: registry.createType('ExtrinsicPayload', payload, {
-          version: payload.version,
-        }),
+      const newPayload = registry.createType('ExtrinsicPayload', payload, {
+        version: payload.version,
       })
+      setData({ hexBytes: null, payload: newPayload })
     }
   }, [request])
 
