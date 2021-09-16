@@ -7,7 +7,6 @@ import { goTo } from '../utils/routing'
 interface Props extends ExtThemeProps {
   showAdd?: boolean
   showBackArrow?: boolean
-  showSettings?: boolean
   smallMargin?: boolean
   text?: React.ReactNode
 }
