@@ -2,15 +2,16 @@ import type {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
-import { AccountContext } from '../contexts'
-import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
-import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
 import { TypeRegistry } from '@polkadot/types'
 import type { ExtrinsicPayload } from '@polkadot/types/interfaces'
 import type { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 import { decodeAddress } from '@polkadot/util-crypto'
-import React, { useContext, useEffect, useState } from 'react'
+import { useStore } from 'nanostores/react'
+import React, { useEffect, useState } from 'react'
 import Address from '../components/Address'
+import { accounts as accountsStore } from '../stores/accounts'
+import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
+import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
 
 interface Props {
   account: AccountJson
@@ -40,7 +41,7 @@ const Request: React.FC<Props> = ({ request, signId }) => {
     hexBytes: null,
     payload: null,
   })
-  const { accounts } = useContext(AccountContext)
+  const accounts = useStore(accountsStore) as AccountJson[]
 
   const onSignature = ({ signature }: { signature: string }) =>
     approveSignSignature(signId, signature).catch(console.error)

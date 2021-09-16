@@ -1,13 +1,14 @@
-import { AccountContext } from '../contexts'
-import React, { useContext } from 'react'
+import { useStore } from 'nanostores/react'
+import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
+import { hierarchy as hierarchyStore } from '../stores/accounts'
 import { ExtThemeProps } from '../types'
 import AccountsTree from './AccountsTree'
 import AddAccount from './AddAccount'
 
 const Accounts: React.FC<ExtThemeProps> = ({ className }) => {
-  const { hierarchy } = useContext(AccountContext)
+  const hierarchy = useStore(hierarchyStore)
 
   if (hierarchy.length === 0) return <AddAccount />
 

@@ -1,13 +1,15 @@
-import { AccountContext } from '../contexts'
-import useMetadata from '../hooks/useMetadata'
-import { DEFAULT_TYPE } from '../utils/defaultType'
+import { AccountJson } from '@polkadot/extension-base/background/types'
 import type { KeypairType } from '@polkadot/util-crypto/types'
-import React, { useContext, useEffect, useState } from 'react'
+import { useStore } from 'nanostores/react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import useMetadata from '../hooks/useMetadata'
+import { accounts as accountsStore } from '../stores/accounts'
 import type { ExtThemeProps, ThemeProps } from '../types'
+import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
-import { goTo } from '../utils/routing'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
+import { goTo } from '../utils/routing'
 
 type Props = ExtThemeProps & {
   address?: string
@@ -33,7 +35,7 @@ const Address: React.FC<Props> = ({
 }) => {
   const [{ account, formatted, genesisHash: recodedGenesis }, setRecoded] =
     useState<Recoded>(defaultRecoded)
-  const { accounts } = useContext(AccountContext)
+  const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recodedGenesis, true)
 
   const onCopy = () => {
