@@ -3,11 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { router } from '../stores/router'
-import type { ExtThemeProps } from '../types'
+import { BaseProps } from '../types'
 
-type Props = ExtThemeProps
-
-const PhishingDetected: React.FC<Props> = ({ className }) => {
+const PhishingDetected: React.FC<BaseProps> = ({ className }) => {
   const { param: website } = useStore(router)
   const decodedWebsite = decodeURIComponent(website)
 
@@ -37,12 +35,12 @@ const PhishingDetected: React.FC<Props> = ({ className }) => {
 
 export default styled(PhishingDetected)`
   p {
-    color: ${({ theme }: ExtThemeProps) => theme.subTextColor};
+    color: ${({ theme }: BaseProps) => theme.subTextColor};
     margin-bottom: 1rem;
     margin-top: 0;
 
     a {
-      color: ${({ theme }: ExtThemeProps) => theme.subTextColor};
+      color: ${({ theme }: BaseProps) => theme.subTextColor};
     }
 
     &.websiteAddress {

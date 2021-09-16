@@ -3,10 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { authRequests as authRequestsStore } from '../stores/authRequests'
-import { ExtThemeProps } from '../types'
+import { BaseProps } from '../types'
 import AuthorizeRequest from './AuthorizeRequest'
 
-const Authorize: React.FC<ExtThemeProps> = ({ className }) => {
+const Authorize: React.FC<BaseProps> = ({ className }) => {
   const requests = useStore(authRequestsStore)
 
   return (

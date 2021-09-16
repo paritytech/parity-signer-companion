@@ -1,4 +1,4 @@
-import type { Message } from '@polkadot/extension-base/types'
+import { Message } from '@polkadot/extension-base/types'
 import {
   enable,
   handleResponse,

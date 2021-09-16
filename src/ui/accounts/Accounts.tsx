@@ -3,11 +3,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { hierarchy as hierarchyStore } from '../stores/accounts'
-import { ExtThemeProps } from '../types'
+import { BaseProps } from '../types'
 import AccountsTree from './AccountsTree'
 import AddAccount from './AddAccount'
 
-const Accounts: React.FC<ExtThemeProps> = ({ className }) => {
+const Accounts: React.FC<BaseProps> = ({ className }) => {
   const hierarchy = useStore(hierarchyStore)
 
   if (hierarchy.length === 0) return <AddAccount />

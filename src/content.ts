@@ -1,4 +1,4 @@
-import type { Message } from '@polkadot/extension-base/types'
+import { Message } from '@polkadot/extension-base/types'
 import { PORT_CONTENT } from '@polkadot/extension-base/defaults'
 import chrome from './utils/chrome'
 

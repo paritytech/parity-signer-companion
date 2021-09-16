@@ -1,4 +1,4 @@
-import type { Chain } from '@polkadot/extension-chains/types'
+import { Chain } from '@polkadot/extension-chains/types'
 import { getMetadata } from '../utils/messaging'
 import { useEffect, useState } from 'react'
 

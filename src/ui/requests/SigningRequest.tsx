@@ -1,10 +1,10 @@
-import type {
+import {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
 import { TypeRegistry } from '@polkadot/types'
-import type { ExtrinsicPayload } from '@polkadot/types/interfaces'
-import type { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
+import { ExtrinsicPayload } from '@polkadot/types/interfaces'
+import { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 import { decodeAddress } from '@polkadot/util-crypto'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'

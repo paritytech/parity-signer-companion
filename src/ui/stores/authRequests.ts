@@ -1,4 +1,4 @@
-import type { AuthorizeRequest } from '@polkadot/extension-base/background/types'
+import { AuthorizeRequest } from '@polkadot/extension-base/background/types'
 import { createStore } from 'nanostores'
 import { subscribeAuthorizeRequests } from '../utils/messaging'
 

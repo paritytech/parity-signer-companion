@@ -1,4 +1,4 @@
-import type { SignerPayloadJSON } from '@polkadot/types/types'
+import { SignerPayloadJSON } from '@polkadot/types/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'

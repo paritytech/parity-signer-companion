@@ -1,4 +1,4 @@
-import type {
+import {
   AccountJson,
   AuthorizeRequest,
   MessageTypes,
@@ -12,9 +12,9 @@ import type {
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
 import { PORT_EXTENSION } from '@polkadot/extension-base/defaults'
-import type { Message } from '@polkadot/extension-base/types'
+import { Message } from '@polkadot/extension-base/types'
 import { metadataExpand } from '@polkadot/extension-chains'
-import type { Chain } from '@polkadot/extension-chains/types'
+import { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
 import { Handler, Handlers } from '../types'
 import { chains } from './chains'

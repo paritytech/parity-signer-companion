@@ -1,4 +1,4 @@
-import type { MetadataRequest } from '@polkadot/extension-base/background/types'
+import { MetadataRequest } from '@polkadot/extension-base/background/types'
 import { createStore } from 'nanostores'
 import { subscribeMetadataRequests } from '../utils/messaging'
 

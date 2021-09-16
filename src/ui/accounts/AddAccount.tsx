@@ -1,9 +1,9 @@
 import Header from '../components/Header'
 import React from 'react'
 import styled from 'styled-components'
-import type { ExtThemeProps } from '../types'
+import { BaseProps } from '../types'
 
-const AddAccount: React.FC<ExtThemeProps> = ({ className }) => {
+const AddAccount: React.FC<BaseProps> = ({ className }) => {
   return (
     <>
       <Header showAdd text={'Add Account'} />
@@ -17,7 +17,7 @@ const AddAccount: React.FC<ExtThemeProps> = ({ className }) => {
 }
 
 export default styled(AddAccount)`
-  color: ${({ theme }: ExtThemeProps) => theme.textColor};
+  color: ${({ theme }: BaseProps) => theme.textColor};
   height: 100%;
   text-align: center;
   font-size: 16px;

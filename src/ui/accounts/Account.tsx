@@ -1,4 +1,4 @@
-import type { AccountJson } from '@polkadot/extension-base/background/types'
+import { AccountJson } from '@polkadot/extension-base/background/types'
 import Address from '../components/Address'
 import React from 'react'
 import styled from 'styled-components'

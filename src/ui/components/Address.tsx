@@ -1,17 +1,17 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
-import type { KeypairType } from '@polkadot/util-crypto/types'
+import { KeypairType } from '@polkadot/util-crypto/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useMetadata from '../hooks/useMetadata'
 import { accounts as accountsStore } from '../stores/accounts'
-import type { ExtThemeProps, ThemeProps } from '../types'
+import { BaseProps } from '../types'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
 import { goTo } from '../utils/routing'
 
-type Props = ExtThemeProps & {
+type Props = BaseProps & {
   address?: string
   genesisHash?: string | null
   name?: string
@@ -97,8 +97,8 @@ const Address: React.FC<Props> = ({
 }
 
 export default styled(Address)`
-  background: ${({ theme }: ThemeProps) => theme.accountBackground};
-  border: 1px solid ${({ theme }: ThemeProps) => theme.boxBorderColor};
+  background: ${({ theme }: Props) => theme.accountBackground};
+  border: 1px solid ${({ theme }: Props) => theme.boxBorderColor};
   box-sizing: border-box;
   border-radius: 4px;
   margin-bottom: 8px;
@@ -111,7 +111,7 @@ export default styled(Address)`
     top: 0;
 
     &.chain {
-      background: ${({ theme }: ThemeProps) => theme.primaryColor};
+      background: ${({ theme }: Props) => theme.primaryColor};
       border-radius: 0 0 0 10px;
       color: white;
       padding: 0.1rem 0.5rem 0.1rem 0.75rem;

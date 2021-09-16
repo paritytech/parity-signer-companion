@@ -1,4 +1,4 @@
-import type { AccountJson } from '@polkadot/extension-base/background/types'
+import { AccountJson } from '@polkadot/extension-base/background/types'
 import { canDerive } from '@polkadot/extension-base/utils'
 import { createDerived, createStore } from 'nanostores'
 import { buildHierarchy } from '../utils/buildHierarchy'
