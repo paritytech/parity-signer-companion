@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
-import type { ExtThemeProps } from '../types'
-import { goTo } from '../utils/routing'
+import { BaseProps } from '../types'
+import { goHome, goTo } from '../utils/routing'
 
-interface Props extends ExtThemeProps {
+type Props = BaseProps & {
   showAdd?: boolean
   showBackArrow?: boolean
   smallMargin?: boolean
@@ -19,14 +19,13 @@ const Header: React.FC<Props> = ({
   text,
 }) => {
   const toggleAdd = () => goTo('/account/import-qr')
-  const toggleBack = () => goTo('/')
 
   return (
     <div className={`${className} ${smallMargin ? 'smallMargin' : ''}`}>
       <div className='container'>
         <div className='branding'>
           {showBackArrow && (
-            <button className='backlink' onClick={toggleBack}>
+            <button className='backlink' onClick={goHome}>
               Back
             </button>
           )}
@@ -60,22 +59,21 @@ export default styled(Header)`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 1px solid
-      ${({ theme }: ExtThemeProps) => theme.inputBorderColor};
+    border-bottom: 1px solid ${({ theme }: Props) => theme.inputBorderColor};
     min-height: 70px;
 
     .branding {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: ${({ theme }: ExtThemeProps) => theme.labelColor};
-      font-family: ${({ theme }: ExtThemeProps) => theme.fontFamily};
+      color: ${({ theme }: Props) => theme.labelColor};
+      font-family: ${({ theme }: Props) => theme.fontFamily};
       text-align: center;
       margin-left: 24px;
 
       .logoText {
-        color: ${({ theme }: ExtThemeProps) => theme.textColor};
-        font-family: ${({ theme }: ExtThemeProps) => theme.fontFamily};
+        color: ${({ theme }: Props) => theme.textColor};
+        font-family: ${({ theme }: Props) => theme.fontFamily};
         font-size: 20px;
         line-height: 27px;
       }

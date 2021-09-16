@@ -1,13 +1,14 @@
-import { SigningReqContext } from '../contexts'
-import type { SignerPayloadJSON } from '@polkadot/types/types'
-import React, { useContext, useEffect, useState } from 'react'
+import { SignerPayloadJSON } from '@polkadot/types/types'
+import { useStore } from 'nanostores/react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
+import { signRequests } from '../stores/signRequests'
 import SigningRequest from './SigningRequest'
 import TransactionIndex from './TransactionIndex'
 
 const Signing: React.FC = () => {
-  const requests = useContext(SigningReqContext)
+  const requests = useStore(signRequests)
   const [requestIndex, setRequestIndex] = useState(0)
 
   const onNextClick = () => setRequestIndex((requestIndex) => requestIndex + 1)

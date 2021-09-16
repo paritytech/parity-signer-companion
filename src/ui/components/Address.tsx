@@ -1,15 +1,17 @@
-import { AccountContext } from '../contexts'
-import useMetadata from '../hooks/useMetadata'
-import { DEFAULT_TYPE } from '../utils/defaultType'
-import type { KeypairType } from '@polkadot/util-crypto/types'
-import React, { useContext, useEffect, useState } from 'react'
+import { AccountJson } from '@polkadot/extension-base/background/types'
+import { KeypairType } from '@polkadot/util-crypto/types'
+import { useStore } from 'nanostores/react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import type { ExtThemeProps, ThemeProps } from '../types'
+import useMetadata from '../hooks/useMetadata'
+import { accounts as accountsStore } from '../stores/accounts'
+import { BaseProps } from '../types'
+import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
-import { goTo } from '../utils/routing'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
+import { goTo } from '../utils/routing'
 
-type Props = ExtThemeProps & {
+type Props = BaseProps & {
   address?: string
   genesisHash?: string | null
   name?: string
@@ -33,7 +35,7 @@ const Address: React.FC<Props> = ({
 }) => {
   const [{ account, formatted, genesisHash: recodedGenesis }, setRecoded] =
     useState<Recoded>(defaultRecoded)
-  const { accounts } = useContext(AccountContext)
+  const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recodedGenesis, true)
 
   const onCopy = () => {
@@ -95,8 +97,8 @@ const Address: React.FC<Props> = ({
 }
 
 export default styled(Address)`
-  background: ${({ theme }: ThemeProps) => theme.accountBackground};
-  border: 1px solid ${({ theme }: ThemeProps) => theme.boxBorderColor};
+  background: ${({ theme }: Props) => theme.accountBackground};
+  border: 1px solid ${({ theme }: Props) => theme.boxBorderColor};
   box-sizing: border-box;
   border-radius: 4px;
   margin-bottom: 8px;
@@ -109,7 +111,7 @@ export default styled(Address)`
     top: 0;
 
     &.chain {
-      background: ${({ theme }: ThemeProps) => theme.primaryColor};
+      background: ${({ theme }: Props) => theme.primaryColor};
       border-radius: 0 0 0 10px;
       color: white;
       padding: 0.1rem 0.5rem 0.1rem 0.75rem;

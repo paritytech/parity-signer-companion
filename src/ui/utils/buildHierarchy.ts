@@ -1,4 +1,4 @@
-import type {
+import {
   AccountJson,
   AccountWithChildren,
 } from '@polkadot/extension-base/background/types'

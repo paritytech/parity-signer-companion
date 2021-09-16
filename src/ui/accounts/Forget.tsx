@@ -1,19 +1,16 @@
+import { useStore } from 'nanostores/react'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
 import Header from '../components/Header'
-import type { ExtThemeProps } from '../types'
-import { goTo } from '../utils/routing'
+import { router } from '../stores/router'
+import { BaseProps } from '../types'
 import { forgetAccount } from '../utils/messaging'
+import { goHome } from '../utils/routing'
 
-type Props = ExtThemeProps & {
-  address: string
-}
-
-const Forget: React.FC<Props> = ({ className, address }) => {
+const Forget: React.FC<BaseProps> = ({ className }) => {
+  const { param: address } = useStore(router)
   const [isBusy, setIsBusy] = useState(false)
-
-  const goHome = () => goTo('/')
 
   const onClick = () => {
     setIsBusy(true)

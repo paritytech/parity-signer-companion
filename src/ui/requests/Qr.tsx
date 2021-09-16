@@ -1,6 +1,6 @@
 import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
-import type { ExtrinsicPayload } from '@polkadot/types/interfaces'
+import { ExtrinsicPayload } from '@polkadot/types/interfaces'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 

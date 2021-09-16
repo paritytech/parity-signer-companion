@@ -1,5 +1,5 @@
 import React from 'react'
-import { goTo } from '../utils/routing'
+import { goHome } from '../utils/routing'
 import Header from './Header'
 
 type Props = {}
@@ -28,13 +28,9 @@ class ErrorBoundary extends React.Component<Props, State> {
         <div>
           {`Something went wrong with the query and rendering of this component. ${this.state.error.message}`}
         </div>
-        <button onClick={this.goHome}>{'Back to home'}</button>
+        <button onClick={goHome}>{'Back to home'}</button>
       </>
     )
-  }
-
-  private goHome() {
-    goTo('/')
   }
 }
 

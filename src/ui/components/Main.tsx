@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import type { ThemeProps } from '../types'
+import { ThemeProps } from '../types'
 
 interface Props {
   className?: string

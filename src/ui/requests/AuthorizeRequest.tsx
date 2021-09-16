@@ -1,8 +1,8 @@
-import type { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
+import { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import { approveAuthRequest, rejectAuthRequest } from '../utils/messaging'
 import React from 'react'
 import styled from 'styled-components'
-import type { ThemeProps } from '../types'
+import { ThemeProps } from '../types'
 
 interface Props extends ThemeProps {
   authId: string

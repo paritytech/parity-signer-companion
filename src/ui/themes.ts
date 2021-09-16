@@ -41,5 +41,3 @@ export const theme = {
   textColor: '#FFFFFF',
   textColorDanger: '#FF8686',
 }
-
-export type Theme = typeof theme

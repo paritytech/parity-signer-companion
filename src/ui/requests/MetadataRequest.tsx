@@ -1,11 +1,11 @@
-import type { MetadataDef } from '@polkadot/extension-inject/types'
+import { MetadataDef } from '@polkadot/extension-inject/types'
 import { approveMetaRequest, rejectMetaRequest } from '../utils/messaging'
 import React from 'react'
 import styled from 'styled-components'
 import useMetadata from '../hooks/useMetadata'
-import type { ExtThemeProps, ThemeProps } from '../types'
+import { BaseProps } from '../types'
 
-type Props = ExtThemeProps & {
+type Props = BaseProps & {
   request: MetadataDef
   metaId: string
   url: string
@@ -80,7 +80,7 @@ export default styled(MetadataRequest)`
   }
 
   .icon {
-    background: ${({ theme }: ThemeProps) => theme.buttonBackgroundDanger};
+    background: ${({ theme }: Props) => theme.buttonBackgroundDanger};
     color: white;
     min-width: 18px;
     width: 14px;
@@ -94,7 +94,7 @@ export default styled(MetadataRequest)`
 
   .requestInfo {
     align-items: center;
-    background: ${({ theme }: ThemeProps) => theme.highlightedAreaBackground};
+    background: ${({ theme }: Props) => theme.highlightedAreaBackground};
     display: flex;
     flex-direction: column;
     margin-bottom: 8px;

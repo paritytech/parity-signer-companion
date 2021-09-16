@@ -1,13 +1,12 @@
+import { useStore } from 'nanostores/react'
 import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
-import type { ExtThemeProps } from '../types'
+import { router } from '../stores/router'
+import { BaseProps } from '../types'
 
-type Props = ExtThemeProps & {
-  website: string
-}
-
-const PhishingDetected: React.FC<Props> = ({ className, website }) => {
+const PhishingDetected: React.FC<BaseProps> = ({ className }) => {
+  const { param: website } = useStore(router)
   const decodedWebsite = decodeURIComponent(website)
 
   return (
@@ -36,12 +35,12 @@ const PhishingDetected: React.FC<Props> = ({ className, website }) => {
 
 export default styled(PhishingDetected)`
   p {
-    color: ${({ theme }: ExtThemeProps) => theme.subTextColor};
+    color: ${({ theme }: BaseProps) => theme.subTextColor};
     margin-bottom: 1rem;
     margin-top: 0;
 
     a {
-      color: ${({ theme }: ExtThemeProps) => theme.subTextColor};
+      color: ${({ theme }: BaseProps) => theme.subTextColor};
     }
 
     &.websiteAddress {
