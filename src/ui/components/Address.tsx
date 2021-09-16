@@ -1,6 +1,5 @@
 import { AccountContext, SettingsContext } from '../contexts'
 import useMetadata from '../hooks/useMetadata'
-import useToast from '../hooks/useToast'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import type { KeypairType } from '@polkadot/util-crypto/types'
 import React, { useContext, useEffect, useState } from 'react'
@@ -37,11 +36,9 @@ const Address: React.FC<Props> = ({
   const { accounts } = useContext(AccountContext)
   const settings = useContext(SettingsContext)
   const chain = useMetadata(genesisHash || recodedGenesis, true)
-  const { show } = useToast()
 
   const onCopy = () => {
     navigator.clipboard.writeText(formatted || '').catch(console.error)
-    show('Copied')
   }
   const forget = () => goTo(`/account/forget/${address}`)
 

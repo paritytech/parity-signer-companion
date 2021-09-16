@@ -24,9 +24,6 @@ const SettingsContext = React.createContext<SettingsStruct>(settings.get())
 const SigningReqContext = React.createContext<SigningRequest[]>([])
 const ThemeSwitchContext =
   React.createContext<(theme: AvailableThemes) => void>(noop)
-const ToastContext = React.createContext<{ show: (message: string) => void }>({
-  show: noop,
-})
 
 export {
   AccountContext,
@@ -37,5 +34,4 @@ export {
   SettingsContext,
   SigningReqContext,
   ThemeSwitchContext,
-  ToastContext,
 }

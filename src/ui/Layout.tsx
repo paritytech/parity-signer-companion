@@ -15,7 +15,6 @@ import {
   SettingsContext,
   SigningReqContext,
 } from './contexts'
-import ToastProvider from './components/ToastProvider'
 import {
   subscribeAccounts,
   subscribeAuthorizeRequests,
@@ -83,15 +82,13 @@ export default function Layout(): React.ReactElement {
                 <MediaContext.Provider value={cameraOn && mediaAllowed}>
                   <MetadataReqContext.Provider value={metaRequests}>
                     <SigningReqContext.Provider value={signRequests}>
-                      <ToastProvider>
-                        <ErrorBoundary>
-                          <Router
-                            authRequests={authRequests}
-                            metaRequests={metaRequests}
-                            signRequests={signRequests}
-                          />
-                        </ErrorBoundary>
-                      </ToastProvider>
+                      <ErrorBoundary>
+                        <Router
+                          authRequests={authRequests}
+                          metaRequests={metaRequests}
+                          signRequests={signRequests}
+                        />
+                      </ErrorBoundary>
                     </SigningReqContext.Provider>
                   </MetadataReqContext.Provider>
                 </MediaContext.Provider>
