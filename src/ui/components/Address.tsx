@@ -78,6 +78,5 @@ const Address: React.FC<Props> = ({
 }
 
 export default styled(Address)`
-  background: ${({ theme }: Props) => theme.accountBackground};
-  border: 1px solid ${({ theme }: Props) => theme.boxBorderColor};
+  border: 1px solid ${({ theme }: Props) => theme.borderColor};
 `
