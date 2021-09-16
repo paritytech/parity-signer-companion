@@ -8108,6 +8108,11 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+nanostores@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/nanostores/-/nanostores-0.4.8.tgz#991f936a2537007912a198fdb2e0e52694cf6b42"
+  integrity sha512-98Lg1qKD+zBp9fccQIv5q2umLEZUiH+o+dBick4X7G93jWYTzfdJaMi3UDPkE4UiAX/KlQbZ0qi1z8YoUIBNBA==
+
 napi-build-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/napi-build-utils/-/napi-build-utils-1.0.2.tgz#b1fddc0b2c46e380a0b7a76f984dd47c41a13806"
