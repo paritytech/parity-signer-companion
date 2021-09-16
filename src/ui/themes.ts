@@ -1,4 +1,4 @@
-const darkTheme = {
+export const theme = {
   accountBackground: '#1A1B20',
   accountDotsIconColor: '#8E8E8E',
   addAccountImageBackground: '#1A1B20',
@@ -25,7 +25,6 @@ const darkTheme = {
   iconDangerColor: '#AF1111',
   iconNeutralColor: '#8E8E8E',
   iconWarningColor: '#FF7D01',
-  id: 'dark',
   identiconBackground: '#F4F5F8',
   inputBackground: '#111218',
   inputBorderColor: '#43444B',
@@ -43,52 +42,4 @@ const darkTheme = {
   textColorDanger: '#FF8686',
 }
 
-export type Theme = typeof darkTheme
-
-const lightTheme: Theme = {
-  ...darkTheme,
-  accountBackground: '#FFFFFF',
-  addAccountImageBackground: '#FFF',
-  backButtonBackground: '#D7D7D7',
-  backButtonBackgroundHover: '#d7d7d7ad',
-  backButtonTextColor: '#454545',
-  background: '#FAFAFA',
-  bodyColor: '#FFFFFF',
-  boxBorderColor: '#DADFEA',
-  boxShadow: 'rgba(0, 0, 0, 0.3)',
-  buttonBackgroundDanger: '#DC2222',
-  errorBorderColor: '#E42F2F',
-  highlightedAreaBackground: '#EFEFEF',
-  iconDangerColor: '#DC2222',
-  iconNeutralColor: '#939CB1',
-  id: 'light',
-  inputBackground: '#FFFFFF',
-  inputBorderColor: '#DDE1EB',
-  labelColor: '#333333',
-  parentLabelColor: '#215B4F',
-  popupBackground: '#FFFFFF',
-  readonlyInputBackground: '#FFF',
-  subTextColor: '#454545',
-  textColor: '#242529',
-  textColorDanger: '#F24A4A',
-}
-
-export const themes = {
-  dark: darkTheme,
-  light: lightTheme,
-}
-
-export type AvailableThemes = keyof typeof themes
-
-export function chooseTheme(): AvailableThemes {
-  const preferredTheme = localStorage.getItem('theme')
-
-  if (preferredTheme) {
-    return preferredTheme === 'dark' ? 'dark' : 'light'
-  }
-
-  return window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark'
-}
+export type Theme = typeof theme

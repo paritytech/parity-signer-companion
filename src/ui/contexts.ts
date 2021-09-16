@@ -7,7 +7,6 @@ import type {
 import settings from '@polkadot/ui-settings'
 import type { SettingsStruct } from '@polkadot/ui-settings/types'
 import React from 'react'
-import type { AvailableThemes } from './themes'
 
 const noop = (): void => undefined
 
@@ -22,8 +21,6 @@ const MediaContext = React.createContext<boolean>(false)
 const MetadataReqContext = React.createContext<MetadataRequest[]>([])
 const SettingsContext = React.createContext<SettingsStruct>(settings.get())
 const SigningReqContext = React.createContext<SigningRequest[]>([])
-const ThemeSwitchContext =
-  React.createContext<(theme: AvailableThemes) => void>(noop)
 
 export {
   AccountContext,
@@ -33,5 +30,4 @@ export {
   MetadataReqContext,
   SettingsContext,
   SigningReqContext,
-  ThemeSwitchContext,
 }

@@ -15,7 +15,7 @@ import Accounts from './accounts/Accounts'
 import { usePage } from './hooks/usePage'
 import { exact, exactWithParam, getParam } from './utils/routing'
 
-export const Router: React.FC<{
+const Router: React.FC<{
   authRequests: AuthorizeRequest[]
   metaRequests: MetadataRequest[]
   signRequests: SigningRequest[]
@@ -38,3 +38,5 @@ export const Router: React.FC<{
 
   return <Accounts />
 }
+
+export default Router

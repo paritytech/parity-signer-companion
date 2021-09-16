@@ -5,7 +5,13 @@ import type {
   MetadataRequest,
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
+import uiSettings from '@polkadot/ui-settings'
+import type { SettingsStruct } from '@polkadot/ui-settings/types'
+import React, { useEffect, useState } from 'react'
+import { ThemeProvider } from 'styled-components'
+import ErrorBoundary from './components/ErrorBoundary'
 import Loading from './components/Loading'
+import Main from './components/Main'
 import {
   AccountContext,
   ActionContext,
@@ -15,23 +21,21 @@ import {
   SettingsContext,
   SigningReqContext,
 } from './contexts'
+import { GlobalStyle } from './GlobalStyle'
+import Router from './Router'
+import { theme } from './themes'
+import { initAccountContext } from './utils/initAccountContext'
 import {
   subscribeAccounts,
   subscribeAuthorizeRequests,
   subscribeMetadataRequests,
   subscribeSigningRequests,
 } from './utils/messaging'
-import uiSettings from '@polkadot/ui-settings'
-import type { SettingsStruct } from '@polkadot/ui-settings/types'
-import React, { useEffect, useState } from 'react'
-import { initAccountContext } from './utils/initAccountContext'
-import { Router } from './Router'
 import { requestMediaAccess } from './utils/requestMediaAccess'
-import { startSettings } from './utils/startSettings'
 import { goTo } from './utils/routing'
-import ErrorBoundary from './components/ErrorBoundary'
+import { startSettings } from './utils/startSettings'
 
-export default function Layout(): React.ReactElement {
+const Layout: React.FC = () => {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null)
   const [accountCtx, setAccountCtx] = useState<AccountsContext>({
     accounts: [],
@@ -82,13 +86,18 @@ export default function Layout(): React.ReactElement {
                 <MediaContext.Provider value={cameraOn && mediaAllowed}>
                   <MetadataReqContext.Provider value={metaRequests}>
                     <SigningReqContext.Provider value={signRequests}>
-                      <ErrorBoundary>
-                        <Router
-                          authRequests={authRequests}
-                          metaRequests={metaRequests}
-                          signRequests={signRequests}
-                        />
-                      </ErrorBoundary>
+                      <ThemeProvider theme={theme}>
+                        <GlobalStyle theme={theme} />
+                        <Main>
+                          <ErrorBoundary>
+                            <Router
+                              authRequests={authRequests}
+                              metaRequests={metaRequests}
+                              signRequests={signRequests}
+                            />
+                          </ErrorBoundary>
+                        </Main>
+                      </ThemeProvider>
                     </SigningReqContext.Provider>
                   </MetadataReqContext.Provider>
                 </MediaContext.Provider>
@@ -100,3 +109,5 @@ export default function Layout(): React.ReactElement {
     </Loading>
   )
 }
+
+export default Layout
