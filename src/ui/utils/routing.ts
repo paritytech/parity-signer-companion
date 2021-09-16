@@ -8,7 +8,7 @@ export const goTo = (addr?: string) => {
   if (addr) window.location.hash = addr
 }
 
-export const getPage = () => location.hash.replace('#', '')
+export const getPath = () => location.hash.replace('#', '')
 
 export const exact = (a: string, b: string) => a === b
 export const exactWithParam = (a: string, b: string) =>

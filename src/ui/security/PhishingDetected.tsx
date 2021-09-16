@@ -1,13 +1,14 @@
+import { useStore } from 'nanostores/react'
 import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
+import { router } from '../stores/router'
 import type { ExtThemeProps } from '../types'
 
-type Props = ExtThemeProps & {
-  website: string
-}
+type Props = ExtThemeProps
 
-const PhishingDetected: React.FC<Props> = ({ className, website }) => {
+const PhishingDetected: React.FC<Props> = ({ className }) => {
+  const { param: website } = useStore(router)
   const decodedWebsite = decodeURIComponent(website)
 
   return (
