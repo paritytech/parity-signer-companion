@@ -9,8 +9,8 @@ const Main: React.FC<BaseProps> = ({ children, className }) => {
 export default styled(Main)`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }: BaseProps) => theme.background};
-  color: ${({ theme }: BaseProps) => theme.textColor};
   font-size: ${({ theme }: BaseProps) => theme.fontSize};
   line-height: ${({ theme }: BaseProps) => theme.lineHeight};
+  color: ${({ theme }: BaseProps) => theme.textColor};
+  padding: 1rem;
 `

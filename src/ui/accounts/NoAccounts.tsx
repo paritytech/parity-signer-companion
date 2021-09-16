@@ -6,7 +6,7 @@ import { BaseProps } from '../types'
 const NoAccounts: React.FC<BaseProps> = ({ className }) => {
   return (
     <>
-      <Header showAdd text={'Add Account'} />
+      <Header />
       <div className={className}>
         <div className='container'>
           You have no accounts.
@@ -26,6 +26,8 @@ export default styled(NoAccounts)`
   justify-content: center;
 
   .container {
+    padding: 2rem;
     padding-bottom: 4rem;
+    color: ${({ theme }: BaseProps) => theme.subTextColor};
   }
 `

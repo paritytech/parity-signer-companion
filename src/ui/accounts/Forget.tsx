@@ -1,6 +1,7 @@
 import { useStore } from 'nanostores/react'
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import Actions from '../components/Actions'
 import Address from '../components/Address'
 import Header from '../components/Header'
 import { router } from '../stores/router'
@@ -10,43 +11,40 @@ import { goHome } from '../utils/routing'
 
 const Forget: React.FC<BaseProps> = ({ className }) => {
   const { param: address } = useStore(router)
-  const [isBusy, setIsBusy] = useState(false)
 
   const onClick = () => {
-    setIsBusy(true)
-    forgetAccount(address)
-      .then(() => {
-        setIsBusy(false)
-        goHome()
-      })
-      .catch((error: Error) => {
-        setIsBusy(false)
-        console.error(error)
-      })
+    forgetAccount(address).catch(console.error)
+    goHome()
   }
 
   return (
     <>
-      <Header showBack text={'Forget account'} />
+      <Header />
       <div className={className}>
-        <Address address={address}>
-          <div>
-            You are about to remove the account. This means that you will not be
-            able to access it via this extension anymore. If you wish to recover
-            it, you would need to use the seed.
-          </div>
-          <div>
-            <button disabled={isBusy} onClick={onClick}>
-              I want to forget this account
-            </button>
-            <button onClick={goHome}>Cancel</button>
-          </div>
-        </Address>
+        <Address address={address} hideActions />
+        <div className='warning'>
+          You are about to remove the account. This means that you will not be
+          able to access it via this extension anymore. If you wish to recover
+          it, you would need to use the seed.
+        </div>
+        <Actions>
+          <button className='actionButton' onClick={onClick}>
+            I want to forget this account
+          </button>
+          <button onClick={goHome}>Cancel</button>
+        </Actions>
       </div>
     </>
   )
 }
 
 export default styled(Forget)`
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .warning {
+    margin: 1rem auto 0;
+    max-width: 80%;
+    text-align: center;
+  }
 `

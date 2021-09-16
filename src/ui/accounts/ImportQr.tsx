@@ -1,7 +1,10 @@
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
+import styled from 'styled-components'
+import Actions from '../components/Actions'
 import Address from '../components/Address'
 import Header from '../components/Header'
+import { BaseProps } from '../types'
 import { createAccountExternal } from '../utils/messaging'
 import { goHome } from '../utils/routing'
 
@@ -12,35 +15,48 @@ interface QrAccount {
   name?: string
 }
 
-const ImportQr: React.FC = () => {
+const ImportQr: React.FC<BaseProps> = ({ className }) => {
   const [account, setAccount] = useState<QrAccount>()
 
   const onCreate = () => {
-    if (account) {
-      createAccountExternal(
-        account.name || '',
-        account.content,
-        account.genesisHash
-      )
-        .then(goHome)
-        .catch((error: Error) => console.error(error))
-    }
+    if (!account) return
+
+    createAccountExternal(
+      account.name || 'Unknown',
+      account.content,
+      account.genesisHash
+    ).catch((error: Error) => console.error(error))
+    goHome()
   }
 
   return (
     <>
-      <Header showBack text={'Scan Address Qr'} />
-      {!account && <QrScanAddress onScan={setAccount} />}
-      {account && (
-        <>
-          <Address {...account} address={account.content} name={account.name} />
-          <button disabled={!account.name} onClick={onCreate}>
-            Add the account with identified address
-          </button>
-        </>
-      )}
+      <Header text={'Scan Address Qr'} />
+      <div className={className}>
+        {!account && <QrScanAddress onScan={setAccount} />}
+        {account && (
+          <Address
+            {...account}
+            address={account.content}
+            name={account.name}
+            hideActions
+          />
+        )}
+        <Actions>
+          {account && (
+            <button onClick={onCreate}>
+              Add the account with identified address
+            </button>
+          )}
+          <button onClick={goHome}>Cancel</button>
+        </Actions>
+      </div>
     </>
   )
 }
 
-export default ImportQr
+export default styled(ImportQr)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

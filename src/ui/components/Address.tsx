@@ -16,6 +16,7 @@ type Props = BaseProps & {
   genesisHash?: string | null
   name?: string
   type?: KeypairType
+  hideActions?: boolean
 }
 
 const defaultRecoded = {
@@ -32,6 +33,7 @@ const Address: React.FC<Props> = ({
   genesisHash,
   name,
   type: givenType,
+  hideActions,
 }) => {
   const [{ account, formatted, genesisHash: recodedGenesis }, setRecoded] =
     useState<Recoded>(defaultRecoded)
@@ -66,11 +68,13 @@ const Address: React.FC<Props> = ({
     <div className={className}>
       <div>
         <div>{name || account?.name || '<unknown>'}</div>
-        <div>{formatted || address || '<unknown>'}</div>
-        <div>
-          <button onClick={onCopy}>{'Copy'}</button>
-          <button onClick={forget}>{'Forget'}</button>
-        </div>
+        <div className='address'>{formatted || address || '<unknown>'}</div>
+        {!hideActions && (
+          <div className='actions'>
+            <button onClick={onCopy}>{'Copy'}</button>
+            <button onClick={forget}>{'Forget'}</button>
+          </div>
+        )}
       </div>
       {children}
     </div>
@@ -78,5 +82,21 @@ const Address: React.FC<Props> = ({
 }
 
 export default styled(Address)`
-  border: 1px solid ${({ theme }: Props) => theme.borderColor};
+  background: ${({ theme }: Props) => theme.background};
+  margin-bottom: 0.5rem;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  padding-top: 0.2rem;
+
+  .address {
+    color: ${({ theme }: Props) => theme.subTextColor};
+  }
+
+  .actions {
+    margin-top: 0.4rem;
+  }
+
+  .actions * {
+    margin-right: 0.4rem;
+  }
 `
