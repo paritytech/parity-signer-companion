@@ -7,7 +7,7 @@ import styled from 'styled-components'
 export const CMD_MORTAL = 2
 export const CMD_SIGN_MESSAGE = 3
 
-interface Props {
+type Props = {
   address: string
   children?: React.ReactNode
   className?: string
@@ -26,7 +26,6 @@ const Qr: React.FC<Props> = ({
   payload,
 }) => {
   const [isScanning, setIsScanning] = useState(false)
-
   const payloadU8a =
     cmd === CMD_MORTAL
       ? (payload as ExtrinsicPayload).toU8a()
@@ -39,16 +38,14 @@ const Qr: React.FC<Props> = ({
   if (!payloadU8a) {
     return (
       <div className={className}>
-        <div className='qrContainer'>
-          Transaction command:{cmd} not supported.
-        </div>
+        <div>Transaction command:{cmd} not supported.</div>
       </div>
     )
   }
 
   return (
     <div className={className}>
-      <div className='qrContainer'>
+      <div>
         {isScanning ? (
           <QrScanSignature onScan={onSignature} />
         ) : (
@@ -61,9 +58,7 @@ const Qr: React.FC<Props> = ({
         )}
       </div>
       {!isScanning && (
-        <button className='scanButton' onClick={onShowQr}>
-          {'Scan signature via camera'}
-        </button>
+        <button onClick={onShowQr}>Scan signature via camera</button>
       )}
     </div>
   )
@@ -71,17 +66,4 @@ const Qr: React.FC<Props> = ({
 
 export default styled(Qr)`
   height: 100%;
-
-  .qrContainer {
-    margin: 5px auto 10px auto;
-    width: 65%;
-
-    img {
-      border: white solid 1px;
-    }
-  }
-
-  .scanButton {
-    margin-bottom: 8px;
-  }
 `
