@@ -1,7 +1,8 @@
 import { createStore } from 'nanostores'
+import { requestMediaAccess } from '../utils/requestMediaAccess'
 
 export const mediaAllowed = createStore<boolean>(() => {
-  mediaAllowed.set(false)
+  requestMediaAccess().then(setMediaAllowed).catch(console.error)
 })
 
 export const setMediaAllowed = (v: boolean) => {
