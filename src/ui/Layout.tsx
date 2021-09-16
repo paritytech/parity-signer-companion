@@ -14,7 +14,6 @@ import Loading from './components/Loading'
 import Main from './components/Main'
 import {
   AccountContext,
-  ActionContext,
   AuthorizeReqContext,
   MediaContext,
   MetadataReqContext,
@@ -32,7 +31,6 @@ import {
   subscribeSigningRequests,
 } from './utils/messaging'
 import { requestMediaAccess } from './utils/requestMediaAccess'
-import { goTo } from './utils/routing'
 import { startSettings } from './utils/startSettings'
 
 const Layout: React.FC = () => {
@@ -79,32 +77,30 @@ const Layout: React.FC = () => {
   return (
     <Loading>
       {accounts && authRequests && metaRequests && signRequests && (
-        <ActionContext.Provider value={goTo}>
-          <SettingsContext.Provider value={settingsCtx}>
-            <AccountContext.Provider value={accountCtx}>
-              <AuthorizeReqContext.Provider value={authRequests}>
-                <MediaContext.Provider value={cameraOn && mediaAllowed}>
-                  <MetadataReqContext.Provider value={metaRequests}>
-                    <SigningReqContext.Provider value={signRequests}>
-                      <ThemeProvider theme={theme}>
-                        <GlobalStyle theme={theme} />
-                        <Main>
-                          <ErrorBoundary>
-                            <Router
-                              authRequests={authRequests}
-                              metaRequests={metaRequests}
-                              signRequests={signRequests}
-                            />
-                          </ErrorBoundary>
-                        </Main>
-                      </ThemeProvider>
-                    </SigningReqContext.Provider>
-                  </MetadataReqContext.Provider>
-                </MediaContext.Provider>
-              </AuthorizeReqContext.Provider>
-            </AccountContext.Provider>
-          </SettingsContext.Provider>
-        </ActionContext.Provider>
+        <SettingsContext.Provider value={settingsCtx}>
+          <AccountContext.Provider value={accountCtx}>
+            <AuthorizeReqContext.Provider value={authRequests}>
+              <MediaContext.Provider value={cameraOn && mediaAllowed}>
+                <MetadataReqContext.Provider value={metaRequests}>
+                  <SigningReqContext.Provider value={signRequests}>
+                    <ThemeProvider theme={theme}>
+                      <GlobalStyle theme={theme} />
+                      <Main>
+                        <ErrorBoundary>
+                          <Router
+                            authRequests={authRequests}
+                            metaRequests={metaRequests}
+                            signRequests={signRequests}
+                          />
+                        </ErrorBoundary>
+                      </Main>
+                    </ThemeProvider>
+                  </SigningReqContext.Provider>
+                </MetadataReqContext.Provider>
+              </MediaContext.Provider>
+            </AuthorizeReqContext.Provider>
+          </AccountContext.Provider>
+        </SettingsContext.Provider>
       )}
     </Loading>
   )
