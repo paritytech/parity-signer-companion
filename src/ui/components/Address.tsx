@@ -4,7 +4,6 @@ import useToast from '../hooks/useToast'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import type { KeypairType } from '@polkadot/util-crypto/types'
 import React, { useContext, useEffect, useState } from 'react'
-import CopyToClipboard from 'react-copy-to-clipboard'
 import styled from 'styled-components'
 import type { ExtThemeProps, ThemeProps } from '../types'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
@@ -40,7 +39,10 @@ const Address: React.FC<Props> = ({
   const chain = useMetadata(genesisHash || recodedGenesis, true)
   const { show } = useToast()
 
-  const onCopy = () => show('Copied')
+  const onCopy = () => {
+    navigator.clipboard.writeText(formatted || '').catch(console.error)
+    show('Copied')
+  }
   const forget = () => goTo(`/account/forget/${address}`)
 
   useEffect(() => {
@@ -87,9 +89,7 @@ const Address: React.FC<Props> = ({
           {formatted || address || '<unknown>'}
         </div>
         <div className='actions'>
-          <CopyToClipboard text={(formatted && formatted) || ''}>
-            <button onClick={onCopy}>{'Copy address'}</button>
-          </CopyToClipboard>
+          <button onClick={onCopy}>{'Copy address'}</button>
           <button onClick={forget}>{'Forget Account'}</button>
         </div>
       </div>
