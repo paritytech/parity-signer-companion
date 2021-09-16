@@ -5,12 +5,12 @@ import Header from '../components/Header'
 import { hierarchy as hierarchyStore } from '../stores/accounts'
 import { BaseProps } from '../types'
 import AccountsTree from './AccountsTree'
-import AddAccount from './AddAccount'
+import NoAccounts from './NoAccounts'
 
 const Accounts: React.FC<BaseProps> = ({ className }) => {
   const hierarchy = useStore(hierarchyStore)
 
-  if (hierarchy.length === 0) return <AddAccount />
+  if (hierarchy.length === 0) return <NoAccounts />
 
   return (
     <>
@@ -25,13 +25,5 @@ const Accounts: React.FC<BaseProps> = ({ className }) => {
 }
 
 export default styled(Accounts)`
-  height: calc(100vh - 2px);
-  overflow-y: scroll;
-  margin-top: -25px;
-  padding-top: 25px;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  height: 100%;
 `

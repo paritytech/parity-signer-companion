@@ -27,7 +27,7 @@ const Forget: React.FC<BaseProps> = ({ className }) => {
 
   return (
     <>
-      <Header showBackArrow text={'Forget account'} />
+      <Header showBack text={'Forget account'} />
       <div className={className}>
         <Address address={address}>
           <div className='movedWarning'>

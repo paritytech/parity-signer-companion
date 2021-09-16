@@ -6,103 +6,39 @@ import { goHome, goTo } from '../utils/routing'
 
 type Props = BaseProps & {
   showAdd?: boolean
-  showBackArrow?: boolean
-  smallMargin?: boolean
+  showBack?: boolean
   text?: React.ReactNode
 }
 
-const Header: React.FC<Props> = ({
-  className,
-  showAdd,
-  showBackArrow,
-  smallMargin,
-  text,
-}) => {
+const Header: React.FC<Props> = ({ className, showAdd, showBack, text }) => {
   const toggleAdd = () => goTo('/account/import-qr')
 
   return (
-    <div className={`${className} ${smallMargin ? 'smallMargin' : ''}`}>
-      <div className='container'>
-        <div className='branding'>
-          {showBackArrow && (
-            <button className='backlink' onClick={goHome}>
-              Back
-            </button>
-          )}
-          <span className='logoText'>{text || EXT_NAME}</span>
-        </div>
-        <div className='popupMenus'>
-          {showAdd && (
-            <button className='popupToggle' onClick={toggleAdd}>
-              Add
-            </button>
-          )}
-        </div>
+    <div className={className}>
+      <div className='text-holder'>
+        {showBack && (
+          <button className='back-button' onClick={goHome}>
+            Back
+          </button>
+        )}
+        <div>{text || EXT_NAME}</div>
       </div>
+      {showAdd && <button onClick={toggleAdd}>Add</button>}
     </div>
   )
 }
 
 export default styled(Header)`
-  max-width: 100%;
-  box-sizing: border-box;
-  font-weight: normal;
-  margin: 0;
-  position: relative;
-  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  && {
-    padding: 0 0 0;
-  }
-
-  > .container {
+  .text-holder {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 1px solid ${({ theme }: Props) => theme.inputBorderColor};
-    min-height: 70px;
-
-    .branding {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: ${({ theme }: Props) => theme.labelColor};
-      font-family: ${({ theme }: Props) => theme.fontFamily};
-      text-align: center;
-      margin-left: 24px;
-
-      .logoText {
-        color: ${({ theme }: Props) => theme.textColor};
-        font-family: ${({ theme }: Props) => theme.fontFamily};
-        font-size: 20px;
-        line-height: 27px;
-      }
-    }
-
-    .backLink {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .popupMenus {
-      align-self: center;
-
-      .popupToggle {
-        display: inline-block;
-        vertical-align: middle;
-
-        &:last-child {
-          margin-right: 24px;
-        }
-      }
-
-      .popupToggle + .popupToggle {
-        margin-left: 8px;
-      }
-    }
+    align-items: center;
   }
 
-  &.smallMargin {
-    margin-bottom: 15px;
+  .back-button {
+    margin-right: 1em;
   }
 `

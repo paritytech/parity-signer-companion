@@ -29,7 +29,7 @@ const ImportQr: React.FC = () => {
 
   return (
     <>
-      <Header showBackArrow text={'Scan Address Qr'} />
+      <Header showBack text={'Scan Address Qr'} />
       {!account && <QrScanAddress onScan={setAccount} />}
       {account && (
         <>

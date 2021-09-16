@@ -64,31 +64,12 @@ const Address: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <div className='infoRow'>
-        <div className='name' data-field='name'>
-          <span title={name || account?.name || '<unknown>'}>
-            {name || account?.name || '<unknown>'}
-          </span>
-        </div>
-        {chain?.genesisHash && (
-          <div
-            className='banner chain'
-            data-field='chain'
-            style={
-              chain.definition.color
-                ? { backgroundColor: chain.definition.color }
-                : undefined
-            }
-          >
-            {chain.name.replace(' Relay Chain', '')}
-          </div>
-        )}
-        <div className='addressDisplay'>
-          {formatted || address || '<unknown>'}
-        </div>
-        <div className='actions'>
-          <button onClick={onCopy}>{'Copy address'}</button>
-          <button onClick={forget}>{'Forget Account'}</button>
+      <div>
+        <div>{name || account?.name || '<unknown>'}</div>
+        <div>{formatted || address || '<unknown>'}</div>
+        <div>
+          <button onClick={onCopy}>{'Copy'}</button>
+          <button onClick={forget}>{'Forget'}</button>
         </div>
       </div>
       {children}
@@ -99,45 +80,4 @@ const Address: React.FC<Props> = ({
 export default styled(Address)`
   background: ${({ theme }: Props) => theme.accountBackground};
   border: 1px solid ${({ theme }: Props) => theme.boxBorderColor};
-  box-sizing: border-box;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  position: relative;
-
-  .banner {
-    font-size: 12px;
-    line-height: 16px;
-    position: absolute;
-    top: 0;
-
-    &.chain {
-      background: ${({ theme }: Props) => theme.primaryColor};
-      border-radius: 0 0 0 10px;
-      color: white;
-      padding: 0.1rem 0.5rem 0.1rem 0.75rem;
-      right: 0;
-      z-index: 1;
-    }
-  }
-
-  .addressDisplay {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-  }
-
-  .infoRow {
-    height: 72px;
-    border-radius: 4px;
-  }
-
-  .name {
-    font-size: 16px;
-    line-height: 22px;
-    margin: 2px 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 300px;
-    white-space: nowrap;
-  }
 `
