@@ -1,11 +1,12 @@
-import { MetadataReqContext } from '../contexts'
-import React, { useContext } from 'react'
+import { useStore } from 'nanostores/react'
+import React from 'react'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
+import { metaRequests } from '../stores/metaRequests'
 import MetadataRequest from './MetadataRequest'
 
 const Metadata: React.FC = () => {
-  const requests = useContext(MetadataReqContext)
+  const requests = useStore(metaRequests)
   const request = requests[0]
 
   if (!request) return <Loading />
