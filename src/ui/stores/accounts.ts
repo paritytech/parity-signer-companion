@@ -3,7 +3,9 @@ import { canDerive } from '@polkadot/extension-base/utils'
 import { createDerived, createStore } from 'nanostores'
 import { buildHierarchy } from '../utils/buildHierarchy'
 
-export const accounts = createStore<AccountJson[]>()
+export const accounts = createStore<AccountJson[]>(() => {
+  accounts.set([])
+})
 
 export const hierarchy = createDerived(accounts, (list) =>
   buildHierarchy(list as AccountJson[])
