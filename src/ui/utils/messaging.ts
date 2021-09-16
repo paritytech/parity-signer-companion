@@ -1,6 +1,5 @@
 import type {
   AccountJson,
-  AllowedPath,
   AuthorizeRequest,
   MessageTypes,
   MessageTypesWithNoSubscriptions,
@@ -8,45 +7,25 @@ import type {
   MessageTypesWithSubscriptions,
   MetadataRequest,
   RequestTypes,
-  ResponseAuthorizeList,
-  ResponseDeriveValidate,
-  ResponseJsonGetAccountInfo,
-  ResponseSigningIsLocked,
   ResponseTypes,
-  SeedLengths,
   SigningRequest,
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
-import type { Message } from '@polkadot/extension-base/types'
-import type { Chain } from '@polkadot/extension-chains/types'
-import type { KeyringPair$Json } from '@polkadot/keyring/types'
-import type { KeyringPairs$Json } from '@polkadot/ui-keyring/types'
-import type { KeypairType } from '@polkadot/util-crypto/types'
-
 import { PORT_EXTENSION } from '@polkadot/extension-base/defaults'
+import type { Message } from '@polkadot/extension-base/types'
 import { metadataExpand } from '@polkadot/extension-chains'
+import type { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
-import { MetadataDef } from '@polkadot/extension-inject/types'
-
-import { chains as allChains } from './chains'
+import { Handler, Handlers } from '../types'
+import { chains } from './chains'
 import { getSavedMeta, setSavedMeta } from './metadataCache'
-
-interface Handler {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  resolve: (data: any) => void
-  reject: (error: Error) => void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  subscriber?: (data: any) => void
-}
-
-type Handlers = Record<string, Handler>
 
 const port = chrome.runtime.connect({ name: PORT_EXTENSION })
 const handlers: Handlers = {}
 let idCounter = 0
 
 // setup a listener for messages, any incoming resolves the promise
-port.onMessage.addListener((data: Message['data']): void => {
+port.onMessage.addListener((data: Message['data']) => {
   const handler = handlers[data.id]
 
   if (!handler) {
@@ -57,15 +36,14 @@ port.onMessage.addListener((data: Message['data']): void => {
 
   if (!handler.subscriber) {
     delete handlers[data.id]
-  }
-
-  if (data.subscription) {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    ;(handler.subscriber as Function)(data.subscription)
-  } else if (data.error) {
-    handler.reject(new Error(data.error))
   } else {
-    handler.resolve(data.response)
+    if (data.subscription) {
+      handler.subscriber(data.subscription)
+    } else if (data.error) {
+      handler.reject(new Error(data.error))
+    } else {
+      handler.resolve(data.response)
+    }
   }
 })
 
@@ -86,55 +64,15 @@ function sendMessage<TMessageType extends MessageTypes>(
   request?: RequestTypes[TMessageType],
   subscriber?: (data: unknown) => void
 ): Promise<ResponseTypes[TMessageType]> {
-  return new Promise((resolve, reject): void => {
+  return new Promise((resolve, reject) => {
     const id = `${Date.now()}.${++idCounter}`
-
-    handlers[id] = { reject, resolve, subscriber }
-
+    handlers[id] = {
+      reject,
+      subscriber,
+      resolve: resolve as Handler['resolve'],
+    }
     port.postMessage({ id, message, request: request || {} })
   })
-}
-
-export async function editAccount(
-  address: string,
-  name: string
-): Promise<boolean> {
-  return sendMessage('pri(accounts.edit)', { address, name })
-}
-
-export async function showAccount(
-  address: string,
-  isShowing: boolean
-): Promise<boolean> {
-  return sendMessage('pri(accounts.show)', { address, isShowing })
-}
-
-export async function tieAccount(
-  address: string,
-  genesisHash: string | null
-): Promise<boolean> {
-  return sendMessage('pri(accounts.tie)', { address, genesisHash })
-}
-
-export async function exportAccount(
-  address: string,
-  password: string
-): Promise<{ exportedJson: KeyringPair$Json }> {
-  return sendMessage('pri(accounts.export)', { address, password })
-}
-
-export async function exportAccounts(
-  addresses: string[],
-  password: string
-): Promise<{ exportedJson: KeyringPairs$Json }> {
-  return sendMessage('pri(accounts.batchExport)', { addresses, password })
-}
-
-export async function validateAccount(
-  address: string,
-  password: string
-): Promise<boolean> {
-  return sendMessage('pri(accounts.validate)', { address, password })
 }
 
 export async function forgetAccount(address: string): Promise<boolean> {
@@ -151,24 +89,6 @@ export async function approveMetaRequest(id: string): Promise<boolean> {
 
 export async function cancelSignRequest(id: string): Promise<boolean> {
   return sendMessage('pri(signing.cancel)', { id })
-}
-
-export async function isSignLocked(
-  id: string
-): Promise<ResponseSigningIsLocked> {
-  return sendMessage('pri(signing.isLocked)', { id })
-}
-
-export async function approveSignPassword(
-  id: string,
-  savePass: boolean,
-  password?: string
-): Promise<boolean> {
-  return sendMessage('pri(signing.approve.password)', {
-    id,
-    password,
-    savePass,
-  })
 }
 
 export async function approveSignSignature(
@@ -188,51 +108,6 @@ export async function createAccountExternal(
     genesisHash,
     name,
   })
-}
-
-export async function createAccountHardware(
-  address: string,
-  hardwareType: string,
-  accountIndex: number,
-  addressOffset: number,
-  name: string,
-  genesisHash: string
-): Promise<boolean> {
-  return sendMessage('pri(accounts.create.hardware)', {
-    accountIndex,
-    address,
-    addressOffset,
-    genesisHash,
-    hardwareType,
-    name,
-  })
-}
-
-export async function createAccountSuri(
-  name: string,
-  password: string,
-  suri: string,
-  type?: KeypairType,
-  genesisHash?: string
-): Promise<boolean> {
-  return sendMessage('pri(accounts.create.suri)', {
-    genesisHash,
-    name,
-    password,
-    suri,
-    type,
-  })
-}
-
-export async function createSeed(
-  length?: SeedLengths,
-  type?: KeypairType
-): Promise<{ address: string; seed: string }> {
-  return sendMessage('pri(seed.create)', { length, type })
-}
-
-export async function getAllMetatdata(): Promise<MetadataDef[]> {
-  return sendMessage('pri(metadata.list)')
 }
 
 export async function getMetadata(
@@ -255,7 +130,7 @@ export async function getMetadata(
   if (def) {
     return metadataExpand(def, isPartial)
   } else if (isPartial) {
-    const chain = allChains.find((chain) => chain.genesisHash === genesisHash)
+    const chain = chains.find((chain) => chain.genesisHash === genesisHash)
 
     if (chain) {
       return metadataExpand(
@@ -294,16 +169,6 @@ export async function subscribeAuthorizeRequests(
   return sendMessage('pri(authorize.requests)', null, cb)
 }
 
-export async function getAuthList(): Promise<ResponseAuthorizeList> {
-  return sendMessage('pri(authorize.list)')
-}
-
-export async function toggleAuthorization(
-  url: string
-): Promise<ResponseAuthorizeList> {
-  return sendMessage('pri(authorize.toggle)', url)
-}
-
 export async function subscribeMetadataRequests(
   cb: (accounts: MetadataRequest[]) => void
 ): Promise<boolean> {
@@ -314,65 +179,4 @@ export async function subscribeSigningRequests(
   cb: (accounts: SigningRequest[]) => void
 ): Promise<boolean> {
   return sendMessage('pri(signing.requests)', null, cb)
-}
-
-export async function validateSeed(
-  suri: string,
-  type?: KeypairType
-): Promise<{ address: string; suri: string }> {
-  return sendMessage('pri(seed.validate)', { suri, type })
-}
-
-export async function validateDerivationPath(
-  parentAddress: string,
-  suri: string,
-  parentPassword: string
-): Promise<ResponseDeriveValidate> {
-  return sendMessage('pri(derivation.validate)', {
-    parentAddress,
-    parentPassword,
-    suri,
-  })
-}
-
-export async function deriveAccount(
-  parentAddress: string,
-  suri: string,
-  parentPassword: string,
-  name: string,
-  password: string,
-  genesisHash: string | null
-): Promise<boolean> {
-  return sendMessage('pri(derivation.create)', {
-    genesisHash,
-    name,
-    parentAddress,
-    parentPassword,
-    password,
-    suri,
-  })
-}
-
-export async function windowOpen(path: AllowedPath): Promise<boolean> {
-  return sendMessage('pri(window.open)', path)
-}
-
-export async function jsonGetAccountInfo(
-  json: KeyringPair$Json
-): Promise<ResponseJsonGetAccountInfo> {
-  return sendMessage('pri(json.account.info)', json)
-}
-
-export async function jsonRestore(
-  file: KeyringPair$Json,
-  password: string
-): Promise<void> {
-  return sendMessage('pri(json.restore)', { file, password })
-}
-
-export async function batchRestore(
-  file: KeyringPairs$Json,
-  password: string
-): Promise<void> {
-  return sendMessage('pri(json.batchRestore)', { file, password })
 }
