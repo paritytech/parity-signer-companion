@@ -1,9 +1,9 @@
-import Address from '../components/Address'
-import { createAccountExternal } from '../utils/messaging'
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
+import Address from '../components/Address'
 import Header from '../components/Header'
-import { goTo } from '../utils/routing'
+import { createAccountExternal } from '../utils/messaging'
+import { goHome } from '../utils/routing'
 
 interface QrAccount {
   isAddress: boolean
@@ -22,7 +22,7 @@ const ImportQr: React.FC = () => {
         account.content,
         account.genesisHash
       )
-        .then(() => goTo('/'))
+        .then(goHome)
         .catch((error: Error) => console.error(error))
     }
   }

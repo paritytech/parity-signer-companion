@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import type { ExtThemeProps } from '../types'
-import { goTo } from '../utils/routing'
+import { goHome, goTo } from '../utils/routing'
 
 interface Props extends ExtThemeProps {
   showAdd?: boolean
@@ -19,14 +19,13 @@ const Header: React.FC<Props> = ({
   text,
 }) => {
   const toggleAdd = () => goTo('/account/import-qr')
-  const toggleBack = () => goTo('/')
 
   return (
     <div className={`${className} ${smallMargin ? 'smallMargin' : ''}`}>
       <div className='container'>
         <div className='branding'>
           {showBackArrow && (
-            <button className='backlink' onClick={toggleBack}>
+            <button className='backlink' onClick={goHome}>
               Back
             </button>
           )}

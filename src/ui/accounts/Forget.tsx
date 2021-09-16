@@ -6,15 +6,13 @@ import Header from '../components/Header'
 import { router } from '../stores/router'
 import type { ExtThemeProps } from '../types'
 import { forgetAccount } from '../utils/messaging'
-import { goTo } from '../utils/routing'
+import { goHome } from '../utils/routing'
 
 type Props = ExtThemeProps
 
 const Forget: React.FC<Props> = ({ className }) => {
   const { param: address } = useStore(router)
   const [isBusy, setIsBusy] = useState(false)
-
-  const goHome = () => goTo('/')
 
   const onClick = () => {
     setIsBusy(true)
