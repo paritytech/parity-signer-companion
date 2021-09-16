@@ -35,7 +35,7 @@ const ImportQr: React.FC = () => {
         <>
           <Address {...account} address={account.content} name={account.name} />
           <button disabled={!account.name} onClick={onCreate}>
-            {'Add the account with identified address'}
+            Add the account with identified address
           </button>
         </>
       )}
