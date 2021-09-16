@@ -1,47 +1,22 @@
 import { useStore } from 'nanostores/react'
 import React from 'react'
-import styled from 'styled-components'
 import Header from '../components/Header'
 import { authRequests as authRequestsStore } from '../stores/authRequests'
-import { BaseProps } from '../types'
 import AuthorizeRequest from './AuthorizeRequest'
 
-const Authorize: React.FC<BaseProps> = ({ className }) => {
+const Authorize: React.FC = () => {
   const requests = useStore(authRequestsStore)
 
   return (
-    <div
-      className={`${className} ${requests.length === 1 ? 'lastRequest' : ''}`}
-    >
+    <>
       <Header text={'Authorize'} />
       {requests.map(
-        ({ id, request, url }, index): React.ReactNode => (
-          <AuthorizeRequest
-            authId={id}
-            className='request'
-            isFirst={index === 0}
-            key={id}
-            request={request}
-            url={url}
-          />
+        ({ id, request, url }): React.ReactNode => (
+          <AuthorizeRequest authId={id} request={request} url={url} key={id} />
         )
       )}
-    </div>
+    </>
   )
 }
 
-export default styled(Authorize)`
-  overflow-y: auto;
-
-  &.lastRequest {
-    overflow: hidden;
-  }
-
-  && {
-    padding: 0;
-  }
-
-  .request {
-    padding: 0 24px;
-  }
-`
+export default Authorize
