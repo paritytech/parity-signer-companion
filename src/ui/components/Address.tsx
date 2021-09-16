@@ -82,6 +82,7 @@ const Address: React.FC<Props> = ({
 }
 
 export default styled(Address)`
+  width: 100%;
   background: ${({ theme }: Props) => theme.background};
   margin-bottom: 0.5rem;
   border-radius: 0.2rem;

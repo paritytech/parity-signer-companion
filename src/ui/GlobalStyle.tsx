@@ -12,9 +12,13 @@ export const GlobalStyle = createGlobalStyle<ThemeProps>`
   }
 
   body {
-    background-color: ${({ theme }): string => theme.bodyColor};
-    width: ${({ theme }): string => theme.maxWidth};
+    background-color: ${({ theme }: ThemeProps) => theme.bodyColor};
+    width: ${({ theme }: ThemeProps) => theme.maxWidth};
     margin: 0 auto;
     height: 100vh;
+  }
+
+  a {
+    color: ${({ theme }: ThemeProps) => theme.textColor};
   }
 `

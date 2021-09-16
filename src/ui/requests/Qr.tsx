@@ -3,6 +3,7 @@ import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
 import { ExtrinsicPayload } from '@polkadot/types/interfaces'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Actions from '../components/Actions'
 
 export const CMD_MORTAL = 2
 export const CMD_SIGN_MESSAGE = 3
@@ -14,6 +15,7 @@ type Props = {
   cmd: number
   genesisHash: string
   onSignature: ({ signature }: { signature: string }) => void
+  onCancel: () => void
   payload: ExtrinsicPayload | string
 }
 
@@ -23,6 +25,7 @@ const Qr: React.FC<Props> = ({
   cmd,
   genesisHash,
   onSignature,
+  onCancel,
   payload,
 }) => {
   const [isScanning, setIsScanning] = useState(false)
@@ -45,7 +48,7 @@ const Qr: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <div>
+      <div className='qr'>
         {isScanning ? (
           <QrScanSignature onScan={onSignature} />
         ) : (
@@ -58,12 +61,23 @@ const Qr: React.FC<Props> = ({
         )}
       </div>
       {!isScanning && (
-        <button onClick={onShowQr}>Scan signature via camera</button>
+        <Actions>
+          <button onClick={onShowQr}>Scan signature via camera</button>
+          <button onClick={onCancel}>Cancel</button>
+        </Actions>
       )}
     </div>
   )
 }
 
 export default styled(Qr)`
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+
+  .qr {
+    width: 70%;
+  }
 `

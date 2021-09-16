@@ -13,8 +13,10 @@ import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
 import { isRawPayload } from '../utils/guards'
 import Qr, { CMD_MORTAL, CMD_SIGN_MESSAGE } from './Qr'
 import { registry } from '../utils/registry'
+import { BaseProps } from '../types'
+import styled from 'styled-components'
 
-type Props = {
+type Props = BaseProps & {
   account: AccountJson
   buttonText: string
   isFirst: boolean
@@ -28,7 +30,7 @@ type Data = {
   payload: ExtrinsicPayload | null
 }
 
-const Request: React.FC<Props> = ({ request, signId }) => {
+const Request: React.FC<Props> = ({ request, signId, className }) => {
   const accounts = useStore(accountsStore)
   const [{ hexBytes, payload }, setData] = useState<Data>({
     hexBytes: null,
@@ -57,17 +59,21 @@ const Request: React.FC<Props> = ({ request, signId }) => {
     const json = request.payload as SignerPayloadJSON
 
     return (
-      <>
-        <Address address={json.address} genesisHash={json.genesisHash} />
+      <div className={className}>
+        <Address
+          address={json.address}
+          genesisHash={json.genesisHash}
+          hideActions
+        />
         <Qr
           address={json.address}
           cmd={CMD_MORTAL}
           genesisHash={json.genesisHash}
           onSignature={onSignature}
+          onCancel={onCancel}
           payload={payload}
         />
-        <button onClick={onCancel}>{'Cancel'}</button>
-      </>
+      </div>
     )
   }
 
@@ -88,10 +94,10 @@ const Request: React.FC<Props> = ({ request, signId }) => {
             cmd={CMD_SIGN_MESSAGE}
             genesisHash={account.genesisHash}
             onSignature={onSignature}
+            onCancel={onCancel}
             payload={data}
           />
         )}
-        <button onClick={onCancel}>{'Cancel'}</button>
       </>
     )
   }
@@ -99,4 +105,8 @@ const Request: React.FC<Props> = ({ request, signId }) => {
   return null
 }
 
-export default Request
+export default styled(Request)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

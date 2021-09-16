@@ -20,6 +20,7 @@ const Router: React.FC = () => {
   const metaRequests = useStore(metaRequestsStore)
   const signRequests = useStore(signRequestsStore)
 
+  return <Signing />
   if (exact(path, '') && authRequests?.length) return <Authorize />
   if (exact(path, '') && metaRequests?.length) return <Metadata />
   if (exact(path, '') && signRequests?.length) return <Signing />
