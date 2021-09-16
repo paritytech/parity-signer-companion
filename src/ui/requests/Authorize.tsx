@@ -10,11 +10,9 @@ const Authorize: React.FC = () => {
   return (
     <>
       <Header text={'Authorize'} />
-      {requests.map(
-        ({ id, request, url }): React.ReactNode => (
-          <AuthorizeRequest authId={id} request={request} url={url} key={id} />
-        )
-      )}
+      {requests.map(({ id, request, url }) => (
+        <AuthorizeRequest authId={id} request={request} url={url} key={id} />
+      ))}
     </>
   )
 }
