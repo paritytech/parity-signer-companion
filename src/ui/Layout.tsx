@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components'
 import ErrorBoundary from './components/ErrorBoundary'
 import Loading from './components/Loading'
 import Main from './components/Main'
-import { MediaContext, SigningReqContext } from './contexts'
+import { MediaContext } from './contexts'
 import { GlobalStyle } from './GlobalStyle'
 import Router from './Router'
 import { setAccounts } from './stores/accounts'
@@ -21,6 +21,10 @@ import {
   metaRequests as metaRequestsStore,
   setMetaRequests,
 } from './stores/metaRequests'
+import {
+  setSignRequests,
+  signRequests as signRequestsStore,
+} from './stores/signRequests'
 import { theme } from './themes'
 import {
   subscribeAccounts,
@@ -33,10 +37,8 @@ import { requestMediaAccess } from './utils/requestMediaAccess'
 const Layout: React.FC = () => {
   const authRequests = useStore(authRequestsStore) as AuthorizeRequest[]
   const metaRequests = useStore(metaRequestsStore) as MetadataRequest[]
+  const signRequests = useStore(signRequestsStore) as SigningRequest[]
   const [mediaAllowed, setMediaAllowed] = useState(false)
-  const [signRequests, setSignRequests] = useState<null | SigningRequest[]>(
-    null
-  )
 
   useEffect(() => {
     Promise.all([
@@ -55,20 +57,18 @@ const Layout: React.FC = () => {
     <Loading>
       {authRequestsStore && metaRequests && signRequests && (
         <MediaContext.Provider value={mediaAllowed}>
-          <SigningReqContext.Provider value={signRequests}>
-            <ThemeProvider theme={theme}>
-              <GlobalStyle theme={theme} />
-              <Main>
-                <ErrorBoundary>
-                  <Router
-                    authRequests={authRequests}
-                    metaRequests={metaRequests}
-                    signRequests={signRequests}
-                  />
-                </ErrorBoundary>
-              </Main>
-            </ThemeProvider>
-          </SigningReqContext.Provider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle theme={theme} />
+            <Main>
+              <ErrorBoundary>
+                <Router
+                  authRequests={authRequests}
+                  metaRequests={metaRequests}
+                  signRequests={signRequests}
+                />
+              </ErrorBoundary>
+            </Main>
+          </ThemeProvider>
         </MediaContext.Provider>
       )}
     </Loading>
