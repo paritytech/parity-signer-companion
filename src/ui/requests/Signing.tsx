@@ -1,3 +1,4 @@
+import { RequestSign } from '@polkadot/extension-base/background/types'
 import { SignerPayloadJSON } from '@polkadot/types/types'
 import { useStore } from 'nanostores/react'
 import React, { useState } from 'react'
@@ -31,7 +32,7 @@ const Signing: React.FC = () => {
         account={request.account}
         buttonText={isTransaction ? 'Sign the transaction' : 'Sign the message'}
         isFirst={idx === 0}
-        request={request.request}
+        request={request.request as RequestSign}
         signId={request.id}
         url={request.url}
       />

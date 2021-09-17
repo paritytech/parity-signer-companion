@@ -1,6 +1,7 @@
 import { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import React from 'react'
 import styled from 'styled-components'
+import Actions from '../components/Actions'
 import { BaseProps } from '../types'
 import { approveAuthRequest, rejectAuthRequest } from '../utils/messaging'
 
@@ -21,29 +22,37 @@ const AuthorizeRequest: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <div>
-        <div>
-          <div>
-            An application, self-identifying as {request.origin} is requesting
-            access from{' '}
-            <a href={url} rel='noopener noreferrer' target='_blank'>
-              {url}
-            </a>
-          </div>
-        </div>
-        <div>
-          Only approve this request if you trust the application. Approving
-          gives the application access to the addresses of your accounts.
-        </div>
-        <button onClick={onApprove}>Yes, allow this application access</button>
-        <button onClick={onReject}>{'Reject'}</button>
+      <div className='text'>
+        An application, self-identifying as {request.origin} is requesting
+        access from{' '}
+        <a href={url} rel='noopener noreferrer' target='_blank'>
+          {url}
+        </a>
       </div>
+      <div className='text'>
+        Only approve this request if you trust the application. Approving gives
+        the application access to the addresses of your accounts.
+      </div>
+      <Actions>
+        <button onClick={onApprove}>Yes, allow this application access</button>
+        <button onClick={onReject}>Reject</button>
+      </Actions>
     </div>
   )
 }
 
 export default styled(AuthorizeRequest)`
-  a {
-    color: ${({ theme }: Props) => theme.textColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .text {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .text + .text {
+    margin-top: 1rem;
   }
 `

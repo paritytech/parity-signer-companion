@@ -14,7 +14,7 @@ const Accounts: React.FC<BaseProps> = ({ className }) => {
 
   return (
     <>
-      <Header showAdd text={'Accounts'} />
+      <Header />
       <div className={className}>
         {hierarchy.map((json, i) => (
           <AccountsTree {...json} key={`${i}:${json.address}`} />
