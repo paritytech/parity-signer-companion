@@ -57,7 +57,10 @@ module.exports = (env, argv) => ({
       Buffer: ['buffer', 'Buffer'],
       process: 'process/browser.js',
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(argv.mode || 'production'),
