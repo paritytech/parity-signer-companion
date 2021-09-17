@@ -1,5 +1,6 @@
 export const theme = {
   maxWidth: '600px',
+  maxHeight: '600px',
   rem: '20px',
   background: '#262626',
   bodyColor: '#151515',
