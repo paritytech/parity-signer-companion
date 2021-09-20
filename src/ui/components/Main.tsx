@@ -15,6 +15,7 @@ const Main: React.FC<BaseProps> = ({ children, className }) => (
 export default styled(Main)`
   display: flex;
   flex-direction: column;
+  height: 100%;
   font-size: ${({ theme }: BaseProps) => theme.fontSize};
   line-height: ${({ theme }: BaseProps) => theme.lineHeight};
   color: ${({ theme }: BaseProps) => theme.mainTextColor};

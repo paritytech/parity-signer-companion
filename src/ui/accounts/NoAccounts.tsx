@@ -1,21 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Button } from '../components/Button'
 import { BaseProps } from '../types'
+import { goToImport } from '../utils/routing'
 
-const NoAccounts: React.FC<BaseProps> = ({ className }) => {
-  return (
-    <div className={className}>
-      <div className='container'>
-        You have no accounts.
-        <br />
-        Create your first account to get started.
-      </div>
+const NoAccounts: React.FC<BaseProps> = ({ className }) => (
+  <div className={className}>
+    <div className='container'>
+      The extensioin helps you to sign transactions with keys you store in your
+      Parity Signer. To start using, go to the Signer and import a first key.
     </div>
-  )
-}
+    <Button onClick={goToImport}>Import a key</Button>
+  </div>
+)
 
 export default styled(NoAccounts)`
   display: flex;
+  flex-direction: column;
   height: 100%;
   text-align: center;
   align-items: center;
@@ -23,7 +24,6 @@ export default styled(NoAccounts)`
 
   .container {
     padding: 2rem;
-    padding-bottom: 4rem;
-    color: ${({ theme }: BaseProps) => theme.fadedTextColor};
+    color: ${({ theme }: BaseProps) => theme.mainTextColor};
   }
 `
