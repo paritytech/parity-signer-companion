@@ -2,31 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import logo from '../assets/logo.svg'
-import { BaseProps } from '../types'
-import { goTo } from '../utils/routing'
+import { BaseProps, ThemeProps } from '../types'
+import { goToImport } from '../utils/routing'
+import { Button } from './Button'
 
-type Props = BaseProps & {
-  text?: React.ReactNode
-}
-
-const Header: React.FC<Props> = ({ className, text }) => {
-  const toggleAdd = () => goTo('/account/import-qr')
-
-  return (
-    <div className={className}>
-      <div className='text-holder'>
-        <img className='logo' src={logo} />
-        <div>{text || EXT_NAME}</div>
-      </div>
-      <button onClick={toggleAdd}>Add</button>
+const Header: React.FC<BaseProps> = ({ className }) => (
+  <div className={className}>
+    <div className='text-holder'>
+      <img className='logo' src={logo} />
+      <div>{EXT_NAME}</div>
     </div>
-  )
-}
+    <Button onClick={goToImport}>Import</Button>
+  </div>
+)
 
 export default styled(Header)`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 1rem;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: ${({ theme }: ThemeProps) => theme.shadow};
 
   .text-holder {
     display: flex;
