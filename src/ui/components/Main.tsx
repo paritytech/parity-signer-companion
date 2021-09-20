@@ -24,6 +24,14 @@ export default styled(Main)`
     color: ${({ theme }: BaseProps) => theme.mainTextColor};
   }
 
+  h1 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: ${({ theme }: BaseProps) => theme.titleFontSize};
+    line-height: ${({ theme }: BaseProps) => theme.lineHeight};
+    font-weight: bold;
+  }
+
   .container {
     padding: 1rem;
   }

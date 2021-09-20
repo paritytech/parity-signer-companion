@@ -16,6 +16,7 @@ export const theme = {
   fontFamily: 'sans-serif',
   fontSize: '0.9rem',
   smallFontSize: '0.75rem',
+  titleFontSize: '1.4rem',
   lineHeight: '1.25',
   transition: '0.1s',
   shadow: '0px 4px 10px #000000;',
