@@ -1,4 +1,5 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
+import { IconTheme } from '@polkadot/react-identicon/types'
 import { KeypairType } from '@polkadot/util-crypto/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
 import { goTo } from '../utils/routing'
+import Identicon from '@polkadot/react-identicon'
 
 type Props = BaseProps & {
   address?: string
@@ -35,13 +37,19 @@ const Address: React.FC<Props> = ({
   type: givenType,
   hideActions,
 }) => {
-  const [{ account, formatted, genesisHash: recodedGenesis }, setRecoded] =
-    useState<Recoded>(defaultRecoded)
+  const [recoded, setRecoded] = useState<Recoded>(defaultRecoded)
   const accounts = useStore(accountsStore) as AccountJson[]
-  const chain = useMetadata(genesisHash || recodedGenesis, true)
+  const chain = useMetadata(genesisHash || recoded.genesisHash, true)
+  const iconTheme = (
+    chain?.icon
+      ? chain.icon
+      : recoded.type === 'ethereum'
+      ? 'ethereum'
+      : 'polkadot'
+  ) as IconTheme
 
   const onCopy = () => {
-    navigator.clipboard.writeText(formatted || '').catch(console.error)
+    navigator.clipboard.writeText(recoded.formatted || '').catch(console.error)
   }
   const forget = () => goTo(`/account/forget/${address}`)
 
@@ -66,9 +74,16 @@ const Address: React.FC<Props> = ({
 
   return (
     <div className={className}>
+      <Identicon
+        prefix={recoded.prefix}
+        theme={iconTheme}
+        value={recoded.formatted || address}
+      />
       <div>
-        <div>{name || account?.name || '<unknown>'}</div>
-        <div className='address'>{formatted || address || '<unknown>'}</div>
+        <div>{name || recoded.account?.name || '<unknown>'}</div>
+        <div className='address'>
+          {recoded.formatted || address || '<unknown>'}
+        </div>
         {!hideActions && (
           <div className='actions'>
             <button onClick={onCopy}>{'Copy'}</button>
