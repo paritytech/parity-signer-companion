@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Actions from '../components/Actions'
 import Address from '../components/Address'
-import Header from '../components/Header'
 import { BaseProps } from '../types'
 import { createAccountExternal } from '../utils/messaging'
 import { goHome } from '../utils/routing'
@@ -30,28 +29,25 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
   }
 
   return (
-    <>
-      <Header text={'Scan Address Qr'} />
-      <div className={className}>
-        {!account && <QrScanAddress onScan={setAccount} />}
+    <div className={className}>
+      {!account && <QrScanAddress onScan={setAccount} />}
+      {account && (
+        <Address
+          {...account}
+          address={account.content}
+          name={account.name}
+          hideActions
+        />
+      )}
+      <Actions>
         {account && (
-          <Address
-            {...account}
-            address={account.content}
-            name={account.name}
-            hideActions
-          />
+          <button onClick={onCreate}>
+            Add the account with identified address
+          </button>
         )}
-        <Actions>
-          {account && (
-            <button onClick={onCreate}>
-              Add the account with identified address
-            </button>
-          )}
-          <button onClick={goHome}>Cancel</button>
-        </Actions>
-      </div>
-    </>
+        <button onClick={goHome}>Cancel</button>
+      </Actions>
+    </div>
   )
 }
 

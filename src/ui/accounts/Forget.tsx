@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Actions from '../components/Actions'
 import Address from '../components/Address'
-import Header from '../components/Header'
 import { router } from '../stores/router'
 import { BaseProps } from '../types'
 import { forgetAccount } from '../utils/messaging'
@@ -18,23 +17,20 @@ const Forget: React.FC<BaseProps> = ({ className }) => {
   }
 
   return (
-    <>
-      <Header />
-      <div className={className}>
-        <Address address={address} hideActions />
-        <div className='warning'>
-          You are about to remove the account. This means that you will not be
-          able to access it via this extension anymore. If you wish to recover
-          it, you would need to use the seed.
-        </div>
-        <Actions>
-          <button className='actionButton' onClick={onClick}>
-            I want to forget this account
-          </button>
-          <button onClick={goHome}>Cancel</button>
-        </Actions>
+    <div className={className}>
+      <Address address={address} hideActions />
+      <div className='warning'>
+        You are about to remove the account. This means that you will not be
+        able to access it via this extension anymore. If you wish to recover it,
+        you would need to use the seed.
       </div>
-    </>
+      <Actions>
+        <button className='actionButton' onClick={onClick}>
+          I want to forget this account
+        </button>
+        <button onClick={goHome}>Cancel</button>
+      </Actions>
+    </div>
   )
 }
 
