@@ -60,11 +60,7 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
 
     return (
       <div className={className}>
-        <Address
-          address={json.address}
-          genesisHash={json.genesisHash}
-          hideActions
-        />
+        <Address address={json.address} genesisHash={json.genesisHash} />
         <Qr
           address={json.address}
           cmd={CMD_MORTAL}

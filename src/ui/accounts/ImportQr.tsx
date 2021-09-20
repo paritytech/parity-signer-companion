@@ -32,12 +32,7 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
     <div className={className}>
       {!account && <QrScanAddress onScan={setAccount} />}
       {account && (
-        <Address
-          {...account}
-          address={account.content}
-          name={account.name}
-          hideActions
-        />
+        <Address {...account} address={account.content} name={account.name} />
       )}
       <Actions>
         {account && (

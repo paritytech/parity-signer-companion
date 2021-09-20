@@ -2,7 +2,6 @@ import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
 import { useStore } from 'nanostores/react'
 import React from 'react'
 import Accounts from './accounts/Accounts'
-import Forget from './accounts/Forget'
 import ImportQr from './accounts/ImportQr'
 import Authorize from './requests/Authorize'
 import Metadata from './requests/Metadata'
@@ -24,7 +23,6 @@ const Router: React.FC = () => {
   if (exact(path, '') && metaRequests?.length) return <Metadata />
   if (exact(path, '') && signRequests?.length) return <Signing />
   if (exact(path, '/account/import-qr')) return <ImportQr />
-  if (exactWithParam(path, '/account/forget/:address')) return <Forget />
   if (exactWithParam(path, `${PHISHING_PAGE_REDIRECT}/:website`))
     return <PhishingDetected />
 
