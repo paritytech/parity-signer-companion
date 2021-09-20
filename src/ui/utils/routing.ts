@@ -8,6 +8,7 @@ export const goTo = (addr?: string) => {
   if (addr) window.location.hash = addr
 }
 export const goHome = () => goTo('/')
+export const goToImport = () => goTo('/account/import-qr')
 
 export const getPath = () => location.hash.replace('#', '')
 
