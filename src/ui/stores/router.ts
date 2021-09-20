@@ -1,5 +1,5 @@
-import { createStore } from 'nanostores'
-import { getParam, getPath } from '../utils/routing'
+import { createDerived, createStore } from 'nanostores'
+import { exact, getParam, getPath } from '../utils/routing'
 
 type Page = {
   path: string
@@ -19,3 +19,7 @@ export const router = createStore<Page>(() => {
     window.removeEventListener('hashchange', parse)
   }
 })
+
+export const onImportPage = createDerived(router, (r) =>
+  exact(r.path, '/account/import')
+)

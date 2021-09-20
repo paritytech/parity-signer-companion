@@ -161,4 +161,8 @@ export default styled(Address)`
   .highlighted.just-copied {
     background: none;
   }
+
+  & + & {
+    margin-top: 0.2rem;
+  }
 `

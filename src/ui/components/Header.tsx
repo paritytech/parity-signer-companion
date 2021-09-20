@@ -4,13 +4,15 @@ import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import logo from '../assets/logo.svg'
 import { hasAccounts as hasAccountsStore } from '../stores/accounts'
+import { onImportPage as onImportPageStore } from '../stores/router'
 import { BaseProps, ThemeProps } from '../types'
-import { goToImport } from '../utils/routing'
+import { goHome, goToImport } from '../utils/routing'
 import { Button } from './Button'
 
 const Header: React.FC<BaseProps> = ({ className }) => {
   const hasAccounts = useStore(hasAccountsStore)
-  const showImportButton = hasAccounts
+  const onImportPage = useStore(onImportPageStore)
+  const showImportButton = hasAccounts && !onImportPage
 
   return (
     <div className={className}>
@@ -19,6 +21,7 @@ const Header: React.FC<BaseProps> = ({ className }) => {
         <div>{EXT_NAME}</div>
       </div>
       {showImportButton && <Button onClick={goToImport}>Import</Button>}
+      {onImportPage && <Button onClick={goHome}>Cancel</Button>}
     </div>
   )
 }

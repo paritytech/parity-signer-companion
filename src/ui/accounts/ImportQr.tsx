@@ -1,11 +1,9 @@
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Actions from '../components/Actions'
 import Address from '../components/Address'
 import { BaseProps } from '../types'
 import { createAccountExternal } from '../utils/messaging'
-import { goHome } from '../utils/routing'
 
 interface QrAccount {
   isAddress: boolean
@@ -15,33 +13,40 @@ interface QrAccount {
 }
 
 const ImportQr: React.FC<BaseProps> = ({ className }) => {
-  const [account, setAccount] = useState<QrAccount>()
+  const [scanned, setScanned] = useState<QrAccount[]>([])
 
-  const onCreate = () => {
-    if (!account) return
+  const onCreate = (account: QrAccount) => {
+    if (
+      scanned.find(
+        (a) => a.content === account.content && a.genesisHash === a.genesisHash
+      )
+    )
+      return
 
     createAccountExternal(
       account.name || 'Unknown',
       account.content,
       account.genesisHash
     ).catch((error: Error) => console.error(error))
-    goHome()
+    setScanned((s) => [...s, account])
   }
 
   return (
     <div className={className}>
-      {!account && <QrScanAddress onScan={setAccount} />}
-      {account && (
-        <Address {...account} address={account.content} name={account.name} />
-      )}
-      <Actions>
-        {account && (
-          <button onClick={onCreate}>
-            Add the account with identified address
-          </button>
-        )}
-        <button onClick={goHome}>Cancel</button>
-      </Actions>
+      <h1>Import Signer keys</h1>
+      <div className='scanner'>
+        <QrScanAddress onScan={onCreate} />
+      </div>
+      <div>
+        {scanned.reverse().map((account) => (
+          <Address
+            {...account}
+            address={account.content}
+            name={account.name}
+            key={account.content}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -49,5 +54,10 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
 export default styled(ImportQr)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  .scanner {
+    padding: 0.5rem 6rem;
+    margin-bottom: 1rem;
+    background: ${({ theme }: BaseProps) => theme.cardBgColor};
+  }
 `
