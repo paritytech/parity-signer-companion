@@ -9,6 +9,8 @@ export const accounts = createStore<AccountJson[]>(() => {
   subscribeAccounts(setAccounts).catch(console.error)
 })
 
+export const hasAccounts = createDerived(accounts, (list) => list.length > 0)
+
 export const hierarchy = createDerived(accounts, (list) =>
   buildHierarchy(list as AccountJson[])
 )

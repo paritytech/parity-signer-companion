@@ -1,9 +1,9 @@
 import { useStore } from 'nanostores/react'
 import React from 'react'
 import styled from 'styled-components'
+import Key from '../components/Key'
 import { hierarchy as hierarchyStore } from '../stores/accounts'
 import { BaseProps } from '../types'
-import AccountsTree from './AccountsTree'
 import NoAccounts from './NoAccounts'
 
 const Accounts: React.FC<BaseProps> = ({ className }) => {
@@ -13,8 +13,14 @@ const Accounts: React.FC<BaseProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      {hierarchy.map((json, i) => (
-        <AccountsTree {...json} key={`${i}:${json.address}`} />
+      <h1>All keys</h1>
+      {hierarchy.map((account) => (
+        <Key
+          address={account.address}
+          genesisHash={account.genesisHash}
+          name={account.name}
+          key={account.address}
+        />
       ))}
     </div>
   )

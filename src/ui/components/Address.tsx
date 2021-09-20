@@ -1,24 +1,24 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
+import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
 import { KeypairType } from '@polkadot/util-crypto/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import copyIcon from '../assets/copy.svg'
 import useMetadata from '../hooks/useMetadata'
+import { useTimedReset } from '../hooks/useTimedReset'
 import { accounts as accountsStore } from '../stores/accounts'
 import { BaseProps } from '../types'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
-import { goTo } from '../utils/routing'
-import Identicon from '@polkadot/react-identicon'
 
 type Props = BaseProps & {
   address?: string
   genesisHash?: string | null
   name?: string
   type?: KeypairType
-  hideActions?: boolean
 }
 
 const defaultRecoded = {
@@ -30,13 +30,12 @@ const defaultRecoded = {
 
 const Address: React.FC<Props> = ({
   address,
-  children,
   className,
   genesisHash,
   name,
   type: givenType,
-  hideActions,
 }) => {
+  const [justCopied, setJustCopied] = useTimedReset<boolean>(false)
   const [recoded, setRecoded] = useState<Recoded>(defaultRecoded)
   const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recoded.genesisHash, true)
@@ -47,11 +46,18 @@ const Address: React.FC<Props> = ({
       ? 'ethereum'
       : 'polkadot'
   ) as IconTheme
+  const nameLabel = name || recoded.account?.name || '<unknown>'
+  const hashLabel =
+    (justCopied && 'Copied') || recoded.formatted || address || '<unknown>'
 
   const onCopy = () => {
-    navigator.clipboard.writeText(recoded.formatted || '').catch(console.error)
+    if (justCopied) return
+
+    navigator.clipboard
+      .writeText(hashLabel)
+      .then(() => setJustCopied(true))
+      .catch(console.error)
   }
-  const forget = () => goTo(`/account/forget/${address}`)
 
   useEffect(() => {
     if (!address) return
@@ -74,45 +80,85 @@ const Address: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <Identicon
-        prefix={recoded.prefix}
-        theme={iconTheme}
-        value={recoded.formatted || address}
-      />
-      <div>
-        <div>{name || recoded.account?.name || '<unknown>'}</div>
-        <div className='address'>
-          {recoded.formatted || address || '<unknown>'}
-        </div>
-        {!hideActions && (
-          <div className='actions'>
-            <button onClick={onCopy}>{'Copy'}</button>
-            <button onClick={forget}>{'Forget'}</button>
-          </div>
-        )}
+      <div className='logo'>
+        <Identicon
+          prefix={recoded.prefix}
+          theme={iconTheme}
+          value={recoded.formatted || address}
+          size={50}
+        />
       </div>
-      {children}
+      <div className='content'>
+        <div className='name'>{nameLabel}</div>
+        <div
+          className={`address highlighted ${justCopied && 'just-copied'}`}
+          onClick={onCopy}
+        >
+          <div className='icon copy'>
+            <img src={copyIcon} />
+          </div>
+          <div className='hash'>{hashLabel}</div>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default styled(Address)`
-  width: 100%;
+  display: flex;
+  position: relative;
+  height: 3rem;
   background: ${({ theme }: Props) => theme.cardBgColor};
-  margin-bottom: 0.5rem;
   border-radius: 0.2rem;
-  padding: 0.4rem;
-  padding-top: 0.2rem;
+
+  .logo {
+    padding: 0.25rem;
+    padding-right: 0rem;
+  }
+
+  .logo svg {
+    cursor: default;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.5rem;
+  }
+
+  .name {
+    margin-top: -0.1rem;
+    margin-bottom: 0.1rem;
+  }
 
   .address {
+    display: flex;
+    align-items: center;
+    font-size: ${({ theme }: Props) => theme.smallFontSize};
     color: ${({ theme }: Props) => theme.fadedTextColor};
   }
 
-  .actions {
-    margin-top: 0.4rem;
+  .hash {
+    padding: 0 0.2rem;
   }
 
-  .actions * {
-    margin-right: 0.4rem;
+  .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .highlighted {
+    border-radius: 0.2rem;
+    transition: ${({ theme }: Props) => theme.transition};
+    cursor: pointer;
+  }
+
+  .highlighted:hover {
+    background: ${({ theme }: Props) => theme.hightlight};
+  }
+
+  .highlighted.just-copied {
+    background: none;
   }
 `

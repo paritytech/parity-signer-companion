@@ -23,7 +23,7 @@ export default styled(Footer)`
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding: 1rem;
+  padding: 2rem;
   padding-top: 3rem;
 
   .logo {
