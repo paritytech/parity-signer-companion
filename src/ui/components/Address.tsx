@@ -1,28 +1,24 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
+import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
 import { KeypairType } from '@polkadot/util-crypto/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import copyIcon from '../assets/copy.svg'
 import useMetadata from '../hooks/useMetadata'
+import { useTimedReset } from '../hooks/useTimedReset'
 import { accounts as accountsStore } from '../stores/accounts'
 import { BaseProps } from '../types'
 import { DEFAULT_TYPE } from '../utils/defaultType'
 import { findAccountByAddress } from '../utils/findAccountByAddress'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
-import { goTo } from '../utils/routing'
-import Identicon from '@polkadot/react-identicon'
-import cancelIcon from '../assets/cancel.svg'
-import copyIcon from '../assets/copy.svg'
-import { useTimedReset } from '../hooks/useTimedReset'
-import { Chain } from '@polkadot/extension-chains/types'
 
 type Props = BaseProps & {
   address?: string
   genesisHash?: string | null
   name?: string
   type?: KeypairType
-  hideActions?: boolean
 }
 
 const defaultRecoded = {
@@ -38,7 +34,6 @@ const Address: React.FC<Props> = ({
   genesisHash,
   name,
   type: givenType,
-  hideActions,
 }) => {
   const [justCopied, setJustCopied] = useTimedReset<boolean>(false)
   const [recoded, setRecoded] = useState<Recoded>(defaultRecoded)
@@ -63,7 +58,6 @@ const Address: React.FC<Props> = ({
       .then(() => setJustCopied(true))
       .catch(console.error)
   }
-  const forget = () => goTo(`/account/forget/${address}`)
 
   useEffect(() => {
     if (!address) return
@@ -106,11 +100,6 @@ const Address: React.FC<Props> = ({
           <div className='hash'>{hashLabel}</div>
         </div>
       </div>
-      {!hideActions && (
-        <div className='icon cancel highlighted' onClick={forget}>
-          <img src={cancelIcon} />
-        </div>
-      )}
     </div>
   )
 }
@@ -118,11 +107,13 @@ const Address: React.FC<Props> = ({
 export default styled(Address)`
   display: flex;
   position: relative;
+  height: 3rem;
   background: ${({ theme }: Props) => theme.cardBgColor};
   border-radius: 0.2rem;
 
   .logo {
-    padding: 0.5rem;
+    padding: 0.25rem;
+    padding-right: 0rem;
   }
 
   .logo svg {
@@ -130,12 +121,15 @@ export default styled(Address)`
   }
 
   .content {
-    padding: 0.5rem 0;
-    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.5rem;
   }
 
   .name {
-    margin-bottom: 0.2rem;
+    margin-top: -0.1rem;
+    margin-bottom: 0.1rem;
   }
 
   .address {
@@ -154,12 +148,6 @@ export default styled(Address)`
     height: 1rem;
   }
 
-  .cancel {
-    position: absolute;
-    top: 0.2rem;
-    right: 0.2rem;
-  }
-
   .highlighted {
     border-radius: 0.2rem;
     transition: ${({ theme }: Props) => theme.transition};
@@ -172,9 +160,5 @@ export default styled(Address)`
 
   .highlighted.just-copied {
     background: none;
-  }
-
-  & + & {
-    margin-top: 0.2rem;
   }
 `
