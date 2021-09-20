@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle<ThemeProps>`
 
   body {
     margin: 0;
-    background-color: ${({ theme }: ThemeProps) => theme.bodyColor};
+    background-color: ${({ theme }: ThemeProps) => theme.appBgColor};
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -29,9 +29,5 @@ export const GlobalStyle = createGlobalStyle<ThemeProps>`
     width: ${({ theme }: ThemeProps) => theme.maxWidth};
     height: ${({ theme }: ThemeProps) => theme.maxHeight};
     margin: 0 auto;
-  }
-
-  a {
-    color: ${({ theme }: ThemeProps) => theme.textColor};
   }
 `

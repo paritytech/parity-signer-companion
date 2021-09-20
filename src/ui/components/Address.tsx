@@ -98,14 +98,14 @@ const Address: React.FC<Props> = ({
 
 export default styled(Address)`
   width: 100%;
-  background: ${({ theme }: Props) => theme.background};
+  background: ${({ theme }: Props) => theme.cardBgColor};
   margin-bottom: 0.5rem;
   border-radius: 0.2rem;
   padding: 0.4rem;
   padding-top: 0.2rem;
 
   .address {
-    color: ${({ theme }: Props) => theme.subTextColor};
+    color: ${({ theme }: Props) => theme.fadedTextColor};
   }
 
   .actions {

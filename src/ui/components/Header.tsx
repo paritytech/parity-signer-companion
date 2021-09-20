@@ -34,8 +34,8 @@ export default styled(Header)`
   }
 
   img {
-    height: 1rem;
-    width: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
     margin-right: 0.5rem;
   }
 `
