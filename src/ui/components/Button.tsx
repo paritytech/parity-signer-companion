@@ -8,7 +8,7 @@ export const Button = styled.button`
   border-radius: 0.2rem;
   color: ${({ theme }: ThemeProps) => theme.buttonTextColor};
   font-size: ${({ theme }: ThemeProps) => theme.fontSize};
-  line-height: 1.2;
+  line-height: ${({ theme }: ThemeProps) => theme.lineHeight};
   margin: 0;
   font-family: ${({ theme }: ThemeProps) => theme.fontFamily};
   white-space: nowrap;

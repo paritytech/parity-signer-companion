@@ -14,14 +14,15 @@ export const theme = {
   maxHeight: '600px',
   rem: '20px',
   fontFamily: 'sans-serif',
-  fontSize: '1rem',
-  smallFontSize: '0.8rem',
+  fontSize: '0.9rem',
+  smallFontSize: '0.75rem',
   lineHeight: '1.25',
   transition: '0.1s',
+  shadow: '0px 4px 10px #000000;',
 
   buttonTextColor: colors.dark,
   buttonBgHoverColor: colors.grayLightest,
-  shadow: '0px 4px 10px #000000;',
+  hightlight: 'rgba(255, 255, 255, 0.1)',
 
   // Colors from Signer App
   alertBgColor: '#444444',
