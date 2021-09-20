@@ -11,6 +11,10 @@ export default styled(Main)`
   flex-direction: column;
   font-size: ${({ theme }: BaseProps) => theme.fontSize};
   line-height: ${({ theme }: BaseProps) => theme.lineHeight};
-  color: ${({ theme }: BaseProps) => theme.textColor};
+  color: ${({ theme }: BaseProps) => theme.mainTextColor};
   padding: 1rem;
+
+  a {
+    color: ${({ theme }: BaseProps) => theme.mainTextColor};
+  }
 `

@@ -28,6 +28,6 @@ export default styled(NoAccounts)`
   .container {
     padding: 2rem;
     padding-bottom: 4rem;
-    color: ${({ theme }: BaseProps) => theme.subTextColor};
+    color: ${({ theme }: BaseProps) => theme.fadedTextColor};
   }
 `
