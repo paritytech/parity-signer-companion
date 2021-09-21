@@ -2,19 +2,23 @@ import {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
+import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
-import { ExtrinsicPayload } from '@polkadot/types/interfaces'
-import React, { useEffect, useState } from 'react'
+import { useStore } from 'nanostores/react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
 import { Button } from '../components/Button'
+import { accounts as accountsStore } from '../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../stores/headerActions'
 import { BaseProps } from '../types'
 import { isRawPayload } from '../utils/guards'
 import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
-import { registry } from '../utils/registry'
+import { getGenesisHashByAddress } from '../utils/getGenesisHashByAddress'
+import { getExtrinsicPayload } from '../utils/getExtrinsicPayload'
 
 const CMD_MORTAL = 2
+const CMD_SIGN_MESSAGE = 3
 
 type Props = BaseProps & {
   account: AccountJson
@@ -26,25 +30,22 @@ type Props = BaseProps & {
 }
 
 const Request: React.FC<Props> = ({ request, signId, className }) => {
-  const [step, setStep] = useState(1)
-  const [payload, setPayload] = useState<ExtrinsicPayload>()
-  const json = request.payload
-  const payloadU8a = payload?.toU8a()
+  const accounts = useStore(accountsStore)
+  const [beginning, setBeginning] = useState(true)
+  const payloadRef = useRef(getExtrinsicPayload(request.payload))
+  const isRaw = isRawPayload(request.payload)
+  const cmd = isRaw ? CMD_SIGN_MESSAGE : CMD_MORTAL
+  const address = request.payload.address
+  const genesisHash = isRaw
+    ? getGenesisHashByAddress(accounts, address)
+    : request.payload.genesisHash
+  const payloadU8a = isRaw
+    ? wrapBytes(request.payload.data)
+    : payloadRef.current?.toU8a()
 
-  const goNext = () => setStep((step) => step + 1)
-  const goBack = () => setStep((step) => step - 1)
+  const toggleOnQr = () => setBeginning((v) => !v)
   const onSignature = ({ signature }: { signature: string }) =>
     approveSignSignature(signId, signature).catch(console.error)
-
-  useEffect(() => {
-    if (isRawPayload(json)) return
-
-    const params = { version: json.version }
-    const newPayload = registry.createType('ExtrinsicPayload', json, params)
-
-    registry.setSignedExtensions(json.signedExtensions)
-    setPayload(newPayload)
-  }, [json])
 
   useEffect(() => {
     addHeaderAction({
@@ -53,8 +54,6 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
     })
     return () => resetHeaderActions()
   }, [signId])
-
-  if (!payload || isRawPayload(json)) return null
 
   return (
     <div className={className}>
@@ -67,37 +66,39 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
               request
             </h1>
             <div className='steps'>
-              <div className={step === 1 ? 'current' : ''}>
+              <div className={beginning ? 'current' : ''}>
                 1. Scan signature via Signer
               </div>
-              <div className={step === 2 ? 'current' : ''}>
+              <div className={!beginning ? 'current' : ''}>
                 2. Show signed transaction
               </div>
             </div>
           </div>
           <div>
-            {step === 1 && <Button onClick={goNext}>Next to signing</Button>}
-            {step === 2 && <Button onClick={goBack}>Back to signature</Button>}
+            {beginning && <Button onClick={toggleOnQr}>Next to signing</Button>}
+            {!beginning && (
+              <Button onClick={toggleOnQr}>Back to signature</Button>
+            )}
           </div>
         </div>
         <div className='scanner'>
           <div className='spacer' />
           <div className='qr'>
-            {step === 1 && payloadU8a && (
+            {beginning && payloadU8a && genesisHash && (
               <QrDisplayPayload
-                address={json.address}
-                cmd={CMD_MORTAL}
-                genesisHash={json.genesisHash}
+                address={address}
+                cmd={cmd}
+                genesisHash={genesisHash}
                 payload={payloadU8a}
               />
             )}
-            {step === 2 && <QrScanSignature onScan={onSignature} />}
+            {!beginning && <QrScanSignature onScan={onSignature} />}
           </div>
         </div>
       </div>
       <div className='using-key'>
         <div className='using-key-heading'>Using key</div>
-        <Address address={json.address} genesisHash={json.genesisHash} />
+        <Address address={address} genesisHash={genesisHash} />
       </div>
     </div>
   )
