@@ -32,6 +32,10 @@ export default styled(Main)`
     font-weight: bold;
   }
 
+  p {
+    margin: 0 0 0.5rem;
+  }
+
   .container {
     padding: 1rem;
   }
