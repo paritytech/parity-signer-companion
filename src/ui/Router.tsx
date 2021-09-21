@@ -22,7 +22,7 @@ const Router: React.FC = () => {
   if (exact(path, '') && authRequests?.length) return <Authorize />
   if (exact(path, '') && metaRequests?.length) return <Metadata />
   if (exact(path, '') && signRequests?.length) return <Signing />
-  if (exact(path, '/account/import-qr')) return <ImportQr />
+  if (exact(path, '/account/import')) return <ImportQr />
   if (exactWithParam(path, `${PHISHING_PAGE_REDIRECT}/:website`))
     return <PhishingDetected />
 

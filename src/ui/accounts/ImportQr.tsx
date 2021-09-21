@@ -1,11 +1,9 @@
 import { QrScanAddress } from '@polkadot/react-qr'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Actions from '../components/Actions'
 import Address from '../components/Address'
 import { BaseProps } from '../types'
 import { createAccountExternal } from '../utils/messaging'
-import { goHome } from '../utils/routing'
 
 interface QrAccount {
   isAddress: boolean
@@ -15,33 +13,53 @@ interface QrAccount {
 }
 
 const ImportQr: React.FC<BaseProps> = ({ className }) => {
-  const [account, setAccount] = useState<QrAccount>()
+  const [scanned, setScanned] = useState<QrAccount[]>([])
 
-  const onCreate = () => {
-    if (!account) return
+  const onCreate = (account: QrAccount) => {
+    const alreadyScanned = scanned.find(
+      (a) =>
+        a.content === account.content && a.genesisHash === account.genesisHash
+    )
+    if (alreadyScanned) return
 
     createAccountExternal(
       account.name || 'Unknown',
       account.content,
       account.genesisHash
     ).catch((error: Error) => console.error(error))
-    goHome()
+    setScanned((s) => [...s, account])
   }
 
   return (
     <div className={className}>
-      {!account && <QrScanAddress onScan={setAccount} />}
-      {account && (
-        <Address {...account} address={account.content} name={account.name} />
-      )}
-      <Actions>
-        {account && (
-          <button onClick={onCreate}>
-            Add the account with identified address
-          </button>
-        )}
-        <button onClick={goHome}>Cancel</button>
-      </Actions>
+      <div className='row'>
+        <div className='counter'>
+          <h1>
+            Import
+            <br />
+            Signer
+            <br />
+            keys
+          </h1>
+          <div>
+            <span className='num'>{scanned.length}</span>
+            imported
+          </div>
+        </div>
+        <div className='scanner'>
+          <QrScanAddress onScan={onCreate} />
+        </div>
+      </div>
+      <div>
+        {scanned.reverse().map((account) => (
+          <Address
+            {...account}
+            address={account.content}
+            name={account.name}
+            key={account.content}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -49,5 +67,27 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
 export default styled(ImportQr)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .row > div {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
+
+  .row .counter {
+    justify-content: space-between;
+  }
+
+  .counter .num {
+    display: block;
+    font-size: 4rem;
+    line-height: 1;
+  }
 `
