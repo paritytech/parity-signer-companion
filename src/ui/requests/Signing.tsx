@@ -4,7 +4,7 @@ import { useStore } from 'nanostores/react'
 import React, { useState } from 'react'
 import { signRequests } from '../stores/signRequests'
 import SigningRequest from './SigningRequest'
-import TransactionIndex from './TransactionIndex'
+import RequestIndex from './RequestIndex'
 
 const Signing: React.FC = () => {
   const requests = useStore(signRequests)
@@ -13,18 +13,10 @@ const Signing: React.FC = () => {
   const isTransaction = !!(request?.request?.payload as SignerPayloadJSON)
     ?.blockNumber
 
-  const onNextClick = () => setIdx((i) => Math.min(i + 1, requests.length))
-  const onPreviousClick = () => setIdx((i) => Math.max(i - 1, 0))
-
   return (
     <>
       {requests.length > 1 && (
-        <TransactionIndex
-          index={idx}
-          onNextClick={onNextClick}
-          onPreviousClick={onPreviousClick}
-          totalItems={requests.length}
-        />
+        <RequestIndex index={idx} total={requests.length} onChange={setIdx} />
       )}
       <SigningRequest
         account={request.account}

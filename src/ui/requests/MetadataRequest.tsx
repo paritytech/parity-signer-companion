@@ -1,6 +1,8 @@
 import { MetadataDef } from '@polkadot/extension-inject/types'
 import React from 'react'
 import styled from 'styled-components'
+import Actions from '../components/Actions'
+import { Button } from '../components/Button'
 import useMetadata from '../hooks/useMetadata'
 import { BaseProps } from '../types'
 import { approveMetaRequest, rejectMetaRequest } from '../utils/messaging'
@@ -24,6 +26,11 @@ const MetadataRequest: React.FC<Props> = ({
 
   return (
     <div className={className}>
+      <h1>Update metadata request</h1>
+      <p>
+        This approval will add the metadata to your extension instance, allowing
+        future requests to be decoded using this metadata.
+      </p>
       <table>
         <tr>
           <td>from</td>
@@ -48,23 +55,27 @@ const MetadataRequest: React.FC<Props> = ({
         <tr>
           <td>upgrade</td>
           <td>
-            {chain ? chain.specVersion : '<unknown>'} -&gt;{' '}
-            {request.specVersion}
+            {chain ? chain.specVersion : '<unknown>'} → {request.specVersion}
           </td>
         </tr>
       </table>
-      <div>
-        <div>
-          This approval will add the metadata to your extension instance,
-          allowing future requests to be decoded using this metadata.
-        </div>
-        <button onClick={onApprove}>Yes, do this metadata update</button>
-        <button onClick={onReject}>Reject</button>
-      </div>
+      <Actions>
+        <Button onClick={onApprove}>Yes, do this metadata update</Button>
+        <Button className='secondary' onClick={onReject}>
+          Reject
+        </Button>
+      </Actions>
     </div>
   )
 }
 
 export default styled(MetadataRequest)`
-  height: auto;
+  table {
+    border-spacing: 0 0.2rem;
+  }
+
+  td {
+    padding: 0;
+    padding-right: 1rem;
+  }
 `

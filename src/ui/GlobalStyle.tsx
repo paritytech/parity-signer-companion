@@ -19,8 +19,7 @@ export const GlobalStyle = createGlobalStyle<ThemeProps>`
   body {
     margin: 0;
     background-color: ${({ theme }: ThemeProps) => theme.appBgColor};
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    font-family: ${({ theme }: ThemeProps) => theme.fontFamily};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
