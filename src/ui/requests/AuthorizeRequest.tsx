@@ -1,58 +1,43 @@
 import { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import React from 'react'
-import styled from 'styled-components'
 import Actions from '../components/Actions'
-import { BaseProps } from '../types'
+import { Button } from '../components/Button'
 import { approveAuthRequest, rejectAuthRequest } from '../utils/messaging'
 
-interface Props extends BaseProps {
+type Props = {
   authId: string
   request: RequestAuthorizeTab
   url: string
 }
 
-const AuthorizeRequest: React.FC<Props> = ({
-  className,
-  authId,
-  request,
-  url,
-}) => {
+const AuthorizeRequest: React.FC<Props> = ({ authId, request, url }) => {
   const onApprove = () => approveAuthRequest(authId).catch(console.error)
   const onReject = () => rejectAuthRequest(authId).catch(console.error)
 
   return (
-    <div className={className}>
-      <div className='text'>
+    <div>
+      <h1>Authentication request</h1>
+      <p>
         An application, self-identifying as {request.origin} is requesting
-        access from{' '}
+        access:
+      </p>
+      <p className='emphasis'>
         <a href={url} rel='noopener noreferrer' target='_blank'>
           {url}
         </a>
-      </div>
-      <div className='text'>
+      </p>
+      <p>
         Only approve this request if you trust the application. Approving gives
         the application access to the addresses of your accounts.
-      </div>
+      </p>
       <Actions>
-        <button onClick={onApprove}>Yes, allow this application access</button>
-        <button onClick={onReject}>Reject</button>
+        <Button onClick={onApprove}>Yes, allow this application access</Button>
+        <Button className='secondary' onClick={onReject}>
+          Reject
+        </Button>
       </Actions>
     </div>
   )
 }
 
-export default styled(AuthorizeRequest)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  .text {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  .text + .text {
-    margin-top: 1rem;
-  }
-`
+export default AuthorizeRequest

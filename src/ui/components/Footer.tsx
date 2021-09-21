@@ -32,11 +32,5 @@ export default styled(Footer)`
 
   .link {
     font-size: ${({ theme }: BaseProps) => theme.smallFontSize};
-    color: ${({ theme }: BaseProps) => theme.fadedTextColor};
-    transition: ${({ theme }: BaseProps) => theme.transition};
-  }
-
-  .link:hover {
-    color: ${({ theme }: BaseProps) => theme.mainTextColor};
   }
 `

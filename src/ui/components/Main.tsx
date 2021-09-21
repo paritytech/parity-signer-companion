@@ -21,6 +21,11 @@ export default styled(Main)`
   color: ${({ theme }: BaseProps) => theme.mainTextColor};
 
   a {
+    color: ${({ theme }: BaseProps) => theme.fadedTextColor};
+    transition: ${({ theme }: BaseProps) => theme.transition};
+  }
+
+  a:hover {
     color: ${({ theme }: BaseProps) => theme.mainTextColor};
   }
 
@@ -34,6 +39,10 @@ export default styled(Main)`
 
   p {
     margin: 0 0 0.5rem;
+  }
+
+  .emphasis {
+    margin: 0 0 1.5rem;
   }
 
   .container {

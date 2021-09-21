@@ -13,11 +13,21 @@ export const Button = styled.button`
   font-family: ${({ theme }: ThemeProps) => theme.fontFamily};
   white-space: nowrap;
   text-decoration: none;
-  padding: 0.4rem 1rem 0.4rem;
+  padding: 0.4rem 1rem;
   cursor: pointer;
   transition: ${({ theme }: ThemeProps) => theme.transition};
 
   &:hover {
     background: ${({ theme }: ThemeProps) => theme.buttonBgHoverColor};
+  }
+
+  &.secondary {
+    padding: 0.4rem 0;
+    color: ${({ theme }: ThemeProps) => theme.fadedTextColor};
+    background: none;
+  }
+
+  &.secondary:hover {
+    color: ${({ theme }: ThemeProps) => theme.mainTextColor};
   }
 `
