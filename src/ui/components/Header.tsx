@@ -3,16 +3,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import logo from '../assets/logo.svg'
-import { hasAccounts as hasAccountsStore } from '../stores/accounts'
-import { onImportPage as onImportPageStore } from '../stores/router'
+import { headerActions } from '../stores/headerActions'
 import { BaseProps, ThemeProps } from '../types'
-import { goHome, goToImport } from '../utils/routing'
 import { Button } from './Button'
 
 const Header: React.FC<BaseProps> = ({ className }) => {
-  const hasAccounts = useStore(hasAccountsStore)
-  const onImportPage = useStore(onImportPageStore)
-  const showImportButton = hasAccounts && !onImportPage
+  const actions = useStore(headerActions)
 
   return (
     <div className={className}>
@@ -20,8 +16,11 @@ const Header: React.FC<BaseProps> = ({ className }) => {
         <img className='logo' src={logo} />
         <div>{EXT_NAME}</div>
       </div>
-      {showImportButton && <Button onClick={goToImport}>Import</Button>}
-      {onImportPage && <Button onClick={goHome}>Cancel</Button>}
+      {actions.map((a) => (
+        <Button onClick={a.onAction} key={a.label}>
+          {a.label}
+        </Button>
+      ))}
     </div>
   )
 }

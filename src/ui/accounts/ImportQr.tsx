@@ -1,7 +1,12 @@
 import { QrScanAddress } from '@polkadot/react-qr'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
+import {
+  addHeaderAction,
+  goHomeHeaderAction,
+  resetHeaderActions,
+} from '../stores/headerActions'
 import { BaseProps } from '../types'
 import { createAccountExternal } from '../utils/messaging'
 
@@ -29,6 +34,11 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
     ).catch((error: Error) => console.error(error))
     setScanned((s) => [...s, account])
   }
+
+  useEffect(() => {
+    addHeaderAction(goHomeHeaderAction)
+    return () => resetHeaderActions()
+  }, [])
 
   return (
     <div className={className}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Button } from '../components/Button'
 import { BaseProps } from '../types'
 
 type Props = BaseProps & {
@@ -24,12 +25,16 @@ const TransactionIndex: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <div>
-        {index + 1}/{totalItems}
-      </div>
-      <div>
-        <button onClick={prevClick}>Prev</button>
-        <button onClick={nextClick}>Next</button>
+      <div className='transaction-container'>
+        <Button className='secondary' onClick={prevClick}>
+          ←
+        </Button>
+        <div className='label'>
+          {index + 1} of {totalItems}
+        </div>
+        <Button className='secondary' onClick={nextClick}>
+          →
+        </Button>
       </div>
     </div>
   )
@@ -37,5 +42,15 @@ const TransactionIndex: React.FC<Props> = ({
 
 export default styled(TransactionIndex)`
   display: flex;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+
+  .transaction-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .label {
+    padding: 0 1rem;
+  }
 `
