@@ -5,34 +5,32 @@ import { BaseProps } from '../types'
 
 type Props = BaseProps & {
   index: number
-  totalItems: number
-  onNextClick: () => void
-  onPreviousClick: () => void
+  total: number
+  onChange: (index: number) => void
 }
 
-const TransactionIndex: React.FC<Props> = ({
+const RequestIndex: React.FC<Props> = ({
   className,
   index,
-  onNextClick,
-  onPreviousClick,
-  totalItems,
+  total,
+  onChange,
 }) => {
-  const previousClickActive = index > 0
-  const nextClickActive = index < totalItems - 1
+  const prevActive = index > 0
+  const nextActive = index < total - 1
 
-  const prevClick = () => previousClickActive && onPreviousClick()
-  const nextClick = () => nextClickActive && onNextClick()
+  const onNext = () => onChange(Math.min(index + 1, total))
+  const onPrev = () => onChange(Math.max(index - 1, 0))
 
   return (
     <div className={className}>
       <div className='transaction-container'>
-        <Button className='secondary' onClick={prevClick}>
+        <Button className='secondary' disabled={!prevActive} onClick={onPrev}>
           ←
         </Button>
         <div className='label'>
-          {index + 1} of {totalItems}
+          {index + 1} of {total}
         </div>
-        <Button className='secondary' onClick={nextClick}>
+        <Button className='secondary' disabled={!nextActive} onClick={onNext}>
           →
         </Button>
       </div>
@@ -40,7 +38,7 @@ const TransactionIndex: React.FC<Props> = ({
   )
 }
 
-export default styled(TransactionIndex)`
+export default styled(RequestIndex)`
   display: flex;
   justify-content: center;
   margin-bottom: 0.5rem;

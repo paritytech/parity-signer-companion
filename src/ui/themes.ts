@@ -13,7 +13,8 @@ export const theme = {
   maxWidth: '600px',
   maxHeight: '600px',
   rem: '20px',
-  fontFamily: 'sans-serif',
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   fontSize: '0.9rem',
   smallFontSize: '0.75rem',
   titleFontSize: '1.4rem',
