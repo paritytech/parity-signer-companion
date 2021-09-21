@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
 import { Button } from '../components/Button'
+import { addHeaderAction, resetHeaderActions } from '../stores/headerActions'
 import { BaseProps } from '../types'
 import { isRawPayload } from '../utils/guards'
 import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
@@ -34,7 +35,6 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
   const goBack = () => setStep((step) => step - 1)
   const onSignature = ({ signature }: { signature: string }) =>
     approveSignSignature(signId, signature).catch(console.error)
-  const onCancel = () => cancelSignRequest(signId).catch(console.error)
 
   useEffect(() => {
     if (isRawPayload(json)) return
@@ -45,6 +45,14 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
     registry.setSignedExtensions(json.signedExtensions)
     setPayload(newPayload)
   }, [json])
+
+  useEffect(() => {
+    addHeaderAction({
+      label: 'Cancel',
+      onAction: () => cancelSignRequest(signId).catch(console.error),
+    })
+    return () => resetHeaderActions()
+  }, [signId])
 
   if (!payload || isRawPayload(json)) return null
 
