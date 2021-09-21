@@ -16,12 +16,11 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
   const [scanned, setScanned] = useState<QrAccount[]>([])
 
   const onCreate = (account: QrAccount) => {
-    if (
-      scanned.find(
-        (a) => a.content === account.content && a.genesisHash === a.genesisHash
-      )
+    const alreadyScanned = scanned.find(
+      (a) =>
+        a.content === account.content && a.genesisHash === account.genesisHash
     )
-      return
+    if (alreadyScanned) return
 
     createAccountExternal(
       account.name || 'Unknown',
@@ -33,9 +32,23 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <h1>Import Signer keys</h1>
-      <div className='scanner'>
-        <QrScanAddress onScan={onCreate} />
+      <div className='row'>
+        <div className='counter'>
+          <h1>
+            Import
+            <br />
+            Signer
+            <br />
+            keys
+          </h1>
+          <div>
+            <span className='num'>{scanned.length}</span>
+            imported
+          </div>
+        </div>
+        <div className='scanner'>
+          <QrScanAddress onScan={onCreate} />
+        </div>
       </div>
       <div>
         {scanned.reverse().map((account) => (
@@ -55,9 +68,26 @@ export default styled(ImportQr)`
   display: flex;
   flex-direction: column;
 
-  .scanner {
-    padding: 0.5rem 6rem;
+  .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     margin-bottom: 1rem;
-    background: ${({ theme }: BaseProps) => theme.cardBgColor};
+  }
+
+  .row > div {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
+
+  .row .counter {
+    justify-content: space-between;
+  }
+
+  .counter .num {
+    display: block;
+    font-size: 4rem;
+    line-height: 1;
   }
 `
