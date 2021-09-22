@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { BaseProps } from '../types'
 import Footer from './Footer'
 import Header from './Header'
+import Media from './Media'
 
 const Main: React.FC<BaseProps> = ({ children, className }) => (
   <main className={className}>
     <Header />
+    <Media />
     <div className='container'>{children}</div>
     <Footer />
   </main>

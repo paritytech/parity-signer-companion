@@ -1,5 +1,6 @@
 import {
   AccountJson,
+  AllowedPath,
   AuthorizeRequest,
   MessageTypes,
   MessageTypesWithNoSubscriptions,
@@ -179,4 +180,8 @@ export async function subscribeSigningRequests(
   cb: (accounts: SigningRequest[]) => void
 ): Promise<boolean> {
   return sendMessage('pri(signing.requests)', null, cb)
+}
+
+export async function windowOpen(path: AllowedPath): Promise<boolean> {
+  return sendMessage('pri(window.open)', path)
 }
