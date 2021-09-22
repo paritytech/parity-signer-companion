@@ -1,9 +1,9 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
 import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
-import { KeypairType } from '@polkadot/util-crypto/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
+import { UNKNOWN } from '../../utils/constants'
 import styled from 'styled-components'
 import copyIcon from '../assets/copy.svg'
 import useMetadata from '../hooks/useMetadata'
@@ -11,14 +11,12 @@ import { useTimedReset } from '../hooks/useTimedReset'
 import { accounts as accountsStore } from '../stores/accounts'
 import { BaseProps } from '../types'
 import { DEFAULT_TYPE } from '../utils/defaultType'
-import { findAccountByAddress } from '../utils/findAccountByAddress'
 import { recodeAddress, Recoded } from '../utils/recodeAddress'
 
 type Props = BaseProps & {
   address?: string
   genesisHash?: string | null
   name?: string
-  type?: KeypairType
 }
 
 const defaultRecoded = {
@@ -33,22 +31,15 @@ const Address: React.FC<Props> = ({
   className,
   genesisHash,
   name,
-  type: givenType,
 }) => {
   const [justCopied, setJustCopied] = useTimedReset<boolean>(false)
   const [recoded, setRecoded] = useState<Recoded>(defaultRecoded)
   const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recoded.genesisHash, true)
-  const iconTheme = (
-    chain?.icon
-      ? chain.icon
-      : recoded.type === 'ethereum'
-      ? 'ethereum'
-      : 'polkadot'
-  ) as IconTheme
-  const nameLabel = name || recoded.account?.name || '<unknown>'
+  const iconTheme = (chain?.icon || 'polkadot') as IconTheme
+  const nameLabel = name || recoded.account?.name || UNKNOWN
   const hashLabel =
-    (justCopied && 'Copied') || recoded.formatted || address || '<unknown>'
+    (justCopied && 'Copied') || recoded.formatted || address || UNKNOWN
 
   const onCopy = () => {
     if (justCopied) return
@@ -62,21 +53,9 @@ const Address: React.FC<Props> = ({
   useEffect(() => {
     if (!address) return
 
-    const accountByAddress = findAccountByAddress(accounts, address)
-    const isEthereum =
-      chain?.definition.chainType === 'ethereum' ||
-      accountByAddress?.type === 'ethereum' ||
-      (!accountByAddress && givenType === 'ethereum')
-    const recoded = isEthereum
-      ? ({
-          account: accountByAddress,
-          formatted: address,
-          type: 'ethereum',
-        } as Recoded)
-      : recodeAddress(address, accounts, chain)
-
+    const recoded = recodeAddress(address, accounts, chain)
     recoded && setRecoded(recoded)
-  }, [accounts, address, chain, givenType])
+  }, [accounts, address, chain])
 
   return (
     <div className={className}>
