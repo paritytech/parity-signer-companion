@@ -1,5 +1,6 @@
 import { MetadataDef } from '@polkadot/extension-inject/types'
 import React from 'react'
+import { UNKNOWN } from '../../utils/constants'
 import styled from 'styled-components'
 import Actions from '../components/Actions'
 import { Button } from '../components/Button'
@@ -55,7 +56,7 @@ const MetadataRequest: React.FC<Props> = ({
         <tr>
           <td>upgrade</td>
           <td>
-            {chain ? chain.specVersion : '<unknown>'} → {request.specVersion}
+            {chain ? chain.specVersion : UNKNOWN} → {request.specVersion}
           </td>
         </tr>
       </table>
