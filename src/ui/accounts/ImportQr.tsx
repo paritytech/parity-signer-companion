@@ -31,8 +31,9 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
       account.name || 'Unknown',
       account.content,
       account.genesisHash
-    ).catch((error: Error) => console.error(error))
-    setScanned((s) => [...s, account])
+    )
+      .then(() => setScanned((s) => [...s, account]))
+      .catch(console.error)
   }
 
   useEffect(() => {
