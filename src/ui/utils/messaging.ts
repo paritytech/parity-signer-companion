@@ -37,14 +37,14 @@ port.onMessage.addListener((data: Message['data']) => {
 
   if (!handler.subscriber) {
     delete handlers[data.id]
+  }
+
+  if (data.subscription) {
+    handler.subscriber && handler.subscriber(data.subscription)
+  } else if (data.error) {
+    handler.reject(new Error(data.error))
   } else {
-    if (data.subscription) {
-      handler.subscriber(data.subscription)
-    } else if (data.error) {
-      handler.reject(new Error(data.error))
-    } else {
-      handler.resolve(data.response)
-    }
+    handler.resolve(data.response)
   }
 })
 
