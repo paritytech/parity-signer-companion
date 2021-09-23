@@ -6,40 +6,26 @@ import {
 } from '@polkadot/extension-base/page'
 import { injectExtension } from '@polkadot/extension-inject'
 import { PKG_NAME, PKG_VERSION } from './utils/constants'
+import { isMessageAllowed } from './utils/isMessageAllowed'
 
-// setup a response listener (events created by the loader for extension responses)
-window.addEventListener('message', ({ data, source }: Message): void => {
-  // only allow messages from our window, by the loader
-  if (source !== window || data.origin !== 'content') {
-    return
-  }
+window.addEventListener('message', (message: Message) => {
+  if (!isMessageAllowed(message, 'content')) return
+  if (!message.data.id) return console.error('Missing id for response.')
 
-  if (data.id) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    handleResponse(data as any)
-  } else {
-    console.error('Missing id for response.')
-  }
+  handleResponse(message.data as any) // eslint-disable-line @typescript-eslint/no-explicit-any
 })
 
 redirectIfPhishing()
   .then((gotRedirected) => {
-    if (!gotRedirected) {
-      inject()
-    }
+    if (!gotRedirected) inject()
   })
-  .catch((e) => {
+  .catch((e: Error) => {
     console.warn(
-      `Unable to determine if the site is in the phishing list: ${
-        (e as Error).message
-      }`
+      `Unable to determine if the site is in the phishing list: ${e.message}`
     )
     inject()
   })
 
 function inject() {
-  injectExtension(enable, {
-    name: PKG_NAME,
-    version: PKG_VERSION,
-  })
+  injectExtension(enable, { name: PKG_NAME, version: PKG_VERSION })
 }

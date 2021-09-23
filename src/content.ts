@@ -1,34 +1,20 @@
-import { Message } from '@polkadot/extension-base/types'
 import { PORT_CONTENT } from '@polkadot/extension-base/defaults'
+import { Message } from '@polkadot/extension-base/types'
 import chrome from './utils/chrome'
+import { isMessageAllowed } from './utils/isMessageAllowed'
 
-// connect to the extension
 const port = chrome.runtime.connect({ name: PORT_CONTENT })
-
-// send any messages from the extension back to the page
-port.onMessage.addListener((data): void => {
+port.onMessage.addListener((data) => {
   window.postMessage({ ...data, origin: 'content' }, '*')
 })
 
-// all messages from the page, pass them to the extension
-window.addEventListener('message', ({ data, source }: Message): void => {
-  // only allow messages from our window, by the inject
-  if (source !== window || data.origin !== 'page') {
-    return
-  }
-
-  port.postMessage(data)
+window.addEventListener('message', (message: Message) => {
+  if (isMessageAllowed(message, 'page')) port.postMessage(message.data)
 })
 
-// inject our data injector
 const script = document.createElement('script')
-
 script.src = chrome.extension.getURL('page.js')
-
-script.onload = (): void => {
-  // remove the injecting tag when loaded
-  if (script.parentNode) {
-    script.parentNode.removeChild(script)
-  }
+script.onload = () => {
+  if (script.parentNode) script.parentNode.removeChild(script)
 }
 ;(document.head || document.documentElement).appendChild(script)
