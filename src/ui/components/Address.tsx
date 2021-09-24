@@ -3,7 +3,7 @@ import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
-import { UNKNOWN } from '../../utils/constants'
+import { RELAY_CHAIN, UNKNOWN } from '../../utils/constants'
 import styled from 'styled-components'
 import copyIcon from '../assets/copy.svg'
 import useMetadata from '../hooks/useMetadata'
@@ -38,6 +38,7 @@ const Address: React.FC<Props> = ({
   const chain = useMetadata(genesisHash || recoded.genesisHash, true)
   const iconTheme = (chain?.icon || 'polkadot') as IconTheme
   const nameLabel = name || recoded.account?.name || UNKNOWN
+  const chainLabel = ` · ${chain?.definition.chain.replace(RELAY_CHAIN, '')}`
   const hashLabel =
     (justCopied && 'Copied') || recoded.formatted || address || UNKNOWN
 
@@ -68,7 +69,10 @@ const Address: React.FC<Props> = ({
         />
       </div>
       <div className='content'>
-        <div className='name'>{nameLabel}</div>
+        <div className='name'>
+          <span>{nameLabel}</span>
+          {chain && <span className='chain'>{chainLabel}</span>}
+        </div>
         <div
           className={`address highlighted ${justCopied && 'just-copied'}`}
           onClick={onCopy}
@@ -139,6 +143,10 @@ export default styled(Address)`
 
   .highlighted.just-copied {
     background: none;
+  }
+
+  .chain {
+    color: ${({ theme }: Props) => theme.fadedTextColor};
   }
 
   & + & {
