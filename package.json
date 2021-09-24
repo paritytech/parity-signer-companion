@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "license": "GPL-3.0",
   "scripts": {
+    "setup": "yarn install && yarn allow-scripts",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production && yarn build:zip",
     "build:zip": "rm -rf ./build.zip && zip -r -FS ./build.zip ./build",
@@ -26,6 +27,8 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
+    "@lavamoat/allow-scripts": "^1.0.6",
+    "@lavamoat/preinstall-always-fail": "^1.0.0",
     "@polkadot/dev": "^0.62.67",
     "@types/chrome": "^0.0.157",
     "@types/firefox-webext-browser": "^82.0.1",
@@ -55,5 +58,16 @@
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-extension-manifest-plugin": "^0.8.0"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "core-js": false,
+      "bufferutil": false,
+      "utf-8-validate": false,
+      "node-hid": false,
+      "usb-detection": false,
+      "tiny-secp256k1": false,
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }
