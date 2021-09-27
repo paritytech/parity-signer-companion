@@ -6,7 +6,7 @@ import ErrorFallback from './components/ErrorFallback'
 import { GlobalStyle } from './global/GlobalStyle'
 import Main from './global/Main'
 import Router from './global/Router'
-import { theme } from './themes'
+import { theme } from './theme'
 
 export const App: React.FC = () => (
   <ThemeProvider theme={theme}>
