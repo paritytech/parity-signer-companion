@@ -6,7 +6,7 @@ import {
   requestCameraAllowed,
 } from '../stores/media'
 import { BaseProps } from '../types'
-import { isPopup } from '../utils/isPopup'
+import { isPopup } from '../../utils/isPopup'
 import { windowOpen } from '../utils/messaging'
 import { Button } from './Button'
 
