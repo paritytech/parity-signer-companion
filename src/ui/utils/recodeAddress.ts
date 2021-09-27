@@ -6,7 +6,7 @@ import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
 import { KeypairType } from '@polkadot/util-crypto/types'
 import { DEFAULT_TYPE } from 'src/utils/constants'
 import { findSubstrateAccount } from './findSubstrateAccount'
-import { startSettings } from './startSettings'
+import { startSettings } from '../../utils/startSettings'
 
 export interface Recoded {
   account: AccountJson | null
