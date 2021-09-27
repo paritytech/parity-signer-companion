@@ -2,7 +2,7 @@ import {
   AccountJson,
   AccountWithChildren,
 } from '@polkadot/extension-base/background/types'
-import { chains } from '../../utils/chains'
+import { chains } from './chains'
 
 function getNetworkMap(): Map<string, string> {
   const res = new Map<string, string>()
