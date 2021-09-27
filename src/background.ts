@@ -4,7 +4,7 @@ import { AccountsStore } from '@polkadot/extension-base/stores'
 import keyring from '@polkadot/ui-keyring'
 import { assert } from '@polkadot/util'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
-import chrome from './utils/chrome'
+import chrome from '@polkadot/extension-inject/chrome'
 
 // setup the notification (same a FF default background, white text)
 void chrome.browserAction.setBadgeBackgroundColor({ color: '#d90000' })

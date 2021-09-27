@@ -1,6 +1,6 @@
 import { PORT_CONTENT } from '@polkadot/extension-base/defaults'
 import { Message } from '@polkadot/extension-base/types'
-import chrome from './utils/chrome'
+import chrome from '@polkadot/extension-inject/chrome'
 import { isMessageAllowed } from './utils/isMessageAllowed'
 
 const port = chrome.runtime.connect({ name: PORT_CONTENT })

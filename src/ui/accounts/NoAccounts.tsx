@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../components/Button'
 import { BaseProps } from '../types'
-import { goToImport } from '../utils/routing'
+import { goToImport } from '../../utils/routing'
 
 const NoAccounts: React.FC<BaseProps> = ({ className }) => (
   <div className={className}>

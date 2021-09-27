@@ -6,9 +6,9 @@ import {
   addHeaderAction,
   goHomeHeaderAction,
   resetHeaderActions,
-} from '../stores/headerActions'
+} from '../../stores/headerActions'
 import { BaseProps } from '../types'
-import { createAccountExternal } from '../utils/messaging'
+import { createAccountExternal } from '../../messaging/actions'
 
 interface QrAccount {
   isAddress: boolean

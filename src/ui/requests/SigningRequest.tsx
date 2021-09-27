@@ -9,13 +9,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
 import { Button } from '../components/Button'
-import { accounts as accountsStore } from '../stores/accounts'
-import { addHeaderAction, resetHeaderActions } from '../stores/headerActions'
+import { accounts as accountsStore } from '../../stores/accounts'
+import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
 import { BaseProps } from '../types'
-import { isRawPayload } from '../utils/guards'
-import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
-import { getGenesisHashByAddress } from '../utils/getGenesisHashByAddress'
-import { getExtrinsicPayload } from '../utils/getExtrinsicPayload'
+import { isRawPayload } from '../../utils/guards'
+import {
+  approveSignSignature,
+  cancelSignRequest,
+} from '../../messaging/actions'
+import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
+import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
 
 const CMD_MORTAL = 2
 const CMD_SIGN_MESSAGE = 3

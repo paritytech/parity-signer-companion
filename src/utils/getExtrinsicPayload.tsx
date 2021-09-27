@@ -1,6 +1,6 @@
 import { ExtrinsicPayload } from '@polkadot/types/interfaces'
 import { isRawPayload } from './guards'
-import { registry } from './registry'
+import { REGISTRY } from './constants'
 import { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 
 export const getExtrinsicPayload = (
@@ -8,9 +8,9 @@ export const getExtrinsicPayload = (
 ): ExtrinsicPayload | undefined => {
   if (isRawPayload(payload)) return
 
-  registry.setSignedExtensions(payload.signedExtensions)
+  REGISTRY.setSignedExtensions(payload.signedExtensions)
 
-  return registry.createType('ExtrinsicPayload', payload, {
+  return REGISTRY.createType('ExtrinsicPayload', payload, {
     version: payload.version,
   })
 }

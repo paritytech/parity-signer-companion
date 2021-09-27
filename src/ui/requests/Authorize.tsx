@@ -1,6 +1,6 @@
 import { useStore } from 'nanostores/react'
 import React, { useState } from 'react'
-import { authRequests as authRequestsStore } from '../stores/authRequests'
+import { authRequests as authRequestsStore } from '../../stores/authRequests'
 import AuthorizeRequest from './AuthorizeRequest'
 import RequestIndex from './RequestIndex'
 

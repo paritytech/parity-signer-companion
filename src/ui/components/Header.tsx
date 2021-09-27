@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import logo from '../assets/logo.svg'
-import { headerActions } from '../stores/headerActions'
+import { headerActions } from '../../stores/headerActions'
 import { BaseProps, ThemeProps } from '../types'
 import { Button } from './Button'
 

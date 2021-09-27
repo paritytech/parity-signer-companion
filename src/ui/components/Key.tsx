@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import cancelIcon from '../assets/cancel.svg'
-import { useTimer } from '../hooks/useTimer'
+import { useTimer } from '../../hooks/useTimer'
 import { BaseProps } from '../types'
-import { forgetAccount } from '../utils/messaging'
+import { forgetAccount } from '../../messaging/actions'
 import Address from './Address'
 import { Button } from './Button'
 
