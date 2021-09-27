@@ -1,6 +1,6 @@
 import { SigningRequest } from '@polkadot/extension-base/background/types'
 import { createStore } from 'nanostores'
-import { subscribeSigningRequests } from '../utils/messaging'
+import { subscribeSigningRequests } from '../../utils/messaging'
 
 /**
  * [

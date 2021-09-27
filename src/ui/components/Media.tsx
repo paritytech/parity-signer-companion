@@ -7,7 +7,7 @@ import {
 } from '../stores/media'
 import { BaseProps } from '../types'
 import { isPopup } from '../../utils/isPopup'
-import { windowOpen } from '../utils/messaging'
+import { windowOpen } from '../../utils/messaging'
 import { Button } from './Button'
 
 const Media: React.FC<BaseProps> = ({ className }) => {

@@ -1,6 +1,6 @@
 import { MetadataRequest } from '@polkadot/extension-base/background/types'
 import { createStore } from 'nanostores'
-import { subscribeMetadataRequests } from '../utils/messaging'
+import { subscribeMetadataRequests } from '../../utils/messaging'
 
 export const metaRequests = createStore<MetadataRequest[]>(() => {
   metaRequests.set([])

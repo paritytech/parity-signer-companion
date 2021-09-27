@@ -17,9 +17,9 @@ import { Message } from '@polkadot/extension-base/types'
 import { metadataExpand } from '@polkadot/extension-chains'
 import { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
-import { Handler, Handlers } from '../types'
-import { chains } from '../../utils/chains'
-import { getSavedMeta, setSavedMeta } from '../../utils/metadataCache'
+import { Handler, Handlers } from '../ui/types'
+import { chains } from './chains'
+import { getSavedMeta, setSavedMeta } from './metadataCache'
 
 const port = chrome.runtime.connect({ name: PORT_EXTENSION })
 const handlers: Handlers = {}

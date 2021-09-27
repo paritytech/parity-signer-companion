@@ -13,7 +13,7 @@ import { accounts as accountsStore } from '../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../stores/headerActions'
 import { BaseProps } from '../types'
 import { isRawPayload } from '../../utils/guards'
-import { approveSignSignature, cancelSignRequest } from '../utils/messaging'
+import { approveSignSignature, cancelSignRequest } from '../../utils/messaging'
 import { getGenesisHashByAddress } from '../utils/getGenesisHashByAddress'
 import { getExtrinsicPayload } from '../utils/getExtrinsicPayload'
 

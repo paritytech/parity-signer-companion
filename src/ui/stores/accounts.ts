@@ -2,7 +2,7 @@ import { AccountJson } from '@polkadot/extension-base/background/types'
 import { canDerive } from '@polkadot/extension-base/utils'
 import { createDerived, createStore } from 'nanostores'
 import { buildHierarchy } from '../utils/buildHierarchy'
-import { subscribeAccounts } from '../utils/messaging'
+import { subscribeAccounts } from '../../utils/messaging'
 
 export const accounts = createStore<AccountJson[]>(() => {
   accounts.set([])
