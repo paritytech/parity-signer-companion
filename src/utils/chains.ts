@@ -9,3 +9,8 @@ export const chains: MetadataDefBase[] = selectableNetworks
     icon: network.icon,
     ss58Format: network.prefix,
   }))
+
+export const chainsMap = chains.reduce(
+  (map, chain) => map.set(chain.genesisHash, chain.chain),
+  new Map<string, string>()
+)

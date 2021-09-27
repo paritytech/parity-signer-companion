@@ -1,5 +1,4 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
-import { AccountWithChildren } from '@polkadot/extension-base/background/types'
 import { Chain } from '@polkadot/extension-chains/types'
 import { SettingsStruct } from '@polkadot/ui-settings/types'
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
@@ -21,7 +20,7 @@ export interface Recoded {
  */
 export function recodeAddress(
   address: string,
-  accounts: AccountWithChildren[],
+  accounts: AccountJson[],
   chain: Chain | null,
   settings: SettingsStruct = startSettings
 ): Recoded {
