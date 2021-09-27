@@ -10,7 +10,7 @@ import useMetadata from '../hooks/useMetadata'
 import { useTimedReset } from '../hooks/useTimedReset'
 import { accounts as accountsStore } from '../stores/accounts'
 import { BaseProps } from '../types'
-import { recodeAddress, Recoded } from '../utils/recodeAddress'
+import { recodeAddress, Recoded } from '../../utils/recodeAddress'
 
 type Props = BaseProps & {
   address?: string
