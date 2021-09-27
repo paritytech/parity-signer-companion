@@ -17,9 +17,16 @@ import { Message } from '@polkadot/extension-base/types'
 import { metadataExpand } from '@polkadot/extension-chains'
 import { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
-import { Handler, Handlers } from '../ui/types'
 import { chains } from './chains'
 import { getSavedMeta, setSavedMeta } from './metadataCache'
+
+export type Handler = {
+  resolve: (data: Message['data']['response']) => void
+  reject: (error: Error) => void
+  subscriber?: (data: Message['data']['subscription']) => void
+}
+
+export type Handlers = Record<string, Handler>
 
 const port = chrome.runtime.connect({ name: PORT_EXTENSION })
 const handlers: Handlers = {}
