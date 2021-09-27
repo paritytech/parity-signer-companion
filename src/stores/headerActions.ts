@@ -1,5 +1,5 @@
 import { createStore, update } from 'nanostores'
-import { goHome, goToImport } from '../../utils/routing'
+import { goHome, goToImport } from '../utils/routing'
 
 type Action = {
   label: string

@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import copyIcon from '../assets/copy.svg'
 import useMetadata from '../hooks/useMetadata'
 import { useTimedReset } from '../hooks/useTimedReset'
-import { accounts as accountsStore } from '../stores/accounts'
+import { accounts as accountsStore } from '../../stores/accounts'
 import { BaseProps } from '../types'
 import { recodeAddress, Recoded } from '../../utils/recodeAddress'
 

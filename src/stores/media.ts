@@ -1,6 +1,6 @@
 import { createStore } from 'nanostores'
-import { checkCameraAccess } from '../../utils/checkCameraAccess'
-import { requestCameraAccess } from '../../utils/requestCameraAccess'
+import { checkCameraAccess } from '../utils/checkCameraAccess'
+import { requestCameraAccess } from '../utils/requestCameraAccess'
 
 export const cameraAllowed = createStore<boolean>(() => {
   cameraAllowed.set(true)

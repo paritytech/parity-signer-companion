@@ -6,7 +6,7 @@ import {
   addHeaderAction,
   goHomeHeaderAction,
   resetHeaderActions,
-} from '../stores/headerActions'
+} from '../../stores/headerActions'
 import { BaseProps } from '../types'
 import { createAccountExternal } from '../../utils/messaging'
 

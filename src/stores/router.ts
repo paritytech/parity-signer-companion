@@ -1,5 +1,5 @@
 import { createDerived, createStore } from 'nanostores'
-import { exact, getParam, getPath } from '../../utils/routing'
+import { exact, getParam, getPath } from '../utils/routing'
 
 type Page = {
   path: string

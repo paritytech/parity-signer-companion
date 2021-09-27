@@ -1,6 +1,6 @@
 import { useStore } from 'nanostores/react'
 import React, { useState } from 'react'
-import { metaRequests } from '../stores/metaRequests'
+import { metaRequests } from '../../stores/metaRequests'
 import MetadataRequest from './MetadataRequest'
 import RequestIndex from './RequestIndex'
 

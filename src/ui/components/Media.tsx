@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {
   cameraAllowed as cameraAllowedStore,
   requestCameraAllowed,
-} from '../stores/media'
+} from '../../stores/media'
 import { BaseProps } from '../types'
 import { isPopup } from '../../utils/isPopup'
 import { windowOpen } from '../../utils/messaging'
