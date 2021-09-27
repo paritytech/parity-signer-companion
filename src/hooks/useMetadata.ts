@@ -1,5 +1,5 @@
 import { Chain } from '@polkadot/extension-chains/types'
-import { getMetadata } from '../utils/messaging'
+import { getMetadata } from '../utils/getMetadata'
 import { useEffect, useState } from 'react'
 
 export default function useMetadata(

@@ -1,16 +1,16 @@
 import { MetadataDef } from '@polkadot/extension-inject/types'
+import { getMeta } from 'src/messaging/actions'
 
-const metadataGets = new Map<string, Promise<MetadataDef | null>>()
+type MetadataDefRequest = Promise<MetadataDef | null>
 
-export function getSavedMeta(
-  genesisHash: string
-): Promise<MetadataDef | null> | undefined {
-  return metadataGets.get(genesisHash)
-}
+const metadataGets = new Map<string, MetadataDefRequest>()
 
-export function setSavedMeta(
-  genesisHash: string,
-  def: Promise<MetadataDef | null>
-): Map<string, Promise<MetadataDef | null>> {
-  return metadataGets.set(genesisHash, def)
+export function getSavedMeta(genesisHash: string): MetadataDefRequest {
+  let res = metadataGets.get(genesisHash)
+  if (!res) {
+    res = getMeta(genesisHash)
+    metadataGets.set(genesisHash, res)
+  }
+
+  return res
 }

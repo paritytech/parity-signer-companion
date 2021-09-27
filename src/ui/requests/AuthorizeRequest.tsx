@@ -2,7 +2,7 @@ import { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import React from 'react'
 import Actions from '../components/Actions'
 import { Button } from '../components/Button'
-import { approveAuthRequest, rejectAuthRequest } from '../../utils/messaging'
+import { approveAuthRequest, rejectAuthRequest } from '../../messaging/actions'
 
 type Props = {
   authId: string
