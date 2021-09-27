@@ -19,7 +19,7 @@ import { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
 import { Handler, Handlers } from '../types'
 import { chains } from '../../utils/chains'
-import { getSavedMeta, setSavedMeta } from './metadataCache'
+import { getSavedMeta, setSavedMeta } from '../../utils/metadataCache'
 
 const port = chrome.runtime.connect({ name: PORT_EXTENSION })
 const handlers: Handlers = {}
