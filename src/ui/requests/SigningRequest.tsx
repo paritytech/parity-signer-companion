@@ -15,7 +15,7 @@ import { BaseProps } from '../types'
 import { isRawPayload } from '../../utils/guards'
 import { approveSignSignature, cancelSignRequest } from '../../utils/messaging'
 import { getGenesisHashByAddress } from '../utils/getGenesisHashByAddress'
-import { getExtrinsicPayload } from '../utils/getExtrinsicPayload'
+import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
 
 const CMD_MORTAL = 2
 const CMD_SIGN_MESSAGE = 3
