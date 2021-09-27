@@ -4,7 +4,7 @@ import { Chain } from '@polkadot/extension-chains/types'
 import { SettingsStruct } from '@polkadot/ui-settings/types'
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
 import { KeypairType } from '@polkadot/util-crypto/types'
-import { DEFAULT_TYPE } from 'src/utils/constants'
+import { DEFAULT_TYPE } from './constants'
 import { findSubstrateAccount } from './findSubstrateAccount'
 import { startSettings } from './startSettings'
 
