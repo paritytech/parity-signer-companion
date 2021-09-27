@@ -5,7 +5,7 @@ import { SettingsStruct } from '@polkadot/ui-settings/types'
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
 import { KeypairType } from '@polkadot/util-crypto/types'
 import { DEFAULT_TYPE } from 'src/utils/constants'
-import { findSubstrateAccount } from '../ui/utils/findSubstrateAccount'
+import { findSubstrateAccount } from './findSubstrateAccount'
 import { startSettings } from './startSettings'
 
 export interface Recoded {
