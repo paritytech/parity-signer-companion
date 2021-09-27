@@ -1,5 +1,5 @@
 import { ExtrinsicPayload } from '@polkadot/types/interfaces'
-import { isRawPayload } from './guards'
+import { isRawPayload } from '../../utils/guards'
 import { registry } from './registry'
 import { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 
