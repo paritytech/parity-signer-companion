@@ -4,7 +4,7 @@ import { UNKNOWN } from '../../utils/constants'
 import styled from 'styled-components'
 import Actions from '../components/Actions'
 import { Button } from '../components/Button'
-import useMetadata from '../hooks/useMetadata'
+import useMetadata from '../../hooks/useMetadata'
 import { BaseProps } from '../types'
 import { approveMetaRequest, rejectMetaRequest } from '../../utils/messaging'
 
