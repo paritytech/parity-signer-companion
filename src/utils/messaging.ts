@@ -17,7 +17,7 @@ import { Message } from '@polkadot/extension-base/types'
 import { metadataExpand } from '@polkadot/extension-chains'
 import { Chain } from '@polkadot/extension-chains/types'
 import chrome from '@polkadot/extension-inject/chrome'
-import { chains } from './chains'
+import { CHAINS } from './constants'
 import { getSavedMeta, setSavedMeta } from './metadataCache'
 
 export type Handler = {
@@ -138,7 +138,7 @@ export async function getMetadata(
   if (def) {
     return metadataExpand(def, isPartial)
   } else if (isPartial) {
-    const chain = chains.find((chain) => chain.genesisHash === genesisHash)
+    const chain = CHAINS.find((chain) => chain.genesisHash === genesisHash)
 
     if (chain) {
       return metadataExpand(

@@ -3,9 +3,8 @@ import { Chain } from '@polkadot/extension-chains/types'
 import { SettingsStruct } from '@polkadot/ui-settings/types'
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto'
 import { KeypairType } from '@polkadot/util-crypto/types'
-import { DEFAULT_TYPE } from './constants'
+import { DEFAULT_TYPE, START_SETTINGS } from './constants'
 import { findSubstrateAccount } from './findSubstrateAccount'
-import { startSettings } from './startSettings'
 
 export interface Recoded {
   account: AccountJson | null
@@ -22,7 +21,7 @@ export function recodeAddress(
   address: string,
   accounts: AccountJson[],
   chain: Chain | null,
-  settings: SettingsStruct = startSettings
+  settings: SettingsStruct = START_SETTINGS
 ): Recoded {
   // decode and create a shortcut for the encoded address
   const publicKey = decodeAddress(address)

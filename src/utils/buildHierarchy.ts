@@ -1,5 +1,5 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
-import { chainsMap } from './chains'
+import { CHAINS_MAP } from './constants'
 
 export function buildHierarchy(accounts: AccountJson[]): AccountJson[] {
   return accounts.sort(compare)
@@ -35,5 +35,5 @@ function normalize(str?: string) {
 }
 
 function getChain(str?: string | null) {
-  return chainsMap.get(str || '') || ''
+  return CHAINS_MAP.get(str || '') || ''
 }
