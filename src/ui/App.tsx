@@ -7,7 +7,7 @@ import Main from './components/Main'
 import { GlobalStyle } from './GlobalStyle'
 import Router from './Router'
 import { theme } from './themes'
-import { goHome } from './utils/routing'
+import { goHome } from '../utils/routing'
 
 export const App: React.FC = () => (
   <Suspense fallback={'...'}>

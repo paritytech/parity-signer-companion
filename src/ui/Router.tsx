@@ -11,7 +11,7 @@ import { authRequests as authRequestsStore } from './stores/authRequests'
 import { metaRequests as metaRequestsStore } from './stores/metaRequests'
 import { router } from './stores/router'
 import { signRequests as signRequestsStore } from './stores/signRequests'
-import { exact, exactWithParam } from './utils/routing'
+import { exact, exactWithParam } from '../utils/routing'
 
 const Router: React.FC = () => {
   const { path } = useStore(router)
