@@ -8,12 +8,12 @@ export const Button = styled.button`
   border-radius: 0.2rem;
   color: ${({ theme }: ThemeProps) => theme.buttonTextColor};
   font-size: ${({ theme }: ThemeProps) => theme.fontSize};
-  line-height: ${({ theme }: ThemeProps) => theme.lineHeight};
+  line-height: 1;
   margin: 0;
   font-family: ${({ theme }: ThemeProps) => theme.fontFamily};
   white-space: nowrap;
   text-decoration: none;
-  padding: 0.4rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: ${({ theme }: ThemeProps) => theme.transition};
 

@@ -35,6 +35,7 @@ export default styled(Header)`
   .text-holder {
     display: flex;
     align-items: center;
+    height: 1.9rem;
   }
 
   img {
