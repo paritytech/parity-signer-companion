@@ -1,5 +1,5 @@
 import { MetadataDef } from '@polkadot/extension-inject/types'
-import { getMeta } from 'src/messaging/actions'
+import { getMeta } from '../messaging/actions'
 
 type MetadataDefRequest = Promise<MetadataDef | null>
 
