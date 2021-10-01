@@ -1,9 +1,9 @@
-export const checkCameraAccess = async () => {
+export async function checkCameraAccess() {
   try {
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    return devices
-      .filter((d) => d.kind === 'videoinput')
-      .some((d) => d.deviceId)
+    const permission = await navigator.permissions.query({
+      name: 'camera' as PermissionName,
+    })
+    return permission.state == 'granted'
   } catch (error) {
     console.error(error)
     return false
