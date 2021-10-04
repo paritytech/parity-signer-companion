@@ -3,14 +3,16 @@ import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
 import { useStore } from 'nanostores/react'
 import React, { useEffect, useState } from 'react'
-import { DEFAULT_TYPE, RELAY_CHAIN, UNKNOWN } from '../../utils/constants'
 import styled from 'styled-components'
-import copyIcon from '../assets/copy.svg'
 import useMetadata from '../../hooks/useMetadata'
 import { useTimedReset } from '../../hooks/useTimedReset'
+import { editAccount } from '../../messaging/actions'
 import { accounts as accountsStore } from '../../stores/accounts'
-import { BaseProps } from '../types'
+import { DEFAULT_TYPE, RELAY_CHAIN, UNKNOWN } from '../../utils/constants'
 import { recodeAddress, Recoded } from '../../utils/recodeAddress'
+import copyIcon from '../assets/copy.svg'
+import { BaseProps } from '../types'
+import AutosizeInput from './AutosizeInput'
 
 type Props = BaseProps & {
   address?: string
@@ -36,7 +38,7 @@ const Address: React.FC<Props> = ({
   const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recoded.genesisHash, true)
   const iconTheme = (chain?.icon || 'polkadot') as IconTheme
-  const nameLabel = name || recoded.account?.name || UNKNOWN
+  const nameLabel = name || recoded.account?.name
   const chainLabel = ` · ${chain?.definition.chain.replace(RELAY_CHAIN, '')}`
   const hashLabel =
     (justCopied && 'Copied') || recoded.formatted || address || UNKNOWN
@@ -49,6 +51,9 @@ const Address: React.FC<Props> = ({
       .then(() => setJustCopied(true))
       .catch(console.error)
   }
+
+  const changeName = (v: string) =>
+    address && editAccount(address, v).catch(console.error)
 
   useEffect(() => {
     if (!address) return
@@ -69,7 +74,11 @@ const Address: React.FC<Props> = ({
       </div>
       <div className='content'>
         <div className='name'>
-          <span>{nameLabel}</span>
+          <AutosizeInput
+            value={nameLabel}
+            placeholder={UNKNOWN}
+            onChange={changeName}
+          />
           {chain && <span className='chain'>{chainLabel}</span>}
         </div>
         <div
@@ -141,7 +150,7 @@ export default styled(Address)`
   }
 
   .highlighted.just-copied {
-    background: none;
+    background: none !important;
   }
 
   .chain {

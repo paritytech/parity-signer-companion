@@ -7,6 +7,13 @@ import {
 } from '@polkadot/extension-base/background/types'
 import { sendMessage } from './sendMessage'
 
+export async function editAccount(
+  address: string,
+  name: string
+): Promise<boolean> {
+  return sendMessage('pri(accounts.edit)', { address, name })
+}
+
 export function forgetAccount(address: string): Promise<boolean> {
   return sendMessage('pri(accounts.forget)', { address })
 }
