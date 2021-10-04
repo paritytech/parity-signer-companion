@@ -3,7 +3,7 @@ stages:
 
 test:
   stage: test
-  image: paritytech/base-ci:production
+  image: paritytech/base-ci:latest
   script:
     - echo test
   tags:
