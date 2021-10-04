@@ -1,0 +1,11 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: paritytech/base-ci:production
+  script:
+    - echo test
+  tags:
+    - linux-docker
+
