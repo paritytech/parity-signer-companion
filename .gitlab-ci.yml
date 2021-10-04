@@ -5,7 +5,7 @@ test:
   stage: test
   image: paritytech/base-ci:latest
   script:
-    - echo test
+    - echo "test"
   tags:
     - linux-docker
 
