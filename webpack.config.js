@@ -29,6 +29,10 @@ module.exports = (env, argv) => ({
         ],
       },
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
         test: [/\.svg$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff2?$/],
         use: [
           {
