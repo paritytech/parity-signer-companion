@@ -1,9 +1,7 @@
 import { theme } from './theme'
 
-export type Theme = typeof theme
-
 export type ThemeProps = {
-  theme: Theme
+  theme: typeof theme
 }
 
 export type BaseProps = ThemeProps & {
