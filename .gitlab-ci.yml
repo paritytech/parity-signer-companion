@@ -25,8 +25,10 @@ test:
 
 security-scan:
   stage:                  test
-  image:                  aquasec/trivy:latest
+  image:
+    name:                 aquasec/trivy:latest
+    entrypoint:           [""]
   script:
-    - fs .
+    - trivy fs .
   tags:
     - kubernetes-parity-build
