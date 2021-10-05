@@ -2,7 +2,7 @@ stages:
   - lint
 
 .build:                   &build
-  image:                  node:14.16-alpine
+  image:                  node:14.16
   tags:
     - kubernetes-parity-build
 
