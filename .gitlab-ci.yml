@@ -23,4 +23,10 @@ test:
     # - yarn test
     - echo testme
 
-
+security-scan:
+  stage:                  test
+  image:                  aquasec/trivy:latest
+  script:
+    - fs .
+  tags:
+    - kubernetes-parity-build
