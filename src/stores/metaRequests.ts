@@ -4,9 +4,5 @@ import { subscribeMetadataRequests } from '../messaging/actions'
 
 export const metaRequests = createStore<MetadataRequest[]>(() => {
   metaRequests.set([])
-  subscribeMetadataRequests(setMetaRequests).catch(console.error)
+  subscribeMetadataRequests(metaRequests.set).catch(console.error)
 })
-
-export const setMetaRequests = (list: MetadataRequest[]) => {
-  metaRequests.set(list)
-}

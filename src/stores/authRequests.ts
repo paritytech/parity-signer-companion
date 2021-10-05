@@ -13,9 +13,5 @@ import { subscribeAuthorizeRequests } from '../messaging/actions'
  */
 export const authRequests = createStore<AuthorizeRequest[]>(() => {
   authRequests.set([])
-  subscribeAuthorizeRequests(setAuthRequests).catch(console.error)
+  subscribeAuthorizeRequests(authRequests.set).catch(console.error)
 })
-
-export const setAuthRequests = (list: AuthorizeRequest[]) => {
-  authRequests.set(list)
-}
