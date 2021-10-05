@@ -1,11 +1,17 @@
 stages:
-  - test
+  - lint
 
-test:
-  stage: test
-  image: paritytech/base-ci:latest
-  script:
-    - echo "test  "
+.build:                   &build
+  image:                  node:14.16-alpine
   tags:
-    - linux-docker
+    - kubernetes-parity-build
+
+
+lint:
+  stage:                  lint
+  <<:                     *build
+  script:
+    - yarn setup
+    - yarn lint
+
 
