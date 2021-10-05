@@ -1,5 +1,6 @@
 stages:
   - lint
+  - test
 
 .build:                   &build
   image:                  node:16.10
@@ -13,5 +14,13 @@ lint:
   script:
     - yarn setup
     - yarn lint
+
+test:
+  stage:                  test
+  <<:                     *build
+  script:
+    - yarn setup
+    # - yarn test
+    - echo testme
 
 
