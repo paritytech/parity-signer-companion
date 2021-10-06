@@ -29,6 +29,6 @@ security-scan:
     name:                 aquasec/trivy:latest
     entrypoint:           [""]
   script:
-    - trivy fs .
+    - trivy fs . --exit-code 1
   tags:
     - kubernetes-parity-build
