@@ -1,6 +1,7 @@
 stages:
   - lint
   - test
+  - publish
 
 .build:                   &build
   image:                  node:16.10
@@ -30,6 +31,18 @@ security-scan:
     entrypoint:           [""]
   script:
     - trivy fs --exit-code 1 .
+  tags:
+    - kubernetes-parity-build
+
+#TODO:
+publish:
+  stage:                  publish
+  image:                  paritytech/base-ci:latest
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^ci-release-.*$/
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+  script:
+    - echo tbd
   tags:
     - kubernetes-parity-build
 
