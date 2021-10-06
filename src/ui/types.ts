@@ -1,9 +1,3 @@
-import { theme } from './theme'
-
-export type ThemeProps = {
-  theme: typeof theme
-}
-
-export type BaseProps = ThemeProps & {
+export type BaseProps = {
   className?: string
 }

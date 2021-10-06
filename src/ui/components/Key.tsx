@@ -58,7 +58,7 @@ export default styled(Key)`
     justify-content: space-between;
     height: 3rem;
     padding: 0.5rem;
-    border: 2px dashed ${({ theme }: Props) => theme.cardBgColor};
+    border: 2px dashed var(--color-card-bg);
     border-radius: 0.2rem;
   }
 
@@ -86,8 +86,8 @@ export default styled(Key)`
   .address {
     display: flex;
     align-items: center;
-    font-size: ${({ theme }: Props) => theme.smallFontSize};
-    color: ${({ theme }: Props) => theme.fadedTextColor};
+    font-size: var(--font-small-size);
+    color: var(--color-faded-text);
   }
 
   .hash {
@@ -107,12 +107,12 @@ export default styled(Key)`
 
   .highlighted {
     border-radius: 0.2rem;
-    transition: ${({ theme }: Props) => theme.transition};
+    transition: var(--transition);
     cursor: pointer;
   }
 
   .highlighted:hover {
-    background: ${({ theme }: Props) => theme.hightlight};
+    background: var(--color-highlight);
   }
 
   & + & {

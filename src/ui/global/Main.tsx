@@ -18,24 +18,24 @@ export default styled(Main)`
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-size: ${({ theme }: BaseProps) => theme.fontSize};
-  line-height: ${({ theme }: BaseProps) => theme.lineHeight};
-  color: ${({ theme }: BaseProps) => theme.mainTextColor};
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
+  color: var(--color-main-text);
 
   a {
-    color: ${({ theme }: BaseProps) => theme.fadedTextColor};
-    transition: ${({ theme }: BaseProps) => theme.transition};
+    color: var(--color-faded-text);
+    transition: var(--transition);
   }
 
   a:hover {
-    color: ${({ theme }: BaseProps) => theme.mainTextColor};
+    color: var(--color-main-text);
   }
 
   h1 {
     margin: 0;
     margin-bottom: 0.5rem;
-    font-size: ${({ theme }: BaseProps) => theme.titleFontSize};
-    line-height: ${({ theme }: BaseProps) => theme.lineHeight};
+    font-size: var(--font-title-size);
+    line-height: var(--font-base-line-height);
     font-weight: bold;
   }
 

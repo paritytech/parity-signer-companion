@@ -30,7 +30,7 @@ export default styled(Header)`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  box-shadow: ${({ theme }: ThemeProps) => theme.shadow};
+  box-shadow: var(--shadow);
 
   .text-holder {
     display: flex;

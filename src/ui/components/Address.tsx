@@ -99,7 +99,7 @@ export default styled(Address)`
   display: flex;
   position: relative;
   height: 3rem;
-  background: ${({ theme }: Props) => theme.cardBgColor};
+  background: var(--color-card-bg);
   border-radius: 0.2rem;
 
   .logo {
@@ -126,8 +126,8 @@ export default styled(Address)`
   .address {
     display: flex;
     align-items: center;
-    font-size: ${({ theme }: Props) => theme.smallFontSize};
-    color: ${({ theme }: Props) => theme.fadedTextColor};
+    font-size: var(--font-small-size);
+    color: var(--color-faded-text);
   }
 
   .hash {
@@ -141,12 +141,12 @@ export default styled(Address)`
 
   .highlighted {
     border-radius: 0.2rem;
-    transition: ${({ theme }: Props) => theme.transition};
+    transition: var(--transition);
     cursor: pointer;
   }
 
   .highlighted:hover {
-    background: ${({ theme }: Props) => theme.hightlight};
+    background: var(--color-highlight);
   }
 
   .highlighted.just-copied {
@@ -154,7 +154,7 @@ export default styled(Address)`
   }
 
   .chain {
-    color: ${({ theme }: Props) => theme.fadedTextColor};
+    color: var(--color-faded-text);
   }
 
   & + & {

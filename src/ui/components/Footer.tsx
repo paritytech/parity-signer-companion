@@ -31,6 +31,6 @@ export default styled(Footer)`
   }
 
   .link {
-    font-size: ${({ theme }: BaseProps) => theme.smallFontSize};
+    font-size: var(--font-small-size);
   }
 `
