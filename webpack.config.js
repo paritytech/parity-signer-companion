@@ -39,6 +39,32 @@ module.exports = (env, argv) => ({
         ],
       },
       {
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName:
+                  argv.mode === 'production'
+                    ? '[hash:base64]'
+                    : '[name]__[local]__[hash:base64]',
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['postcss-preset-env'],
+              },
+            },
+          },
+        ],
+      },
+      {
         test: [/\.svg$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.woff2?$/],
         use: [
           {
