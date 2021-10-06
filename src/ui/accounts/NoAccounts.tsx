@@ -24,6 +24,6 @@ export default styled(NoAccounts)`
 
   .container {
     padding: 2rem;
-    color: ${({ theme }: BaseProps) => theme.mainTextColor};
+    color: var(--color-main-text);
   }
 `

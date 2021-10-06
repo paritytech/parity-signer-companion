@@ -36,11 +36,11 @@ export default styled(Media)`
   justify-content: space-between;
   margin: 0.5rem 0.5rem 0;
   padding: 0.5rem;
-  background: ${({ theme }: BaseProps) => theme.cardBgColor};
+  background: var(--color-card-bg);
   border-radius: 0.2rem;
 
   .message {
-    font-size: ${({ theme }: BaseProps) => theme.smallFontSize};
+    font-size: var(--font-small-size);
     padding-right: 1rem;
   }
 `

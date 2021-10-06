@@ -127,11 +127,11 @@ export default styled(Request)`
 
   .steps > div {
     margin-bottom: 0.25rem;
-    color: ${({ theme }: Props) => theme.fadedTextColor};
+    color: var(--color-faded-text);
   }
 
   .steps > .current {
-    color: ${({ theme }: Props) => theme.mainTextColor};
+    color: var(--color-main-text);
   }
 
   .using-key {

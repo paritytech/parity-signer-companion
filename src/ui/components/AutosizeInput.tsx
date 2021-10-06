@@ -52,12 +52,12 @@ export default styled(AutosizeInput)`
     position: relative;
     max-width: 16rem;
     border-radius: 0.2rem 0.2rem 0 0;
-    transition: ${({ theme }: Props) => `background ${theme.transition}`};
+    transition: background var(--transition);
   }
 
   input:hover,
   input:focus {
-    background: ${({ theme }: Props) => theme.hightlight};
+    background: var(--color-highlight);
   }
 
   .spacer {
@@ -74,6 +74,6 @@ export default styled(AutosizeInput)`
     left: 0;
     width: 100%;
     height: 1px;
-    background: ${({ theme }: Props) => theme.hightlight};
+    background: var(--color-highlight);
   }
 `
