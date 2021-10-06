@@ -27,16 +27,12 @@ test:
     - echo testme
 
 security-scan:
-  variables:
-    CI_IMAGE:             "aquasec/trivy:latest"
   stage:                  test
   <<:                     *kubernetes-env
-  image:
-    entrypoint:           [""]
+  variables:
+    CI_IMAGE:             "aquasec/trivy:latest"
   script:
     - trivy fs --exit-code 1 .
-  tags:
-    - kubernetes-parity-build
 
 #TODO:
 publish:
