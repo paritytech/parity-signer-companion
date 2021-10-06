@@ -24,7 +24,17 @@ module.exports = (env, argv) => ({
         use: [
           {
             loader: require.resolve('babel-loader'),
-            options: require('@polkadot/dev/config/babel-config-webpack.cjs'),
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript',
+                '@babel/preset-react',
+              ],
+              plugins: [
+                '@babel/plugin-transform-runtime',
+                'babel-plugin-styled-components',
+              ],
+            },
           },
         ],
       },
