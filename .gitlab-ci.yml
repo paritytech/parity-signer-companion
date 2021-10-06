@@ -32,3 +32,4 @@ security-scan:
     - trivy fs --exit-code 1 .
   tags:
     - kubernetes-parity-build
+
