@@ -7,3 +7,4 @@ We whitelist dependency lifecycle scripts (eg. "postinstall") via [@lavamoat/all
 ## Acknowledgements
 
 The extension based on [Polkadot{.js} extension](https://github.com/polkadot-js/extension). Thanks to the contributers.
+
