@@ -1,6 +1,6 @@
 # Parity Signer Companion
 
-The extensioin helps you to sign transactions with keys you store in the [Parity Signer](https://www.parity.io/technologies/signer/). To start using, you should go to the Signer and import keys.
+The extension helps you to sign transactions with keys you store in the [Parity Signer](https://www.parity.io/technologies/signer/). To start using, you should go to the Signer and import keys.
 
 Without the Signer the extension is useless. If you want to create and store keys without any device, look at [Polkadot{.js} extension](https://github.com/polkadot-js/extension).
 

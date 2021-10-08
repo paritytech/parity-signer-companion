@@ -1,6 +1,6 @@
 {
   "author": "Parity Technologies",
-  "description": "___FIX_ME___",
+  "description": "The extension helps you to sign transactions with keys you store in the Parity Signer",
   "homepage_url": "https://github.com/paritytech/parity-signer-companion",
   "name": "Parity Signer Companion",
   "short_name": "Signer Companion",
