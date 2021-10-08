@@ -1,3 +1,5 @@
+[![GitLab Status](https://gitlab.parity.io/parity/parity-signer-companion/badges/main/pipeline.svg)]
+(https://gitlab.parity.io/parity/parity-signer-companion/pipelines)
 # parity-signer-companion
 
 ## Development
