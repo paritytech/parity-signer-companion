@@ -1,5 +1,3 @@
-import { PORT_EXTENSION } from '@polkadot/extension-base/defaults'
-import chrome from '@polkadot/extension-inject/chrome'
 import { MetadataDefBase } from '@polkadot/extension-inject/types'
 import { selectableNetworks } from '@polkadot/networks'
 import { TypeRegistry } from '@polkadot/types'
@@ -31,5 +29,3 @@ export const CHAINS_MAP = CHAINS.reduce(
 )
 
 export const REGISTRY = new TypeRegistry()
-
-export const MESSAGING_PORT = chrome.runtime.connect({ name: PORT_EXTENSION })
