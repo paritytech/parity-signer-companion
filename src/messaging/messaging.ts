@@ -1,9 +1,9 @@
 import { Message } from '@polkadot/extension-base/types'
-import { MESSAGING_PORT } from '../utils/constants'
 import { handlers } from './handlers'
+import { messagingPort } from './messagingPort'
 
 // setup a listener for messages, any incoming resolves the promise
-MESSAGING_PORT.onMessage.addListener((data: Message['data']) => {
+messagingPort.onMessage.addListener((data: Message['data']) => {
   const handler = handlers[data.id]
 
   if (!handler)

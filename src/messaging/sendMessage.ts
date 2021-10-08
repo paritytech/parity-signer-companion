@@ -7,8 +7,8 @@ import {
   ResponseTypes,
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
-import { MESSAGING_PORT } from '../utils/constants'
 import { Handler, handlers } from './handlers'
+import { messagingPort } from './messagingPort'
 
 let idCounter = 0
 
@@ -38,6 +38,6 @@ export function sendMessage<TMessageType extends MessageTypes>(
       subscriber,
       resolve: resolve as Handler['resolve'],
     }
-    MESSAGING_PORT.postMessage({ id, message, request: request || {} })
+    messagingPort.postMessage({ id, message, request: request || {} })
   })
 }
