@@ -1,3 +1,5 @@
+[![GitLab Status](https://gitlab.parity.io/parity/parity-signer-companion/badges/main/pipeline.svg)](https://gitlab.parity.io/parity/parity-signer-companion/pipelines)
+
 # Parity Signer Companion
 
 The extension helps you to sign transactions with keys you store in the [Parity Signer](https://www.parity.io/technologies/signer/). To start using, you should go to the Signer and import keys.
