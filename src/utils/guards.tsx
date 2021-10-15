@@ -1,5 +1,13 @@
 import { SignerPayloadJSON, SignerPayloadRaw } from '@polkadot/types/types'
 
-export const isRawPayload = (
+export function isRawPayload(
   payload: SignerPayloadJSON | SignerPayloadRaw
-): payload is SignerPayloadRaw => !!(payload as SignerPayloadRaw).data
+): payload is SignerPayloadRaw {
+  return !!(payload as SignerPayloadRaw).data
+}
+
+export function isJsonPayload(
+  payload: SignerPayloadJSON | SignerPayloadRaw
+): payload is SignerPayloadJSON {
+  return !!(payload as SignerPayloadJSON).genesisHash
+}

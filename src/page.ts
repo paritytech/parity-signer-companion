@@ -1,15 +1,16 @@
 import { Message } from '@polkadot/extension-base/types'
-import {
-  enable,
-  handleResponse,
-  redirectIfPhishing,
-} from '@polkadot/extension-base/page'
 import { injectExtension } from '@polkadot/extension-inject'
-import { PKG_NAME, PKG_VERSION } from './utils/constants'
+import { enable, redirectIfPhishing } from './messaging/pageActions'
+import { handleResponse } from './messaging/handleResponse'
+import {
+  MESSAGE_ORIGIN_CONTENT,
+  PKG_NAME,
+  PKG_VERSION,
+} from './utils/constants'
 import { isMessageAllowed } from './utils/isMessageAllowed'
 
 window.addEventListener('message', (message: Message) => {
-  if (!isMessageAllowed(message, 'content')) return
+  if (!isMessageAllowed(message, MESSAGE_ORIGIN_CONTENT)) return
   if (!message.data.id) return console.error('Missing id for response.')
 
   handleResponse(message.data as any) // eslint-disable-line @typescript-eslint/no-explicit-any

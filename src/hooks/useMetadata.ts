@@ -8,11 +8,11 @@ export default function useMetadata(
 ): Chain | null {
   const [chain, setChain] = useState<Chain | null>(null)
 
-  useEffect((): void => {
+  useEffect(() => {
     if (genesisHash) {
       getMetadata(genesisHash, isPartial)
         .then(setChain)
-        .catch((error): void => {
+        .catch((error) => {
           console.error(error)
           setChain(null)
         })

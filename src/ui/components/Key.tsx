@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import cancelIcon from '../assets/cancel.svg'
 import { useTimer } from '../../hooks/useTimer'
 import { BaseProps } from '../types'
-import { forgetAccount } from '../../messaging/actions'
+import { forgetAccount } from '../../messaging/uiActions'
 import Address from './Address'
 import { Button } from './Button'
 
