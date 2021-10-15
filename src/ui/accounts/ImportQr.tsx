@@ -8,7 +8,7 @@ import {
   resetHeaderActions,
 } from '../../stores/headerActions'
 import { BaseProps } from '../types'
-import { createAccountExternal } from '../../messaging/actions'
+import { createAccountExternal } from '../../messaging/uiActions'
 
 interface QrAccount {
   isAddress: boolean

@@ -6,7 +6,10 @@ import Actions from '../components/Actions'
 import { Button } from '../components/Button'
 import useMetadata from '../../hooks/useMetadata'
 import { BaseProps } from '../types'
-import { approveMetaRequest, rejectMetaRequest } from '../../messaging/actions'
+import {
+  approveMetaRequest,
+  rejectMetaRequest,
+} from '../../messaging/uiActions'
 
 type Props = BaseProps & {
   request: MetadataDef

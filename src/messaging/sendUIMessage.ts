@@ -7,32 +7,33 @@ import {
   ResponseTypes,
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
+import { getId } from '../utils/getId'
 import { Handler, handlers } from './handlers'
 import { messagingPort } from './messagingPort'
 
-let idCounter = 0
-
-export function sendMessage<TMessageType extends MessageTypesWithNullRequest>(
+export function sendUIMessage<TMessageType extends MessageTypesWithNullRequest>(
   message: TMessageType
 ): Promise<ResponseTypes[TMessageType]>
-export function sendMessage<
+export function sendUIMessage<
   TMessageType extends MessageTypesWithNoSubscriptions
 >(
   message: TMessageType,
   request: RequestTypes[TMessageType]
 ): Promise<ResponseTypes[TMessageType]>
-export function sendMessage<TMessageType extends MessageTypesWithSubscriptions>(
+export function sendUIMessage<
+  TMessageType extends MessageTypesWithSubscriptions
+>(
   message: TMessageType,
   request: RequestTypes[TMessageType],
   subscriber: (data: SubscriptionMessageTypes[TMessageType]) => void
 ): Promise<ResponseTypes[TMessageType]>
-export function sendMessage<TMessageType extends MessageTypes>(
+export function sendUIMessage<TMessageType extends MessageTypes>(
   message: TMessageType,
   request?: RequestTypes[TMessageType],
   subscriber?: (data: unknown) => void
 ): Promise<ResponseTypes[TMessageType]> {
   return new Promise((resolve, reject) => {
-    const id = `${Date.now()}.${++idCounter}`
+    const id = getId()
     handlers[id] = {
       reject,
       subscriber,

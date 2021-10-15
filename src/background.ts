@@ -1,10 +1,10 @@
-import handlers from '@polkadot/extension-base/background/handlers'
-import { PORT_CONTENT, PORT_EXTENSION } from '@polkadot/extension-base/defaults'
-import { AccountsStore } from '@polkadot/extension-base/stores'
+import chrome from '@polkadot/extension-inject/chrome'
 import keyring from '@polkadot/ui-keyring'
 import { assert } from '@polkadot/util'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
-import chrome from '@polkadot/extension-inject/chrome'
+import { handler } from './base/handler'
+import { AccountsStorage } from './storages/AccountsStorage'
+import { PORT_CONTENT, PORT_EXTENSION } from './utils/constants'
 
 // setup the notification (same a FF default background, white text)
 void chrome.browserAction.setBadgeBackgroundColor({ color: '#d90000' })
@@ -16,7 +16,7 @@ chrome.runtime.onConnect.addListener((port) => {
     `Unknown connection from ${port.name}`
   )
 
-  port.onMessage.addListener((data) => handlers(data, port))
+  port.onMessage.addListener((data) => handler(data, port))
   port.onDisconnect.addListener(() =>
     console.log(`Disconnected from ${port.name}`)
   )
@@ -25,7 +25,7 @@ chrome.runtime.onConnect.addListener((port) => {
 cryptoWaitReady()
   .then(() => {
     console.log('crypto initialized')
-    keyring.loadAll({ store: new AccountsStore(), type: 'sr25519' })
+    keyring.loadAll({ store: new AccountsStorage(), type: 'sr25519' })
     console.log('initialization completed')
   })
   .catch((error) => {

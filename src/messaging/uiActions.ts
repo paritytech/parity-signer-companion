@@ -5,36 +5,33 @@ import {
   MetadataRequest,
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
-import { sendMessage } from './sendMessage'
+import { sendUIMessage } from './sendUIMessage'
 
-export async function editAccount(
-  address: string,
-  name: string
-): Promise<boolean> {
-  return sendMessage('pri(accounts.edit)', { address, name })
+export function editAccount(address: string, name: string): Promise<boolean> {
+  return sendUIMessage('pri(accounts.edit)', { address, name })
 }
 
 export function forgetAccount(address: string): Promise<boolean> {
-  return sendMessage('pri(accounts.forget)', { address })
+  return sendUIMessage('pri(accounts.forget)', { address })
 }
 
 export function approveAuthRequest(id: string): Promise<boolean> {
-  return sendMessage('pri(authorize.approve)', { id })
+  return sendUIMessage('pri(authorize.approve)', { id })
 }
 
 export function approveMetaRequest(id: string): Promise<boolean> {
-  return sendMessage('pri(metadata.approve)', { id })
+  return sendUIMessage('pri(metadata.approve)', { id })
 }
 
 export function cancelSignRequest(id: string): Promise<boolean> {
-  return sendMessage('pri(signing.cancel)', { id })
+  return sendUIMessage('pri(signing.cancel)', { id })
 }
 
 export function approveSignSignature(
   id: string,
   signature: string
 ): Promise<boolean> {
-  return sendMessage('pri(signing.approve.signature)', { id, signature })
+  return sendUIMessage('pri(signing.approve.signature)', { id, signature })
 }
 
 export function createAccountExternal(
@@ -42,7 +39,7 @@ export function createAccountExternal(
   address: string,
   genesisHash: string
 ): Promise<boolean> {
-  return sendMessage('pri(accounts.create.external)', {
+  return sendUIMessage('pri(accounts.create.external)', {
     address,
     genesisHash,
     name,
@@ -50,41 +47,41 @@ export function createAccountExternal(
 }
 
 export function rejectAuthRequest(id: string): Promise<boolean> {
-  return sendMessage('pri(authorize.reject)', { id })
+  return sendUIMessage('pri(authorize.reject)', { id })
 }
 
 export function rejectMetaRequest(id: string): Promise<boolean> {
-  return sendMessage('pri(metadata.reject)', { id })
+  return sendUIMessage('pri(metadata.reject)', { id })
 }
 
 export function subscribeAccounts(
   cb: (accounts: AccountJson[]) => void
 ): Promise<boolean> {
-  return sendMessage('pri(accounts.subscribe)', null, cb)
+  return sendUIMessage('pri(accounts.subscribe)', null, cb)
 }
 
 export function subscribeAuthorizeRequests(
   cb: (accounts: AuthorizeRequest[]) => void
 ): Promise<boolean> {
-  return sendMessage('pri(authorize.requests)', null, cb)
+  return sendUIMessage('pri(authorize.requests)', null, cb)
 }
 
 export function subscribeMetadataRequests(
   cb: (accounts: MetadataRequest[]) => void
 ): Promise<boolean> {
-  return sendMessage('pri(metadata.requests)', null, cb)
+  return sendUIMessage('pri(metadata.requests)', null, cb)
 }
 
 export function subscribeSigningRequests(
   cb: (accounts: SigningRequest[]) => void
 ): Promise<boolean> {
-  return sendMessage('pri(signing.requests)', null, cb)
+  return sendUIMessage('pri(signing.requests)', null, cb)
 }
 
 export function windowOpen(path: AllowedPath): Promise<boolean> {
-  return sendMessage('pri(window.open)', path)
+  return sendUIMessage('pri(window.open)', path)
 }
 
 export function getMeta(genesisHash: string | null) {
-  return sendMessage('pri(metadata.get)', genesisHash)
+  return sendUIMessage('pri(metadata.get)', genesisHash)
 }

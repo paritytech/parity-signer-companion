@@ -16,7 +16,7 @@ import { isRawPayload } from '../../utils/guards'
 import {
   approveSignSignature,
   cancelSignRequest,
-} from '../../messaging/actions'
+} from '../../messaging/uiActions'
 import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
 import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
 
