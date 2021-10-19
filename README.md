@@ -6,6 +6,11 @@ The extension helps you to sign transactions with keys you store in the [Parity 
 
 Without the Signer the extension is useless. If you want to create and store keys without any device, look at [Polkadot{.js} extension](https://github.com/polkadot-js/extension).
 
+## Installation
+
+[Chrome Web Store](https://chrome.google.com/webstore/detail/parity-signer-companion/damllfnhhcbmclmjilomenbhkappdjgb)<br/>
+[Firefox add-ons](https://addons.mozilla.org/en-US/firefox/addon/parity-signer-companion/)
+
 ## Development
 
 We whitelist dependency lifecycle scripts (eg. "postinstall") via [@lavamoat/allow-scripts](https://github.com/LavaMoat/LavaMoat/tree/main/packages/allow-scripts) so you should install dependencies running `yarn setup` instead of just `yarn`.
