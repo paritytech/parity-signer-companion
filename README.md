@@ -8,6 +8,8 @@ Without the Signer the extension is useless. If you want to create and store key
 
 ## Installation
 
+#### https://parity.link/signer-companion redirects to the correct extension automatically
+
 [Chrome Web Store](https://chrome.google.com/webstore/detail/parity-signer-companion/damllfnhhcbmclmjilomenbhkappdjgb/)<br/>
 [Firefox add-ons](https://addons.mozilla.org/en-US/firefox/addon/parity-signer-companion/)
 
