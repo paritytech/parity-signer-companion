@@ -11,8 +11,13 @@ export const importHeaderAction: Action = {
   onAction: goToImport,
 }
 
-export const goHomeHeaderAction: Action = {
+export const cancelAndGoHomeHeaderAction: Action = {
   label: 'Cancel',
+  onAction: goHome,
+}
+
+export const doneAndGoHomeHeaderAction: Action = {
+  label: 'Done',
   onAction: goHome,
 }
 
