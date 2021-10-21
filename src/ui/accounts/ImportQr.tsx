@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import Address from '../components/Address'
 import {
   addHeaderAction,
-  goHomeHeaderAction,
+  cancelAndGoHomeHeaderAction,
+  doneAndGoHomeHeaderAction,
   resetHeaderActions,
 } from '../../stores/headerActions'
 import { BaseProps } from '../types'
@@ -37,9 +38,11 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
   }
 
   useEffect(() => {
-    addHeaderAction(goHomeHeaderAction)
+    scanned.length === 0
+      ? addHeaderAction(cancelAndGoHomeHeaderAction)
+      : addHeaderAction(doneAndGoHomeHeaderAction)
     return () => resetHeaderActions()
-  }, [])
+  }, [scanned.length])
 
   return (
     <div className={className}>
