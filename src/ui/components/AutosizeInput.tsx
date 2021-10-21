@@ -17,18 +17,26 @@ const AutosizeInput: React.FC<Props> = ({
   const [content, setContent] = React.useState<string>(value?.toString() || '')
   const [width, setWidth] = React.useState(0)
   const span = React.useRef<HTMLSpanElement>(null)
+  const isContentChangedRef = React.useRef(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isContentChangedRef.current) isContentChangedRef.current = true
     setContent(e.currentTarget.value)
+  }
+
+  React.useEffect(() => {
+    const newContent = value?.toString()
+    if (newContent && newContent !== content) setContent(newContent)
+  }, [value])
 
   React.useEffect(() => {
     setWidth(span.current?.offsetWidth || 0)
-    onChange(content)
+    if (isContentChangedRef.current) onChange(content)
   }, [content])
 
   return (
     <div className={className}>
-      <span className='spacer' ref={span}>
+      <span className='autoresize-spacer' ref={span}>
         {content || placeholder}
       </span>
       <input
@@ -60,7 +68,7 @@ export default styled(AutosizeInput)`
     background: var(--color-highlight);
   }
 
-  .spacer {
+  .autoresize-spacer {
     opacity: 0;
     position: absolute;
     white-space: nowrap;
