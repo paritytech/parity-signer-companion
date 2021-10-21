@@ -9,7 +9,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'
 import { Button } from '../components/Button'
-import { accounts as accountsStore } from '../../stores/accounts'
+import {
+  accountNamesByAddress as accountNamesByAddressStore,
+  accounts as accountsStore,
+} from '../../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
 import { BaseProps } from '../types'
 import { isRawPayload } from '../../utils/guards'
@@ -34,11 +37,13 @@ type Props = BaseProps & {
 
 const Request: React.FC<Props> = ({ request, signId, className }) => {
   const accounts = useStore(accountsStore)
+  const accountNamesByAddress = useStore(accountNamesByAddressStore)
   const [beginning, setBeginning] = useState(true)
   const payloadRef = useRef(getExtrinsicPayload(request.payload))
   const isRaw = isRawPayload(request.payload)
   const cmd = isRaw ? CMD_SIGN_MESSAGE : CMD_MORTAL
   const address = request.payload.address
+  const name = accountNamesByAddress[address]
   const genesisHash = isRaw
     ? getGenesisHashByAddress(accounts, address)
     : request.payload.genesisHash
@@ -101,7 +106,7 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
       </div>
       <div className='using-key'>
         <div className='using-key-heading'>Using key</div>
-        <Address address={address} genesisHash={genesisHash} />
+        <Address address={address} name={name} genesisHash={genesisHash} />
       </div>
     </div>
   )
