@@ -14,7 +14,10 @@ const Media: React.FC<BaseProps> = ({ className }) => {
   const cameraAllowed = useStore(cameraAllowedStore)
   const canGrant = !isPopup()
 
-  const open = () => windowOpen('/')
+  const open = () => {
+    window.close() // Firefox doen't close it itself
+    windowOpen('/')
+  }
 
   if (cameraAllowed) return null
 
