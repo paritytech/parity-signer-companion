@@ -7,7 +7,7 @@ import { goToImport } from '../../utils/routing'
 const NoAccounts: React.FC<BaseProps> = ({ className }) => (
   <div className={className}>
     <div className='container'>
-      The extensioin helps you to sign transactions with keys you store in your
+      The extension helps you to sign transactions with keys you store in your
       Parity Signer. To start using, go to the Signer and import a first key.
     </div>
     <Button onClick={goToImport}>Import a key</Button>
