@@ -1,8 +1,8 @@
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Key from '../components/Key'
-import { accounts as accountsStore } from '../../stores/accounts'
+import { accountsStore } from '../../stores/accounts'
 import {
   addHeaderAction,
   importHeaderAction,

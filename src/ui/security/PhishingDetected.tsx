@@ -1,4 +1,4 @@
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React from 'react'
 import { router } from '../../stores/router'
 

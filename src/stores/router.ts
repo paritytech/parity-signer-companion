@@ -1,4 +1,4 @@
-import { createStore } from 'nanostores'
+import { atom, onStart } from 'nanostores'
 import { getParam, getPath } from '../utils/routing'
 
 type Page = {
@@ -12,7 +12,9 @@ function parse() {
   router.set({ path, param })
 }
 
-export const router = createStore<Page>(() => {
+export const router = atom<Page>()
+
+onStart(router, () => {
   parse()
   window.addEventListener('hashchange', parse)
   return () => {

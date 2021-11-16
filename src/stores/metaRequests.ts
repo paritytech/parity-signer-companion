@@ -1,8 +1,9 @@
 import { MetadataRequest } from '@polkadot/extension-base/background/types'
-import { createStore } from 'nanostores'
+import { atom, onStart } from 'nanostores'
 import { subscribeMetadataRequests } from '../messaging/uiActions'
 
-export const metaRequests = createStore<MetadataRequest[]>(() => {
-  metaRequests.set([])
-  subscribeMetadataRequests(metaRequests.set).catch(console.error)
+export const metaRequestsStore = atom<MetadataRequest[]>([])
+
+onStart(metaRequestsStore, () => {
+  subscribeMetadataRequests(metaRequestsStore.set).catch(console.error)
 })
