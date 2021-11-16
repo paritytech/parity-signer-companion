@@ -4,7 +4,7 @@ import {
 } from '@polkadot/extension-base/background/types'
 import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Address from '../components/Address'

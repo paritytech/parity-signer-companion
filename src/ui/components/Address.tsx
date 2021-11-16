@@ -1,7 +1,7 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
 import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useMetadata from '../../hooks/useMetadata'

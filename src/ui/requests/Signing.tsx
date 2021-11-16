@@ -1,6 +1,6 @@
 import { RequestSign } from '@polkadot/extension-base/background/types'
 import { SignerPayloadJSON } from '@polkadot/types/types'
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
 import { signRequests } from '../../stores/signRequests'
 import RequestIndex from './RequestIndex'

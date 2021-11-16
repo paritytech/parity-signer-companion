@@ -1,20 +1,25 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
-import { createDerived, createStore } from 'nanostores'
-import { buildHierarchy } from '../utils/buildHierarchy'
+import { action, atom, computed, onStart } from 'nanostores'
 import { subscribeAccounts } from '../messaging/uiActions'
+import { buildHierarchy } from '../utils/buildHierarchy'
 
-export const accounts = createStore<AccountJson[]>(() => {
-  accounts.set([])
+export const accounts = atom<AccountJson[]>([])
+
+onStart(accounts, () => {
   subscribeAccounts(setAccounts).catch(console.error)
 })
 
-export const accountNamesByAddress = createDerived(accounts, (list) =>
+export const accountNamesByAddress = computed(accounts, (list) =>
   list.reduce((res, account) => {
     res[account.address] = account.name
     return res
   }, {} as Record<string, string | undefined>)
 )
 
-const setAccounts = (list: AccountJson[]) => {
-  accounts.set(buildHierarchy(list))
-}
+const setAccounts = action(
+  accounts,
+  'set_accounts',
+  (store, list: AccountJson[]) => {
+    store.set(buildHierarchy(list))
+  }
+)

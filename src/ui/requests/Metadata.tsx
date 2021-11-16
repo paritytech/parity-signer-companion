@@ -1,4 +1,4 @@
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
 import { metaRequests } from '../../stores/metaRequests'
 import MetadataRequest from './MetadataRequest'

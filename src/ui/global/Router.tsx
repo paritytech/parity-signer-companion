@@ -1,5 +1,5 @@
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults'
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React from 'react'
 import Accounts from '../accounts/Accounts'
 import ImportQr from '../accounts/ImportQr'

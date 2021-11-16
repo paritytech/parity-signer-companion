@@ -1,4 +1,4 @@
-import { createStore, update } from 'nanostores'
+import { action, atom } from 'nanostores'
 import { goHome, goToImport } from '../utils/routing'
 
 type Action = {
@@ -21,14 +21,20 @@ export const doneAndGoHomeHeaderAction: Action = {
   onAction: goHome,
 }
 
-export const headerActions = createStore<Action[]>(() => {
-  headerActions.set([])
-})
+export const headerActions = atom<Action[]>([])
 
-export const addHeaderAction = (v: Action) => {
-  update(headerActions, (list) => [...list, v])
-}
+export const addHeaderAction = action(
+  headerActions,
+  'add_header_action',
+  (store, v: Action) => {
+    store.set([...store.get(), v])
+  }
+)
 
-export const resetHeaderActions = () => {
-  headerActions.set([])
-}
+export const resetHeaderActions = action(
+  headerActions,
+  'reset_header_actions',
+  (store) => {
+    store.set([])
+  }
+)

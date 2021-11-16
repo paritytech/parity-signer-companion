@@ -1,4 +1,4 @@
-import { useStore } from 'nanostores/react'
+import { useStore } from '@nanostores/react'
 import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
