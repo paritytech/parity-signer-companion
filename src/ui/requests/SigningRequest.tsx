@@ -1,27 +1,28 @@
+import { useStore } from '@nanostores/react'
 import {
   AccountJson,
   RequestSign,
 } from '@polkadot/extension-base/background/types'
 import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
-import { useStore } from '@nanostores/react'
+import { HexString } from '@polkadot/util/types'
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import Address from '../components/Address'
-import { Button } from '../components/Button'
+import {
+  approveSignSignature,
+  cancelSignRequest,
+} from '../../messaging/uiActions'
 import {
   accountNamesByAddressStore,
   accountsStore,
 } from '../../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
-import { BaseProps } from '../types'
-import { isRawPayload } from '../../utils/guards'
-import {
-  approveSignSignature,
-  cancelSignRequest,
-} from '../../messaging/uiActions'
-import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
 import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
+import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
+import { isRawPayload } from '../../utils/guards'
+import Address from '../components/Address'
+import { Button } from '../components/Button'
+import { BaseProps } from '../types'
 
 const CMD_MORTAL = 2
 const CMD_SIGN_MESSAGE = 3
@@ -52,7 +53,7 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
     : payloadRef.current?.toU8a()
 
   const toggleOnQr = () => setBeginning((v) => !v)
-  const onSignature = ({ signature }: { signature: string }) =>
+  const onSignature = ({ signature }: { signature: HexString }) =>
     approveSignSignature(signId, signature).catch(console.error)
 
   useEffect(() => {
