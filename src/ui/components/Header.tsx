@@ -3,12 +3,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { EXT_NAME } from '../../utils/constants'
 import logo from '../assets/logo.svg'
-import { headerActions } from '../../stores/headerActions'
+import { headerActionsStore } from '../../stores/headerActions'
 import { BaseProps } from '../types'
 import { Button } from './Button'
 
 const Header: React.FC<BaseProps> = ({ className }) => {
-  const actions = useStore(headerActions)
+  const actions = useStore(headerActionsStore)
 
   return (
     <div className={className}>

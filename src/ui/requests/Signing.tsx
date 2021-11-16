@@ -2,12 +2,12 @@ import { RequestSign } from '@polkadot/extension-base/background/types'
 import { SignerPayloadJSON } from '@polkadot/types/types'
 import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
-import { signRequests } from '../../stores/signRequests'
+import { signRequestsStore } from '../../stores/signRequests'
 import RequestIndex from './RequestIndex'
 import SigningRequest from './SigningRequest'
 
 const Signing: React.FC = () => {
-  const requests = useStore(signRequests)
+  const requests = useStore(signRequestsStore)
   const [idx, setIdx] = useState(0)
   const request = requests[idx]
   const isTransaction = !!(request?.request?.payload as SignerPayloadJSON)

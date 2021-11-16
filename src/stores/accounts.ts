@@ -3,13 +3,13 @@ import { action, atom, computed, onStart } from 'nanostores'
 import { subscribeAccounts } from '../messaging/uiActions'
 import { buildHierarchy } from '../utils/buildHierarchy'
 
-export const accounts = atom<AccountJson[]>([])
+export const accountsStore = atom<AccountJson[]>([])
 
-onStart(accounts, () => {
+onStart(accountsStore, () => {
   subscribeAccounts(setAccounts).catch(console.error)
 })
 
-export const accountNamesByAddress = computed(accounts, (list) =>
+export const accountNamesByAddressStore = computed(accountsStore, (list) =>
   list.reduce((res, account) => {
     res[account.address] = account.name
     return res
@@ -17,7 +17,7 @@ export const accountNamesByAddress = computed(accounts, (list) =>
 )
 
 const setAccounts = action(
-  accounts,
+  accountsStore,
   'set_accounts',
   (store, list: AccountJson[]) => {
     store.set(buildHierarchy(list))

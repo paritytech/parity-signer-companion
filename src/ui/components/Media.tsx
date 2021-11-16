@@ -1,10 +1,7 @@
 import { useStore } from '@nanostores/react'
 import React from 'react'
 import styled from 'styled-components'
-import {
-  cameraAllowed as cameraAllowedStore,
-  requestCameraAllowed,
-} from '../../stores/media'
+import { cameraAllowedStore, requestCameraAllowed } from '../../stores/media'
 import { BaseProps } from '../types'
 import { isPopup } from '../../utils/isPopup'
 import { windowOpen } from '../../messaging/uiActions'

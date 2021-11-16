@@ -21,10 +21,10 @@ export const doneAndGoHomeHeaderAction: Action = {
   onAction: goHome,
 }
 
-export const headerActions = atom<Action[]>([])
+export const headerActionsStore = atom<Action[]>([])
 
 export const addHeaderAction = action(
-  headerActions,
+  headerActionsStore,
   'add_header_action',
   (store, v: Action) => {
     store.set([...store.get(), v])
@@ -32,7 +32,7 @@ export const addHeaderAction = action(
 )
 
 export const resetHeaderActions = action(
-  headerActions,
+  headerActionsStore,
   'reset_header_actions',
   (store) => {
     store.set([])

@@ -10,8 +10,8 @@ import styled from 'styled-components'
 import Address from '../components/Address'
 import { Button } from '../components/Button'
 import {
-  accountNamesByAddress as accountNamesByAddressStore,
-  accounts as accountsStore,
+  accountNamesByAddressStore,
+  accountsStore,
 } from '../../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
 import { BaseProps } from '../types'

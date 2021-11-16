@@ -9,8 +9,8 @@ import { subscribeAuthorizeRequests } from '../messaging/uiActions'
 //     url: 'https://polkadot.js.org/apps/#/explorer',
 //   },
 // ]
-export const authRequests = atom<AuthorizeRequest[]>([])
+export const authRequestsStore = atom<AuthorizeRequest[]>([])
 
-onStart(authRequests, () => {
-  subscribeAuthorizeRequests(authRequests.set).catch(console.error)
+onStart(authRequestsStore, () => {
+  subscribeAuthorizeRequests(authRequestsStore.set).catch(console.error)
 })

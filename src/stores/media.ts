@@ -2,12 +2,12 @@ import { atom, onStart } from 'nanostores'
 import { checkCameraAccess } from '../utils/checkCameraAccess'
 import { requestCameraAccess } from '../utils/requestCameraAccess'
 
-export const cameraAllowed = atom(false)
+export const cameraAllowedStore = atom(false)
 
-onStart(cameraAllowed, () => {
-  checkCameraAccess().then(cameraAllowed.set).catch(console.error)
+onStart(cameraAllowedStore, () => {
+  checkCameraAccess().then(cameraAllowedStore.set).catch(console.error)
 })
 
 export const requestCameraAllowed = () => {
-  requestCameraAccess().then(cameraAllowed.set).catch(console.error)
+  requestCameraAccess().then(cameraAllowedStore.set).catch(console.error)
 }

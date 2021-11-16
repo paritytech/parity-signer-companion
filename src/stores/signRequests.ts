@@ -43,8 +43,8 @@ import { subscribeSigningRequests } from '../messaging/uiActions'
 //     url: 'https://polkadot.js.org/apps/#/accounts',
 //   },
 // ]
-export const signRequests = atom<SigningRequest[]>([])
+export const signRequestsStore = atom<SigningRequest[]>([])
 
-onStart(signRequests, () => {
-  subscribeSigningRequests(signRequests.set).catch(console.error)
+onStart(signRequestsStore, () => {
+  subscribeSigningRequests(signRequestsStore.set).catch(console.error)
 })
