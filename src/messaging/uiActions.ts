@@ -5,6 +5,7 @@ import {
   MetadataRequest,
   SigningRequest,
 } from '@polkadot/extension-base/background/types'
+import { HexString } from '@polkadot/util/types'
 import { sendUIMessage } from './sendUIMessage'
 
 export function editAccount(address: string, name: string): Promise<boolean> {
@@ -29,7 +30,7 @@ export function cancelSignRequest(id: string): Promise<boolean> {
 
 export function approveSignSignature(
   id: string,
-  signature: string
+  signature: HexString
 ): Promise<boolean> {
   return sendUIMessage('pri(signing.approve.signature)', { id, signature })
 }

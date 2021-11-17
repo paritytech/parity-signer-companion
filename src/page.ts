@@ -28,5 +28,6 @@ redirectIfPhishing()
   })
 
 function inject() {
-  injectExtension(enable, { name: PKG_NAME, version: PKG_VERSION })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  injectExtension(enable as any, { name: PKG_NAME, version: PKG_VERSION })
 }
