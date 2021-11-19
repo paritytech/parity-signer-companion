@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.5 (2021-11-19)
+
+### Changes
+
+- [#93](https://github.com/paritytech/parity-signer-companion/pull/93), [#95](https://github.com/paritytech/parity-signer-companion/pull/95): Update CI and building
+- [#89](https://github.com/paritytech/parity-signer-companion/pull/89), [#90](https://github.com/paritytech/parity-signer-companion/pull/90), [#91](https://github.com/paritytech/parity-signer-companion/pull/91), [#92](https://github.com/paritytech/parity-signer-companion/pull/92): Update deps
+
+### Bug fixes
+
+- [#86](https://github.com/paritytech/parity-signer-companion/pull/86): Fix typo
+
 ## 0.1.4 (2021-10-25)
 
 ### Bug fixes
