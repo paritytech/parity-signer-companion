@@ -28,3 +28,4 @@ Then open `./build` folder in your browser as an unpacked extension. To refresh 
 ## Acknowledgements
 
 The extension based on [Polkadot{.js} extension](https://github.com/polkadot-js/extension). Thanks to the contributers.
+
