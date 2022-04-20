@@ -104,4 +104,9 @@ export default styled(ImportQr)`
     font-size: 4rem;
     line-height: 1;
   }
+
+  .scanner {
+    border: 0.2rem solid var(--color-white);
+    border-radius: 0.2rem;
+  }
 `

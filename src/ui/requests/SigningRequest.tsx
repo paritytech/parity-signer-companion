@@ -151,6 +151,8 @@ export default styled(Request)`
 
   .scanner {
     position: relative;
+    border: 0.2rem solid var(--color-white);
+    border-radius: 0.2rem;
   }
 
   .spacer {
