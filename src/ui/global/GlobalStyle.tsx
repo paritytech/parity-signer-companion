@@ -1,3 +1,4 @@
+import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
@@ -65,4 +66,4 @@ export const GlobalStyle = createGlobalStyle`
     height: var(--size-max-height);
     margin: 0 auto;
   }
-`
+` as unknown as React.FC
