@@ -8,7 +8,7 @@ import {
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
 import { MESSAGE_ORIGIN_PAGE } from '../utils/constants'
-import { getId } from '../utils/getId'
+import { getId } from '@polkadot/extension-base/utils/getId'
 import { handlers } from './handlers'
 
 export function sendPageMessage<

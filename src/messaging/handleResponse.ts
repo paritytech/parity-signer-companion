@@ -1,12 +1,7 @@
-import {
-  MessageTypes,
-  TransportResponseMessage,
-} from '@polkadot/extension-base/background/types'
+import { Message } from '@polkadot/extension-base/types'
 import { handlers } from './handlers'
 
-export function handleResponse<TMessageType extends MessageTypes>(
-  data: TransportResponseMessage<TMessageType> & { subscription?: string }
-) {
+export function handleResponse(data: Message['data']) {
   const handler = handlers[data.id]
 
   if (!handler)
