@@ -84,7 +84,16 @@
       "tiny-secp256k1": false,
       "@lavamoat/preinstall-always-fail": false,
       "dtrace-provider": false,
-      "spawn-sync": false
+      "spawn-sync": false,
+      "@polkadot/extension-base>@polkadot/ui-keyring>@polkadot/hw-ledger>@polkadot/hw-ledger-transports>@ledgerhq/hw-transport-node-hid-singleton>node-hid": false,
+      "@polkadot/extension-base>@polkadot/ui-keyring>@polkadot/hw-ledger>@polkadot/hw-ledger-transports>@ledgerhq/hw-transport-node-hid-singleton>usb-detection": false,
+      "@polkadot/extension-base>@polkadot/ui-keyring>@polkadot/hw-ledger>@zondax/ledger-substrate>bip32>tiny-secp256k1": false,
+      "web-ext>bunyan>dtrace-provider": false,
+      "web-ext>fx-runner>spawn-sync": false,
+      "web-ext>sign-addon>core-js": false,
+      "web-ext>ws>bufferutil": false,
+      "web-ext>ws>utf-8-validate": false,
+      "webpack-extension-manifest-plugin>core-js": false
     }
   }
 }
