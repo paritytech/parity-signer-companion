@@ -1,5 +1,5 @@
 import { Message } from '@polkadot/extension-base/types'
-import chrome from '@polkadot/extension-inject/chrome'
+import { chrome } from '@polkadot/extension-inject/chrome'
 import {
   MESSAGE_ORIGIN_CONTENT,
   MESSAGE_ORIGIN_PAGE,

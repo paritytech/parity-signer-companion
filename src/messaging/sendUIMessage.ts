@@ -7,7 +7,7 @@ import {
   ResponseTypes,
   SubscriptionMessageTypes,
 } from '@polkadot/extension-base/background/types'
-import { getId } from '../utils/getId'
+import { getId } from '@polkadot/extension-base/utils/getId'
 import { Handler, handlers } from './handlers'
 import { messagingPort } from './messagingPort'
 
