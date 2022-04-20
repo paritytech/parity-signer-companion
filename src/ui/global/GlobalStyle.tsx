@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --transition: 0.1s;
     --shadow: 0px 4px 10px #000000;;
 
+    --color-white: #fff;
     --color-orange: #d73400;
     --color-pink: #ff4077;
     --color-gray-lightest: #cccccc;
