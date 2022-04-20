@@ -7,6 +7,6 @@ export class AccountsStorage
   implements KeyringStore
 {
   constructor() {
-    super(`${EXT_PREFIX}-account`)
+    super(`${EXT_PREFIX}account`)
   }
 }

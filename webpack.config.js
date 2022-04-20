@@ -76,6 +76,7 @@ module.exports = (env, argv) => ({
         NODE_ENV: JSON.stringify(argv.mode || 'production'),
         PKG_NAME: JSON.stringify(pkgJson.name),
         PKG_VERSION: JSON.stringify(pkgJson.version),
+        EXTENSION_PREFIX: JSON.stringify(pkgJson.name + '-'),
       },
     }),
     new CopyPlugin({ patterns: [{ from: 'public' }] }),
