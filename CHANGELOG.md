@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.6 (2022-04-20)
+
+### Changes
+
+- [#97](https://github.com/paritytech/parity-signer-companion/pull/97): Update CI
+- [#98](https://github.com/paritytech/parity-signer-companion/pull/98), [#104](https://github.com/paritytech/parity-signer-companion/pull/104), [#107](https://github.com/paritytech/parity-signer-companion/pull/107), [#109](https://github.com/paritytech/parity-signer-companion/pull/109): Update dependencies
+
+### Bug fixes
+
+- [#108](https://github.com/paritytech/parity-signer-companion/pull/108): Improve QR recognition for android devices by adding light border around QR-code
+
 ## 0.1.5 (2021-11-19)
 
 ### Changes
