@@ -1,5 +1,5 @@
 import { addMetadata, knownMetadata } from '@polkadot/extension-chains'
-import chrome from '@polkadot/extension-inject/chrome'
+import { chrome } from '@polkadot/extension-inject/chrome'
 import { MetadataDef, ProviderMeta } from '@polkadot/extension-inject/types'
 import {
   JsonRpcResponse,

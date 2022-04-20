@@ -48,7 +48,7 @@ import {
   ALLOWED_PATH,
   PASSWORD_EXPIRY_MS,
 } from '@polkadot/extension-base/defaults'
-import chrome from '@polkadot/extension-inject/chrome'
+import { chrome } from '@polkadot/extension-inject/chrome'
 import { MetadataDef } from '@polkadot/extension-inject/types'
 import {
   KeyringPair,

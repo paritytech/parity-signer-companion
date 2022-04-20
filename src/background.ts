@@ -1,4 +1,4 @@
-import chrome from '@polkadot/extension-inject/chrome'
+import { chrome } from '@polkadot/extension-inject/chrome'
 import keyring from '@polkadot/ui-keyring'
 import { assert } from '@polkadot/util'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
