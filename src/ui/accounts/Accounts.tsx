@@ -1,18 +1,18 @@
 import { useStore } from '@nanostores/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Key from '../components/Key'
-import { accountsStore } from '../../stores/accounts'
+import { orderedAccountsStore } from '../../stores/accounts'
 import {
   addHeaderAction,
   importHeaderAction,
   resetHeaderActions,
 } from '../../stores/headerActions'
+import Key from '../components/Key'
 import { BaseProps } from '../types'
 import NoAccounts from './NoAccounts'
 
 const Accounts: React.FC<BaseProps> = ({ className }) => {
-  const accounts = useStore(accountsStore)
+  const accounts = useStore(orderedAccountsStore)
 
   useEffect(() => {
     if (accounts.length > 0) addHeaderAction(importHeaderAction)
