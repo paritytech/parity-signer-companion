@@ -46,7 +46,7 @@ const AutosizeInput: React.FC<Props> = ({
         onChange={handleChange}
         {...rest}
       />
-      <span className='border' />
+      <span className='bordered' />
     </div>
   )
 }
@@ -75,7 +75,7 @@ export default styled(AutosizeInput)`
     pointer-events: none;
   }
 
-  .border {
+  .bordered {
     position: absolute;
     right: 0;
     bottom: 0;
