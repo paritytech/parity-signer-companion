@@ -1,9 +1,9 @@
 import { useStore } from '@nanostores/react'
 import React from 'react'
-import { router } from '../../stores/router'
+import { pageStore } from '../../stores/router'
 
 const PhishingDetected: React.FC = () => {
-  const { param: website } = useStore(router)
+  const { param: website } = useStore(pageStore)
   const decodedWebsite = decodeURIComponent(website)
 
   return (
