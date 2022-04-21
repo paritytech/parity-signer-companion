@@ -45,6 +45,9 @@ import { subscribeSigningRequests } from '../messaging/uiActions'
 // ]
 export const signRequestsStore = atom<SigningRequest[]>([])
 
+let isSubscribed = false
 onStart(signRequestsStore, () => {
+  if (isSubscribed) return
+  isSubscribed = true
   subscribeSigningRequests(signRequestsStore.set).catch(console.error)
 })

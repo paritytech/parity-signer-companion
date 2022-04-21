@@ -1,12 +1,15 @@
 import { AccountJson } from '@polkadot/extension-base/background/types'
-import { action, atom, computed, onStart } from 'nanostores'
+import { atom, computed, onStart } from 'nanostores'
 import { subscribeAccounts } from '../messaging/uiActions'
-import { buildHierarchy } from '../utils/buildHierarchy'
+import { orderAccounts } from '../utils/orderAccounts'
 
 export const accountsStore = atom<AccountJson[]>([])
 
+let isSubscribed = false
 onStart(accountsStore, () => {
-  subscribeAccounts(setAccounts).catch(console.error)
+  if (isSubscribed) return
+  isSubscribed = true
+  subscribeAccounts(accountsStore.set).catch(console.error)
 })
 
 export const accountNamesByAddressStore = computed(accountsStore, (list) =>
@@ -15,11 +18,4 @@ export const accountNamesByAddressStore = computed(accountsStore, (list) =>
     return res
   }, {} as Record<string, string | undefined>)
 )
-
-const setAccounts = action(
-  accountsStore,
-  'set_accounts',
-  (store, list: AccountJson[]) => {
-    store.set(buildHierarchy(list))
-  }
-)
+export const orderedAccountsStore = computed(accountsStore, orderAccounts)

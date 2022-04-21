@@ -11,6 +11,9 @@ import { subscribeAuthorizeRequests } from '../messaging/uiActions'
 // ]
 export const authRequestsStore = atom<AuthorizeRequest[]>([])
 
+let isSubscribed = false
 onStart(authRequestsStore, () => {
+  if (isSubscribed) return
+  isSubscribed = true
   subscribeAuthorizeRequests(authRequestsStore.set).catch(console.error)
 })
