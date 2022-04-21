@@ -1,3 +1,40 @@
+.color {
+  --color-border-400: #334048;
+  --color-border-500: #556068;
+  --color-border-600: #7e8d95;
+
+  --color-bg-600: #3a3a3c;
+  --color-bg-500: #343434;
+  --color-bg-400: #2e2d2f;
+  --color-bg-300: #1f2021;
+  --color-bg-200: #1a1a1b;
+  --color-bg-100: #111111;
+  --color-bg-000: #000000;
+  --color-bg-signal: #fefefe;
+  --color-bg-danger: #2f2424;
+
+  --color-text-600: #fefefe;
+  --color-text-500: #d1d1d1;
+  --color-text-400: #aeaeae;
+  --color-text-300: #7e8d95;
+  --color-text-100: #334048;
+
+  --color-action-600: #ffffff;
+  --color-action-400: #3996ec;
+  --color-action-300: #2980d7;
+  --color-action-200: #0f447a;
+  --color-action-100: #082542;
+
+  --color-crypto-500: #257681;
+  --color-crypto-400: #65a8b1;
+  --color-crypto-200: #3d686d;
+  --color-crypto-100: #21373a;
+
+  --color-signal-danger: #ff3b30;
+  --color-signal-on: #32d74b;
+  --color-signal-warning: #ffd541;
+}
+
 :root {
   --size-max-width: 600px;
   --size-max-height: 600px;
