@@ -1,15 +1,13 @@
 import { QrScanAddress } from '@polkadot/react-qr'
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import Address from '../components/Address'
+import React, { useEffect, useState } from 'react'
+import { createAccountExternal } from '../../messaging/uiActions'
 import {
   addHeaderAction,
   cancelAndGoHomeHeaderAction,
   doneAndGoHomeHeaderAction,
   resetHeaderActions,
 } from '../../stores/headerActions'
-import { BaseProps } from '../types'
-import { createAccountExternal } from '../../messaging/uiActions'
+import { Address } from '../components/Address'
 
 interface QrAccount {
   isAddress: boolean
@@ -18,7 +16,7 @@ interface QrAccount {
   name?: string
 }
 
-const ImportQr: React.FC<BaseProps> = ({ className }) => {
+export const ImportQr = () => {
   const [scanned, setScanned] = useState<QrAccount[]>([])
 
   const onCreate = (account: QrAccount) => {
@@ -45,7 +43,7 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
   }, [scanned.length])
 
   return (
-    <div className={className}>
+    <div className=''>
       <div className='row'>
         <div className='counter'>
           <h1>
@@ -78,35 +76,36 @@ const ImportQr: React.FC<BaseProps> = ({ className }) => {
   )
 }
 
-export default styled(ImportQr)`
-  display: flex;
-  flex-direction: column;
+//  TODO:
+// export default styled(ImportQr)`
+//   display: flex;
+//   flex-direction: column;
 
-  .row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
+//   .row {
+//     display: flex;
+//     flex-direction: row;
+//     width: 100%;
+//     margin-bottom: 1rem;
+//   }
 
-  .row > div {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 50%;
-  }
+//   .row > div {
+//     display: flex;
+//     flex-direction: column;
+//     flex-basis: 50%;
+//   }
 
-  .row .counter {
-    justify-content: space-between;
-  }
+//   .row .counter {
+//     justify-content: space-between;
+//   }
 
-  .counter .num {
-    display: block;
-    font-size: 4rem;
-    line-height: 1;
-  }
+//   .counter .num {
+//     display: block;
+//     font-size: 4rem;
+//     line-height: 1;
+//   }
 
-  .scanner {
-    border: 0.2rem solid var(--color-white);
-    border-radius: 0.2rem;
-  }
-`
+//   .scanner {
+//     border: 0.2rem solid var(--color-white);
+//     border-radius: 0.2rem;
+//   }
+// `

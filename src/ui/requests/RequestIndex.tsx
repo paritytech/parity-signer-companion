@@ -1,20 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Button } from '../components/Button'
-import { BaseProps } from '../types'
 
-type Props = BaseProps & {
+type Props = {
   index: number
   total: number
   onChange: (index: number) => void
 }
 
-const RequestIndex: React.FC<Props> = ({
-  className,
-  index,
-  total,
-  onChange,
-}) => {
+export const RequestIndex: React.FC<Props> = ({ index, total, onChange }) => {
   const prevActive = index > 0
   const nextActive = index < total - 1
 
@@ -22,7 +15,7 @@ const RequestIndex: React.FC<Props> = ({
   const onPrev = () => onChange(Math.max(index - 1, 0))
 
   return (
-    <div className={className}>
+    <div className=''>
       <div className='transaction-container'>
         <Button className='secondary' disabled={!prevActive} onClick={onPrev}>
           ←
@@ -38,17 +31,18 @@ const RequestIndex: React.FC<Props> = ({
   )
 }
 
-export default styled(RequestIndex)`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.5rem;
+// TODO:
+// export default styled(RequestIndex)`
+//   display: flex;
+//   justify-content: center;
+//   margin-bottom: 0.5rem;
 
-  .transaction-container {
-    display: flex;
-    align-items: center;
-  }
+//   .transaction-container {
+//     display: flex;
+//     align-items: center;
+//   }
 
-  .label {
-    padding: 0 1rem;
-  }
-`
+//   .label {
+//     padding: 0 1rem;
+//   }
+// `

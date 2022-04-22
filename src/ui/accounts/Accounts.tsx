@@ -1,17 +1,15 @@
 import { useStore } from '@nanostores/react'
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
 import { orderedAccountsStore } from '../../stores/accounts'
 import {
   addHeaderAction,
   importHeaderAction,
   resetHeaderActions,
 } from '../../stores/headerActions'
-import Key from '../components/Key'
-import { BaseProps } from '../types'
-import NoAccounts from './NoAccounts'
+import { Key } from '../components/Key'
+import { NoAccounts } from './NoAccounts'
 
-const Accounts: React.FC<BaseProps> = ({ className }) => {
+export const Accounts = () => {
   const accounts = useStore(orderedAccountsStore)
 
   useEffect(() => {
@@ -22,7 +20,7 @@ const Accounts: React.FC<BaseProps> = ({ className }) => {
   if (accounts.length === 0) return <NoAccounts />
 
   return (
-    <div className={className}>
+    <div className='h-full'>
       <h1>All keys</h1>
       {accounts.map((account) => (
         <Key
@@ -35,7 +33,3 @@ const Accounts: React.FC<BaseProps> = ({ className }) => {
     </div>
   )
 }
-
-export default styled(Accounts)`
-  height: 100%;
-`

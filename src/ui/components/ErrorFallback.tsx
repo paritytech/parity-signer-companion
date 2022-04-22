@@ -1,9 +1,9 @@
 import React from 'react'
 import { FallbackProps } from 'react-error-boundary'
-import Actions from './Actions'
+import { Actions } from './Actions'
 import { Button } from './Button'
 
-const ErrorFallback: React.FC<FallbackProps> = ({
+export const ErrorFallback: React.FC<FallbackProps> = ({
   error,
   resetErrorBoundary,
 }) => (
@@ -17,5 +17,3 @@ const ErrorFallback: React.FC<FallbackProps> = ({
     </Actions>
   </div>
 )
-
-export default ErrorFallback

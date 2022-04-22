@@ -7,7 +7,7 @@ import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
 import { HexString } from '@polkadot/util/types'
 import React, { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
+
 import {
   approveSignSignature,
   cancelSignRequest,
@@ -20,14 +20,13 @@ import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
 import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
 import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
 import { isRawPayload } from '../../utils/guards'
-import Address from '../components/Address'
+import { Address } from '../components/Address'
 import { Button } from '../components/Button'
-import { BaseProps } from '../types'
 
 const CMD_MORTAL = 2
 const CMD_SIGN_MESSAGE = 3
 
-type Props = BaseProps & {
+type Props = {
   account: AccountJson
   buttonText: string
   isFirst: boolean
@@ -36,7 +35,7 @@ type Props = BaseProps & {
   url: string
 }
 
-const Request: React.FC<Props> = ({ request, signId, className }) => {
+export const SigningRequest: React.FC<Props> = ({ request, signId }) => {
   const accounts = useStore(accountsStore)
   const accountNamesByAddress = useStore(accountNamesByAddressStore)
   const [beginning, setBeginning] = useState(true)
@@ -65,7 +64,7 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
   }, [signId])
 
   return (
-    <div className={className}>
+    <div className=''>
       <div className='row'>
         <div className='guide'>
           <div>
@@ -113,55 +112,56 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
   )
 }
 
-export default styled(Request)`
-  .row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
+// TODO:
+// export default styled(Request)`
+//   .row {
+//     display: flex;
+//     flex-direction: row;
+//     width: 100%;
+//     margin-bottom: 1rem;
+//   }
 
-  .row > div {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 50%;
-  }
+//   .row > div {
+//     display: flex;
+//     flex-direction: column;
+//     flex-basis: 50%;
+//   }
 
-  .guide {
-    justify-content: space-between;
-  }
+//   .guide {
+//     justify-content: space-between;
+//   }
 
-  .steps > div {
-    margin-bottom: 0.25rem;
-    color: var(--color-faded-text);
-  }
+//   .steps > div {
+//     margin-bottom: 0.25rem;
+//     color: var(--color-faded-text);
+//   }
 
-  .steps > .current {
-    color: var(--color-main-text);
-  }
+//   .steps > .current {
+//     color: var(--color-main-text);
+//   }
 
-  .using-key {
-    margin-top: 2rem;
-  }
+//   .using-key {
+//     margin-top: 2rem;
+//   }
 
-  .using-key-heading {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
+//   .using-key-heading {
+//     margin-bottom: 0.5rem;
+//     font-weight: bold;
+//   }
 
-  .scanner {
-    position: relative;
-    border: 0.2rem solid var(--color-white);
-    border-radius: 0.2rem;
-  }
+//   .scanner {
+//     position: relative;
+//     border: 0.2rem solid var(--color-white);
+//     border-radius: 0.2rem;
+//   }
 
-  .spacer {
-    width: 100%;
-    padding-bottom: 100%;
-  }
+//   .spacer {
+//     width: 100%;
+//     padding-bottom: 100%;
+//   }
 
-  .qr {
-    position: absolute;
-    width: 100%;
-  }
-`
+//   .qr {
+//     position: absolute;
+//     width: 100%;
+//   }
+// `

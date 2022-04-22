@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import cancelIcon from '../assets/cancel.svg'
 import { useTimer } from '../../hooks/useTimer'
-import { BaseProps } from '../types'
 import { forgetAccount } from '../../messaging/uiActions'
-import Address from './Address'
+import cancelIcon from '../assets/cancel.svg'
+import { Address } from './Address'
 import { Button } from './Button'
 
-type Props = BaseProps & {
+type Props = {
   address?: string
   genesisHash?: string | null
   name?: string
 }
 
-const Key: React.FC<Props> = ({ className, ...account }) => {
+export const Key: React.FC<Props> = ({ ...account }) => {
   const timer = useTimer()
   const removing = timer.started
 
@@ -23,7 +21,7 @@ const Key: React.FC<Props> = ({ className, ...account }) => {
   }, [timer.fired])
 
   return (
-    <div className={className}>
+    <div className=''>
       {!removing && (
         <Address
           address={account.address}
@@ -49,73 +47,74 @@ const Key: React.FC<Props> = ({ className, ...account }) => {
   )
 }
 
-export default styled(Key)`
-  position: relative;
+// TODO:
+// export default styled(Key)`
+//   position: relative;
 
-  .removed {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 3rem;
-    padding: 0.5rem;
-    border: 2px dashed var(--color-card-bg);
-    border-radius: 0.2rem;
-  }
+//   .removed {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     height: 3rem;
+//     padding: 0.5rem;
+//     border: 2px dashed var(--color-card-bg);
+//     border-radius: 0.2rem;
+//   }
 
-  .logo {
-    padding: 0.25rem;
-    padding-right: 0rem;
-  }
+//   .logo {
+//     padding: 0.25rem;
+//     padding-right: 0rem;
+//   }
 
-  .logo svg {
-    cursor: default;
-  }
+//   .logo svg {
+//     cursor: default;
+//   }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 0.5rem;
-  }
+//   .content {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     padding: 0 0.5rem;
+//   }
 
-  .name {
-    margin-top: -0.1rem;
-    margin-bottom: 0.1rem;
-  }
+//   .name {
+//     margin-top: -0.1rem;
+//     margin-bottom: 0.1rem;
+//   }
 
-  .address {
-    display: flex;
-    align-items: center;
-    font-size: var(--font-small-size);
-    color: var(--color-faded-text);
-  }
+//   .address {
+//     display: flex;
+//     align-items: center;
+//     font-size: var(--font-small-size);
+//     color: var(--color-faded-text);
+//   }
 
-  .hash {
-    padding: 0 0.2rem;
-  }
+//   .hash {
+//     padding: 0 0.2rem;
+//   }
 
-  .icon {
-    width: 1rem;
-    height: 1rem;
-  }
+//   .icon {
+//     width: 1rem;
+//     height: 1rem;
+//   }
 
-  .cancel {
-    position: absolute;
-    top: 0.2rem;
-    right: 0.2rem;
-  }
+//   .cancel {
+//     position: absolute;
+//     top: 0.2rem;
+//     right: 0.2rem;
+//   }
 
-  .highlighted {
-    border-radius: 0.2rem;
-    transition: var(--transition);
-    cursor: pointer;
-  }
+//   .highlighted {
+//     border-radius: 0.2rem;
+//     transition: var(--transition);
+//     cursor: pointer;
+//   }
 
-  .highlighted:hover {
-    background: var(--color-highlight);
-  }
+//   .highlighted:hover {
+//     background: var(--color-highlight);
+//   }
 
-  & + & {
-    margin-top: 0.2rem;
-  }
-`
+//   & + & {
+//     margin-top: 0.2rem;
+//   }
+// `

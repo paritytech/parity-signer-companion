@@ -1,35 +1,30 @@
 import { MetadataDef } from '@polkadot/extension-inject/types'
 import React from 'react'
 import { UNKNOWN } from '../../utils/constants'
-import styled from 'styled-components'
-import Actions from '../components/Actions'
+
+import { Actions } from '../components/Actions'
 import { Button } from '../components/Button'
-import useMetadata from '../../hooks/useMetadata'
-import { BaseProps } from '../types'
+import { useMetadata } from '../../hooks/useMetadata'
+
 import {
   approveMetaRequest,
   rejectMetaRequest,
 } from '../../messaging/uiActions'
 
-type Props = BaseProps & {
+type Props = {
   request: MetadataDef
   metaId: string
   url: string
 }
 
-const MetadataRequest: React.FC<Props> = ({
-  className,
-  metaId,
-  request,
-  url,
-}) => {
+export const MetadataRequest: React.FC<Props> = ({ metaId, request, url }) => {
   const chain = useMetadata(request.genesisHash)
 
   const onApprove = () => approveMetaRequest(metaId).catch(console.error)
   const onReject = () => rejectMetaRequest(metaId).catch(console.error)
 
   return (
-    <div className={className}>
+    <div className=''>
       <h1>Update metadata request</h1>
       <p>
         This approval will add the metadata to your extension instance, allowing
@@ -73,13 +68,14 @@ const MetadataRequest: React.FC<Props> = ({
   )
 }
 
-export default styled(MetadataRequest)`
-  table {
-    border-spacing: 0 0.2rem;
-  }
+// TODO:
+// export default styled(MetadataRequest)`
+//   table {
+//     border-spacing: 0 0.2rem;
+//   }
 
-  td {
-    padding: 0;
-    padding-right: 1rem;
-  }
-`
+//   td {
+//     padding: 0;
+//     padding-right: 1rem;
+//   }
+// `

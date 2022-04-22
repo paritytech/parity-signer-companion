@@ -1,6 +1,6 @@
 import { RequestAuthorizeTab } from '@polkadot/extension-base/background/types'
 import React from 'react'
-import Actions from '../components/Actions'
+import { Actions } from '../components/Actions'
 import { Button } from '../components/Button'
 import {
   approveAuthRequest,
@@ -13,7 +13,7 @@ type Props = {
   url: string
 }
 
-const AuthorizeRequest: React.FC<Props> = ({ authId, request, url }) => {
+export const AuthorizeRequest: React.FC<Props> = ({ authId, request, url }) => {
   const onApprove = () => approveAuthRequest(authId).catch(console.error)
   const onReject = () => rejectAuthRequest(authId).catch(console.error)
 
@@ -42,5 +42,3 @@ const AuthorizeRequest: React.FC<Props> = ({ authId, request, url }) => {
     </div>
   )
 }
-
-export default AuthorizeRequest
