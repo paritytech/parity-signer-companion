@@ -5,9 +5,3 @@ export function isRawPayload(
 ): payload is SignerPayloadRaw {
   return !!(payload as SignerPayloadRaw).data
 }
-
-export function isJsonPayload(
-  payload: SignerPayloadJSON | SignerPayloadRaw
-): payload is SignerPayloadJSON {
-  return !!(payload as SignerPayloadJSON).genesisHash
-}
