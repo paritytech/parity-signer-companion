@@ -9,7 +9,7 @@ export const Header = () => {
   const actions = useStore(headerActionsStore)
 
   return (
-    <div className='flex justify-between items-center py-2 px-4 bg-_bg-300 rounded-b'>
+    <div className='flex justify-between items-center sticky top-0 shadow-lg shadow-_bg-100 z-50 py-2 px-4 bg-_bg-300 rounded-b'>
       <div className='flex items-center h-8'>
         <img className='h-6 w-6 mr-2' src={logo} />
         <div>{EXT_NAME}</div>
