@@ -100,7 +100,8 @@
       "web-ext>sign-addon>core-js": false,
       "web-ext>ws>bufferutil": false,
       "web-ext>ws>utf-8-validate": false,
-      "webpack-extension-manifest-plugin>core-js": false
+      "webpack-extension-manifest-plugin>core-js": false,
+      "@polkadot/react-qr>styled-components": false
     }
   }
 }
