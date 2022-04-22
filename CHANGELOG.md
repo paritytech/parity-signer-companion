@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.7 (2022-04-22)
+
+### Changes
+
+- [#111](https://github.com/paritytech/parity-signer-companion/pull/111), [#115](https://github.com/paritytech/parity-signer-companion/pull/115): Switch from styled-components to tailwind
+- [#116](https://github.com/paritytech/parity-signer-companion/pull/116), [#118](https://github.com/paritytech/parity-signer-companion/pull/118), [#119](https://github.com/paritytech/parity-signer-companion/pull/119), [#120](https://github.com/paritytech/parity-signer-companion/pull/120), [#122](https://github.com/paritytech/parity-signer-companion/pull/122): Update appearance
+- [#117](https://github.com/paritytech/parity-signer-companion/pull/117): Add linting unused imports
+- [#113](https://github.com/paritytech/parity-signer-companion/pull/113), [#114](https://github.com/paritytech/parity-signer-companion/pull/114): Refactor stores
+
+### Bug fixes
+
+- [#123](https://github.com/paritytech/parity-signer-companion/pull/123): Fix renaming bugs by debouncing the user input
+
 ## 0.1.6 (2022-04-20)
 
 ### Changes
