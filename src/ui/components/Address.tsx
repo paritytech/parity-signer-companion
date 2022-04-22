@@ -4,13 +4,11 @@ import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
 import React, { useEffect, useState } from 'react'
 import { useMetadata } from '../../hooks/useMetadata'
-import { useTimedReset } from '../../hooks/useTimedReset'
 import { editAccount } from '../../messaging/uiActions'
 import { accountsStore } from '../../stores/accounts'
-import { cn } from '../../utils/cn'
 import { DEFAULT_TYPE, RELAY_CHAIN, UNKNOWN } from '../../utils/constants'
+import { cropHash } from '../../utils/cropHash'
 import { recodeAddress, Recoded } from '../../utils/recodeAddress'
-import copyIcon from '../assets/copy.svg'
 import { AutosizeInput } from './AutosizeInput'
 
 type Props = {
@@ -27,24 +25,13 @@ const defaultRecoded = {
 }
 
 export const Address: React.FC<Props> = ({ address, genesisHash, name }) => {
-  const [justCopied, setJustCopied] = useTimedReset<boolean>(false)
   const [recoded, setRecoded] = useState<Recoded>(defaultRecoded)
   const accounts = useStore(accountsStore) as AccountJson[]
   const chain = useMetadata(genesisHash || recoded.genesisHash, true)
   const iconTheme = (chain?.icon || 'polkadot') as IconTheme
   const nameLabel = name || recoded.account?.name
   const chainLabel = ` · ${chain?.definition.chain.replace(RELAY_CHAIN, '')}`
-  const hashLabel =
-    (justCopied && 'Copied') || recoded.formatted || address || UNKNOWN
-
-  const onCopy = () => {
-    if (justCopied) return
-
-    navigator.clipboard
-      .writeText(hashLabel)
-      .then(() => setJustCopied(true))
-      .catch(console.error)
-  }
+  const hashLabel = cropHash(recoded.formatted || address || UNKNOWN)
 
   const changeName = (v: string) =>
     address && editAccount(address, v).catch(console.error)
@@ -75,18 +62,7 @@ export const Address: React.FC<Props> = ({ address, genesisHash, name }) => {
           />
           {chain && <span className='text-_crypto-400'>{chainLabel}</span>}
         </div>
-        <div
-          className={cn(
-            'flex items-center rounded transition cursor-pointer',
-            !justCopied && 'hover:bg-_bg-400'
-          )}
-          onClick={onCopy}
-        >
-          <div className='w-4 h-4 mr-1'>
-            <img src={copyIcon} />
-          </div>
-          <div className='font-mono text-_text-400'>{hashLabel}</div>
-        </div>
+        <div className='font-mono text-sm text-_text-400'>{hashLabel}</div>
       </div>
     </div>
   )

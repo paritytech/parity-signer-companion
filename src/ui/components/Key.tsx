@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useTimer } from '../../hooks/useTimer'
 import { forgetAccount } from '../../messaging/uiActions'
-import cancelIcon from '../assets/cancel.svg'
 import { Address } from './Address'
 import { Button } from './Button'
 
@@ -21,7 +20,7 @@ export const Key: React.FC<Props> = ({ ...account }) => {
   }, [timer.fired])
 
   return (
-    <div className='relative'>
+    <div className='relative group'>
       {!removing && (
         <Address
           address={account.address}
@@ -31,8 +30,13 @@ export const Key: React.FC<Props> = ({ ...account }) => {
         />
       )}
       {!removing && (
-        <div className='w-4 h-4 absolute top-1 right-1' onClick={timer.start}>
-          <img src={cancelIcon} />
+        <div
+          className='absolute flex top-0 right-2 h-full items-center transition opacity-0 group-hover:opacity-100'
+          onClick={timer.start}
+        >
+          <div className='flex space-x-4'>
+            <Button isDanger>Forget</Button>
+          </div>
         </div>
       )}
       {removing && (
@@ -40,7 +44,9 @@ export const Key: React.FC<Props> = ({ ...account }) => {
           <div className='text-_text-400'>
             Removing &ldquo;{account.name}&rdquo; — {timer.value}s
           </div>
-          <Button onClick={timer.reset}>Undo</Button>
+          <Button isSecondary onClick={timer.reset}>
+            Undo
+          </Button>
         </div>
       )}
     </div>
