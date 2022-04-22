@@ -11,3 +11,7 @@ html {
 html::-webkit-scrollbar {
   display: none;
 }
+
+* {
+  scrollbar-width: inherit;
+}
