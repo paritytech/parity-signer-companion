@@ -20,8 +20,7 @@ export const Accounts = () => {
   if (accounts.length === 0) return <NoAccounts />
 
   return (
-    <div className='h-full'>
-      <h1>All keys</h1>
+    <div className='h-full space-y-2'>
       {accounts.map((account) => (
         <Key
           address={account.address}

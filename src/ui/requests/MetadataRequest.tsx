@@ -10,6 +10,7 @@ import {
   approveMetaRequest,
   rejectMetaRequest,
 } from '../../messaging/uiActions'
+import { H1 } from '../components/H1'
 
 type Props = {
   request: MetadataDef
@@ -25,57 +26,45 @@ export const MetadataRequest: React.FC<Props> = ({ metaId, request, url }) => {
 
   return (
     <div className=''>
-      <h1>Update metadata request</h1>
-      <p>
+      <H1>Update metadata request</H1>
+      <p className='mb-2'>
         This approval will add the metadata to your extension instance, allowing
         future requests to be decoded using this metadata.
       </p>
       <table>
         <tr>
-          <td>from</td>
-          <td>{url}</td>
+          <td className='pr-4'>from</td>
+          <td className='pr-4'>{url}</td>
         </tr>
         <tr>
-          <td>chain</td>
-          <td>{request.chain}</td>
+          <td className='pr-4'>chain</td>
+          <td className='pr-4'>{request.chain}</td>
         </tr>
         <tr>
-          <td>icon</td>
-          <td>{request.icon}</td>
+          <td className='pr-4'>icon</td>
+          <td className='pr-4'>{request.icon}</td>
         </tr>
         <tr>
-          <td>decimals</td>
-          <td>{request.tokenDecimals}</td>
+          <td className='pr-4'>decimals</td>
+          <td className='pr-4'>{request.tokenDecimals}</td>
         </tr>
         <tr>
-          <td>symbol</td>
-          <td>{request.tokenSymbol}</td>
+          <td className='pr-4'>symbol</td>
+          <td className='pr-4'>{request.tokenSymbol}</td>
         </tr>
         <tr>
-          <td>upgrade</td>
-          <td>
+          <td className='pr-4'>upgrade</td>
+          <td className='pr-4'>
             {chain ? chain.specVersion : UNKNOWN} → {request.specVersion}
           </td>
         </tr>
       </table>
       <Actions>
         <Button onClick={onApprove}>Yes, do this metadata update</Button>
-        <Button className='secondary' onClick={onReject}>
+        <Button isSecondary onClick={onReject}>
           Reject
         </Button>
       </Actions>
     </div>
   )
 }
-
-// TODO:
-// export default styled(MetadataRequest)`
-//   table {
-//     border-spacing: 0 0.2rem;
-//   }
-
-//   td {
-//     padding: 0;
-//     padding-right: 1rem;
-//   }
-// `

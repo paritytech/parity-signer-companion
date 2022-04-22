@@ -19,8 +19,8 @@ export const Media = () => {
   if (cameraAllowed) return null
 
   return (
-    <div className=''>
-      <div className='message'>
+    <div className='flex justify-between items-center m-4 mb-0 p-2 rounded bg-_bg-300'>
+      <div className='text-sm pr-4'>
         The extension needs access to your camera to scan qr codes from a Parity
         Signer. Open it in new page and give camera access.
       </div>
@@ -29,19 +29,3 @@ export const Media = () => {
     </div>
   )
 }
-
-// TODO:
-// export default styled(Media)`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   margin: 0.5rem 0.5rem 0;
-//   padding: 0.5rem;
-//   background: var(--color-card-bg);
-//   border-radius: 0.2rem;
-
-//   .message {
-//     font-size: var(--font-small-size);
-//     padding-right: 1rem;
-//   }
-// `

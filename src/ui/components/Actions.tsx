@@ -5,5 +5,5 @@ export const Actions = ({
   className,
   ...rest
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('mt-8 space-x-2', className)} {...rest} />
+  <div className={cn('mt-8 space-x-4', className)} {...rest} />
 )

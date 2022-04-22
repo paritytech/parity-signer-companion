@@ -6,6 +6,7 @@ import {
   approveAuthRequest,
   rejectAuthRequest,
 } from '../../messaging/uiActions'
+import { H1 } from '../components/H1'
 
 type Props = {
   authId: string
@@ -19,23 +20,23 @@ export const AuthorizeRequest: React.FC<Props> = ({ authId, request, url }) => {
 
   return (
     <div>
-      <h1>Authentication request</h1>
-      <p>
+      <H1>Authentication request</H1>
+      <p className='mb-2'>
         An application, self-identifying as {request.origin} is requesting
         access:
       </p>
-      <p className='emphasis'>
+      <p className='mb-6'>
         <a href={url} rel='noopener noreferrer' target='_blank'>
           {url}
         </a>
       </p>
-      <p>
+      <p className='mb-2'>
         Only approve this request if you trust the application. Approving gives
         the application access to the addresses of your accounts.
       </p>
       <Actions>
         <Button onClick={onApprove}>Yes, allow this application access</Button>
-        <Button className='secondary' onClick={onReject}>
+        <Button isSecondary onClick={onReject}>
           Reject
         </Button>
       </Actions>

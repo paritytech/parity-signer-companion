@@ -8,6 +8,7 @@ import {
   resetHeaderActions,
 } from '../../stores/headerActions'
 import { Address } from '../components/Address'
+import { H1 } from '../components/H1'
 
 interface QrAccount {
   isAddress: boolean
@@ -43,26 +44,28 @@ export const ImportQr = () => {
   }, [scanned.length])
 
   return (
-    <div className=''>
-      <div className='row'>
-        <div className='counter'>
-          <h1>
+    <div className='flex flex-col'>
+      <div className='flex w-full mb-4'>
+        <div className='flex flex-col basis-1/2 justify-between'>
+          <H1>
             Import
             <br />
             Signer
             <br />
             keys
-          </h1>
+          </H1>
           <div>
-            <span className='num'>{scanned.length}</span>
+            <span className='block text-6xl leading-none'>
+              {scanned.length}
+            </span>
             imported
           </div>
         </div>
-        <div className='scanner'>
+        <div className='flex flex-col basis-1/2 border-8 rounded'>
           <QrScanAddress onScan={onCreate} />
         </div>
       </div>
-      <div>
+      <div className='space-y-2'>
         {scanned.reverse().map((account) => (
           <Address
             {...account}
@@ -75,37 +78,3 @@ export const ImportQr = () => {
     </div>
   )
 }
-
-//  TODO:
-// export default styled(ImportQr)`
-//   display: flex;
-//   flex-direction: column;
-
-//   .row {
-//     display: flex;
-//     flex-direction: row;
-//     width: 100%;
-//     margin-bottom: 1rem;
-//   }
-
-//   .row > div {
-//     display: flex;
-//     flex-direction: column;
-//     flex-basis: 50%;
-//   }
-
-//   .row .counter {
-//     justify-content: space-between;
-//   }
-
-//   .counter .num {
-//     display: block;
-//     font-size: 4rem;
-//     line-height: 1;
-//   }
-
-//   .scanner {
-//     border: 0.2rem solid var(--color-white);
-//     border-radius: 0.2rem;
-//   }
-// `

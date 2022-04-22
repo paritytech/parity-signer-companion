@@ -15,34 +15,18 @@ export const RequestIndex: React.FC<Props> = ({ index, total, onChange }) => {
   const onPrev = () => onChange(Math.max(index - 1, 0))
 
   return (
-    <div className=''>
-      <div className='transaction-container'>
-        <Button className='secondary' disabled={!prevActive} onClick={onPrev}>
+    <div className='flex justify-center mb-2'>
+      <div className='flex items-center'>
+        <Button disabled={!prevActive} onClick={onPrev}>
           ←
         </Button>
-        <div className='label'>
+        <div className='px-4'>
           {index + 1} of {total}
         </div>
-        <Button className='secondary' disabled={!nextActive} onClick={onNext}>
+        <Button disabled={!nextActive} onClick={onNext}>
           →
         </Button>
       </div>
     </div>
   )
 }
-
-// TODO:
-// export default styled(RequestIndex)`
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 0.5rem;
-
-//   .transaction-container {
-//     display: flex;
-//     align-items: center;
-//   }
-
-//   .label {
-//     padding: 0 1rem;
-//   }
-// `

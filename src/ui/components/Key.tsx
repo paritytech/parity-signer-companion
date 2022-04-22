@@ -21,7 +21,7 @@ export const Key: React.FC<Props> = ({ ...account }) => {
   }, [timer.fired])
 
   return (
-    <div className=''>
+    <div className='relative'>
       {!removing && (
         <Address
           address={account.address}
@@ -31,13 +31,13 @@ export const Key: React.FC<Props> = ({ ...account }) => {
         />
       )}
       {!removing && (
-        <div className='icon cancel highlighted' onClick={timer.start}>
+        <div className='w-4 h-4 absolute top-1 right-1' onClick={timer.start}>
           <img src={cancelIcon} />
         </div>
       )}
       {removing && (
-        <div className='removed'>
-          <div>
+        <div className='flex items-center justify-between p-2 border-2 border-_bg-300 border-dashed rounded'>
+          <div className='text-_text-400'>
             Removing &ldquo;{account.name}&rdquo; — {timer.value}s
           </div>
           <Button onClick={timer.reset}>Undo</Button>
@@ -46,75 +46,3 @@ export const Key: React.FC<Props> = ({ ...account }) => {
     </div>
   )
 }
-
-// TODO:
-// export default styled(Key)`
-//   position: relative;
-
-//   .removed {
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     height: 3rem;
-//     padding: 0.5rem;
-//     border: 2px dashed var(--color-card-bg);
-//     border-radius: 0.2rem;
-//   }
-
-//   .logo {
-//     padding: 0.25rem;
-//     padding-right: 0rem;
-//   }
-
-//   .logo svg {
-//     cursor: default;
-//   }
-
-//   .content {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     padding: 0 0.5rem;
-//   }
-
-//   .name {
-//     margin-top: -0.1rem;
-//     margin-bottom: 0.1rem;
-//   }
-
-//   .address {
-//     display: flex;
-//     align-items: center;
-//     font-size: var(--font-small-size);
-//     color: var(--color-faded-text);
-//   }
-
-//   .hash {
-//     padding: 0 0.2rem;
-//   }
-
-//   .icon {
-//     width: 1rem;
-//     height: 1rem;
-//   }
-
-//   .cancel {
-//     position: absolute;
-//     top: 0.2rem;
-//     right: 0.2rem;
-//   }
-
-//   .highlighted {
-//     border-radius: 0.2rem;
-//     transition: var(--transition);
-//     cursor: pointer;
-//   }
-
-//   .highlighted:hover {
-//     background: var(--color-highlight);
-//   }
-
-//   & + & {
-//     margin-top: 0.2rem;
-//   }
-// `

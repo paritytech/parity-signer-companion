@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react'
 import React from 'react'
 import { pageStore } from '../../stores/router'
+import { H1 } from '../components/H1'
 
 export const PhishingDetected = () => {
   const { param: website } = useStore(pageStore)
@@ -8,13 +9,13 @@ export const PhishingDetected = () => {
 
   return (
     <div>
-      <h1>Phishing detected</h1>
-      <p>
+      <H1>Phishing detected</H1>
+      <p className='mb-2'>
         You have been redirected because the extension believes that this
         website could compromise the security of your accounts and your tokens:
       </p>
-      <p className='emphasis'>{decodedWebsite}</p>
-      <p>
+      <p className='mb-6'>{decodedWebsite}</p>
+      <p className='mb-2'>
         Note that this website was reported on a community-driven, curated list.
         It might be incomplete or inaccurate. If you think that this website was
         flagged incorrectly,{' '}

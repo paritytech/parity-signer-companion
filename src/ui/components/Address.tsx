@@ -7,6 +7,7 @@ import { useMetadata } from '../../hooks/useMetadata'
 import { useTimedReset } from '../../hooks/useTimedReset'
 import { editAccount } from '../../messaging/uiActions'
 import { accountsStore } from '../../stores/accounts'
+import { cn } from '../../utils/cn'
 import { DEFAULT_TYPE, RELAY_CHAIN, UNKNOWN } from '../../utils/constants'
 import { recodeAddress, Recoded } from '../../utils/recodeAddress'
 import copyIcon from '../assets/copy.svg'
@@ -56,102 +57,37 @@ export const Address: React.FC<Props> = ({ address, genesisHash, name }) => {
   }, [accounts, address, chain])
 
   return (
-    <div className=''>
-      <div className='logo'>
+    <div className='flex relative rounded bg-_bg-300'>
+      <div className='flex items-center p-2 pr-0'>
         <Identicon
           prefix={recoded.prefix}
           theme={iconTheme}
           value={recoded.formatted || address}
-          size={50}
+          size={32}
         />
       </div>
-      <div className='content'>
-        <div className='name'>
+      <div className='flex flex-col justify-center py-0 px-2 leading-none space-y-1'>
+        <div className=''>
           <AutosizeInput
             value={nameLabel}
             placeholder={UNKNOWN}
             onChange={changeName}
           />
-          {chain && <span className='chain'>{chainLabel}</span>}
+          {chain && <span className='text-_crypto-400'>{chainLabel}</span>}
         </div>
         <div
-          className={`address highlighted ${justCopied && 'just-copied'}`}
+          className={cn(
+            'flex items-center rounded transition cursor-pointer',
+            !justCopied && 'hover:bg-_bg-400'
+          )}
           onClick={onCopy}
         >
-          <div className='icon copy'>
+          <div className='w-4 h-4 mr-1'>
             <img src={copyIcon} />
           </div>
-          <div className='hash'>{hashLabel}</div>
+          <div className='font-mono text-_text-400'>{hashLabel}</div>
         </div>
       </div>
     </div>
   )
 }
-
-//  TODO:
-// export default styled(Address)`
-//   display: flex;
-//   position: relative;
-//   height: 3rem;
-//   background: var(--color-card-bg);
-//   border-radius: 0.2rem;
-
-//   .logo {
-//     padding: 0.25rem;
-//     padding-right: 0rem;
-//   }
-
-//   .logo svg {
-//     cursor: default;
-//   }
-
-//   .content {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     padding: 0 0.5rem;
-//   }
-
-//   .name {
-//     margin-top: -0.1rem;
-//     margin-bottom: 0.1rem;
-//   }
-
-//   .address {
-//     display: flex;
-//     align-items: center;
-//     font-size: var(--font-small-size);
-//     color: var(--color-faded-text);
-//   }
-
-//   .hash {
-//     padding: 0 0.2rem;
-//   }
-
-//   .icon {
-//     width: 1rem;
-//     height: 1rem;
-//   }
-
-//   .highlighted {
-//     border-radius: 0.2rem;
-//     transition: var(--transition);
-//     cursor: pointer;
-//   }
-
-//   .highlighted:hover {
-//     background: var(--color-highlight);
-//   }
-
-//   .highlighted.just-copied {
-//     background: none !important;
-//   }
-
-//   .chain {
-//     color: var(--color-faded-text);
-//   }
-
-//   & + & {
-//     margin-top: 0.2rem;
-//   }
-// `

@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        max: '600px',
+        _max: '600px',
+        _full: '100%',
       },
       colors: {
         _border: {

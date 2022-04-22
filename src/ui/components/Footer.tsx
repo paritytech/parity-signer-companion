@@ -1,35 +1,12 @@
 import React from 'react'
 import logo from '../assets/full-logo.svg'
+import { A } from './A'
 
 export const Footer = () => (
-  <div className=''>
-    <img className='logo' src={logo} />
-    <a
-      className='link'
-      href='https://www.parity.io/technologies/signer/'
-      target='_blank'
-      rel='noreferrer'
-    >
+  <div className='flex flex-col items-center mt-auto p-8 pt-12'>
+    <img className='mt-0 mx-auto mb-2' src={logo} />
+    <A href='https://www.parity.io/technologies/signer/'>
       parity.io/technologies/signer
-    </a>
+    </A>
   </div>
 )
-
-// TODO:
-// export default styled(Footer)`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-top: auto;
-//   padding: 2rem;
-//   padding-top: 3rem;
-
-//   .logo {
-//     margin: 0 auto 0.5rem;
-//   }
-
-//   .link {
-//     font-size: var(--font-small-size);
-//   }
-// `

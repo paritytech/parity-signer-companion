@@ -6,49 +6,10 @@ import { Media } from '../components/Media'
 export const Main: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => (
-  <main className=''>
+  <main className='flex flex-col h-full text-_text-500 text-base'>
     <Header />
     <Media />
-    <div className='container'>{children}</div>
+    <div className='p-4'>{children}</div>
     <Footer />
   </main>
 )
-
-// TODO:
-// export default styled(Main)`
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-//   font-size: var(--font-base-size);
-//   line-height: var(--font-base-line-height);
-//   color: var(--color-main-text);
-
-//   a {
-//     color: var(--color-faded-text);
-//     transition: var(--transition);
-//   }
-
-//   a:hover {
-//     color: var(--color-main-text);
-//   }
-
-//   h1 {
-//     margin: 0;
-//     margin-bottom: 0.5rem;
-//     font-size: var(--font-title-size);
-//     line-height: var(--font-base-line-height);
-//     font-weight: bold;
-//   }
-
-//   p {
-//     margin: 0 0 0.5rem;
-//   }
-
-//   .emphasis {
-//     margin: 0 0 1.5rem;
-//   }
-
-//   .container {
-//     padding: 1rem;
-//   }
-// `
