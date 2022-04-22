@@ -2,7 +2,7 @@ import { Chain } from '@polkadot/extension-chains/types'
 import { getMetadata } from '../utils/getMetadata'
 import { useEffect, useState } from 'react'
 
-export default function useMetadata(
+export function useMetadata(
   genesisHash?: string | null,
   isPartial?: boolean
 ): Chain | null {

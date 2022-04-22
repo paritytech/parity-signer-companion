@@ -12,7 +12,7 @@
     "build:zip": "web-ext build --source-dir ./build --artifacts-dir ./ --overwrite-dest",
     "lint:typing": "tsc --noEmit",
     "lint:ts": "eslint ./src",
-    "lint:css": "stylelint ./src",
+    "lint:css": "stylelint ./src/**/*.css",
     "lint": "yarn lint:typing && yarn lint:ts && yarn lint:css",
     "fix": "prettier ./src -w"
   },
@@ -28,8 +28,7 @@
     "nanostores": "^0.5.12",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-error-boundary": "^3.1.4",
-    "styled-components": "^5.3.5"
+    "react-error-boundary": "^3.1.4"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0",
@@ -38,16 +37,13 @@
     "@babel/preset-typescript": "^7.16.7",
     "@lavamoat/allow-scripts": "^2.0.2",
     "@lavamoat/preinstall-always-fail": "^1.0.0",
-    "@stylelint/postcss-css-in-js": "^0.37.2",
     "@types/chrome": "^0.0.181",
     "@types/firefox-webext-browser": "^94.0.1",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
-    "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "babel-loader": "^8.2.5",
-    "babel-plugin-styled-components": "^2.0.7",
     "buffer": "^6.0.3",
     "copy-webpack-plugin": "^10.2.4",
     "crypto-browserify": "^3.12.0",
@@ -59,7 +55,6 @@
     "path-browserify": "^1.0.1",
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
-    "postcss-syntax": "^0.36.2",
     "prettier": "^2.6.2",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
@@ -106,7 +101,7 @@
       "web-ext>ws>bufferutil": false,
       "web-ext>ws>utf-8-validate": false,
       "webpack-extension-manifest-plugin>core-js": false,
-      "styled-components": false
+      "@polkadot/react-qr>styled-components": false
     }
   }
 }

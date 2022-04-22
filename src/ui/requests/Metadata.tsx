@@ -1,10 +1,10 @@
 import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
 import { metaRequestsStore } from '../../stores/metaRequests'
-import MetadataRequest from './MetadataRequest'
-import RequestIndex from './RequestIndex'
+import { MetadataRequest } from './MetadataRequest'
+import { RequestIndex } from './RequestIndex'
 
-const Metadata: React.FC = () => {
+export const Metadata = () => {
   const requests = useStore(metaRequestsStore)
   const [idx, setIdx] = useState(0)
   const request = requests[idx]
@@ -23,5 +23,3 @@ const Metadata: React.FC = () => {
     </>
   )
 }
-
-export default Metadata

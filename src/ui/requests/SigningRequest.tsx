@@ -7,7 +7,7 @@ import { wrapBytes } from '@polkadot/extension-dapp/wrapBytes'
 import { QrDisplayPayload, QrScanSignature } from '@polkadot/react-qr'
 import { HexString } from '@polkadot/util/types'
 import React, { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
+
 import {
   approveSignSignature,
   cancelSignRequest,
@@ -17,17 +17,18 @@ import {
   accountsStore,
 } from '../../stores/accounts'
 import { addHeaderAction, resetHeaderActions } from '../../stores/headerActions'
+import { cn } from '../../utils/cn'
 import { getExtrinsicPayload } from '../../utils/getExtrinsicPayload'
 import { getGenesisHashByAddress } from '../../utils/getGenesisHashByAddress'
 import { isRawPayload } from '../../utils/guards'
-import Address from '../components/Address'
+import { Address } from '../components/Address'
 import { Button } from '../components/Button'
-import { BaseProps } from '../types'
+import { H1 } from '../components/H1'
 
 const CMD_MORTAL = 2
 const CMD_SIGN_MESSAGE = 3
 
-type Props = BaseProps & {
+type Props = {
   account: AccountJson
   buttonText: string
   isFirst: boolean
@@ -36,7 +37,7 @@ type Props = BaseProps & {
   url: string
 }
 
-const Request: React.FC<Props> = ({ request, signId, className }) => {
+export const SigningRequest: React.FC<Props> = ({ request, signId }) => {
   const accounts = useStore(accountsStore)
   const accountNamesByAddress = useStore(accountNamesByAddressStore)
   const [beginning, setBeginning] = useState(true)
@@ -65,20 +66,30 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
   }, [signId])
 
   return (
-    <div className={className}>
-      <div className='row'>
-        <div className='guide'>
+    <div className='flex flex-col'>
+      <div className='flex w-full mb-4'>
+        <div className='flex flex-col basis-1/2 justify-between'>
           <div>
-            <h1>
+            <H1>
               Signing
               <br />
               request
-            </h1>
-            <div className='steps'>
-              <div className={beginning ? 'current' : ''}>
+            </H1>
+            <div className='space-y-1 text-_text-300'>
+              <div
+                className={cn(
+                  'transition-colors',
+                  beginning && 'text-_text-500'
+                )}
+              >
                 1. Scan signature via Signer
               </div>
-              <div className={!beginning ? 'current' : ''}>
+              <div
+                className={cn(
+                  'transition-colors',
+                  !beginning && 'text-_text-500'
+                )}
+              >
                 2. Show signed transaction
               </div>
             </div>
@@ -90,9 +101,9 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
             )}
           </div>
         </div>
-        <div className='scanner'>
-          <div className='spacer' />
-          <div className='qr'>
+        <div className='flex flex-col basis-1/2 relative border-8 rounded'>
+          <div className='w-full pb-_full' />
+          <div className='absolute w-full'>
             {beginning && payloadU8a && genesisHash && (
               <QrDisplayPayload
                 address={address}
@@ -105,63 +116,10 @@ const Request: React.FC<Props> = ({ request, signId, className }) => {
           </div>
         </div>
       </div>
-      <div className='using-key'>
-        <div className='using-key-heading'>Using key</div>
+      <div className='mt-8'>
+        <div className='mb-2 font-bold'>Using key</div>
         <Address address={address} name={name} genesisHash={genesisHash} />
       </div>
     </div>
   )
 }
-
-export default styled(Request)`
-  .row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .row > div {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 50%;
-  }
-
-  .guide {
-    justify-content: space-between;
-  }
-
-  .steps > div {
-    margin-bottom: 0.25rem;
-    color: var(--color-faded-text);
-  }
-
-  .steps > .current {
-    color: var(--color-main-text);
-  }
-
-  .using-key {
-    margin-top: 2rem;
-  }
-
-  .using-key-heading {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-
-  .scanner {
-    position: relative;
-    border: 0.2rem solid var(--color-white);
-    border-radius: 0.2rem;
-  }
-
-  .spacer {
-    width: 100%;
-    padding-bottom: 100%;
-  }
-
-  .qr {
-    position: absolute;
-    width: 100%;
-  }
-`

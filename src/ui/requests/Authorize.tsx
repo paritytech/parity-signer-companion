@@ -1,10 +1,10 @@
 import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
 import { authRequestsStore } from '../../stores/authRequests'
-import AuthorizeRequest from './AuthorizeRequest'
-import RequestIndex from './RequestIndex'
+import { AuthorizeRequest } from './AuthorizeRequest'
+import { RequestIndex } from './RequestIndex'
 
-const Authorize: React.FC = () => {
+export const Authorize = () => {
   const requests = useStore(authRequestsStore)
   const [idx, setIdx] = useState(0)
   const request = requests[idx]
@@ -23,5 +23,3 @@ const Authorize: React.FC = () => {
     </>
   )
 }
-
-export default Authorize

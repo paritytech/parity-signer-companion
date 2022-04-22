@@ -3,10 +3,10 @@ import { SignerPayloadJSON } from '@polkadot/types/types'
 import { useStore } from '@nanostores/react'
 import React, { useState } from 'react'
 import { signRequestsStore } from '../../stores/signRequests'
-import RequestIndex from './RequestIndex'
-import SigningRequest from './SigningRequest'
+import { RequestIndex } from './RequestIndex'
+import { SigningRequest } from './SigningRequest'
 
-const Signing: React.FC = () => {
+export const Signing = () => {
   const requests = useStore(signRequestsStore)
   const [idx, setIdx] = useState(0)
   const request = requests[idx]
@@ -29,5 +29,3 @@ const Signing: React.FC = () => {
     </>
   )
 }
-
-export default Signing

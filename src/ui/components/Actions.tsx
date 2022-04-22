@@ -1,11 +1,9 @@
-import styled from 'styled-components'
+import React from 'react'
+import { cn } from '../../utils/cn'
 
-const Actions = styled.div`
-  margin: 2rem 0 0;
-
-  & > *:not(:last-child) {
-    margin-right: 1rem;
-  }
-`
-
-export default Actions
+export const Actions = ({
+  className,
+  ...rest
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn('mt-8 space-x-4', className)} {...rest} />
+)
