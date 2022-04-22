@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import debounce from 'lodash.debounce'
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   onChange: (value: string) => void
@@ -15,6 +16,11 @@ export const AutosizeInput: React.FC<Props> = ({
   const span = React.useRef<HTMLSpanElement>(null)
   const isContentChangedRef = React.useRef(false)
 
+  const debouncedOnChange = useCallback(
+    debounce((v: string) => onChange(v), 100),
+    [onChange]
+  )
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isContentChangedRef.current) isContentChangedRef.current = true
     setContent(e.currentTarget.value)
@@ -27,7 +33,7 @@ export const AutosizeInput: React.FC<Props> = ({
 
   React.useEffect(() => {
     setWidth(span.current?.offsetWidth || 0)
-    if (isContentChangedRef.current) onChange(content)
+    if (isContentChangedRef.current) debouncedOnChange(content)
   }, [content])
 
   return (

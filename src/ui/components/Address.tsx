@@ -2,7 +2,7 @@ import { useStore } from '@nanostores/react'
 import { AccountJson } from '@polkadot/extension-base/background/types'
 import Identicon from '@polkadot/react-identicon'
 import { IconTheme } from '@polkadot/react-identicon/types'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useMetadata } from '../../hooks/useMetadata'
 import { editAccount } from '../../messaging/uiActions'
 import { accountsStore } from '../../stores/accounts'
@@ -33,8 +33,10 @@ export const Address: React.FC<Props> = ({ address, genesisHash, name }) => {
   const chainLabel = ` · ${chain?.definition.chain.replace(RELAY_CHAIN, '')}`
   const hashLabel = cropHash(recoded.formatted || address || UNKNOWN)
 
-  const changeName = (v: string) =>
-    address && editAccount(address, v).catch(console.error)
+  const changeName = useCallback(
+    (v: string) => address && editAccount(address, v).catch(console.error),
+    [address]
+  )
 
   useEffect(() => {
     if (!address) return
