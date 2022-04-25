@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.8 (2022-04-25)
+
+### Changes
+
+- [#121](https://github.com/paritytech/parity-signer-companion/pull/121): Remove extra interface for forgeting keys
+
+### Bug fixes
+
+- [#125](https://github.com/paritytech/parity-signer-companion/pull/125): Add missing @babel/core
+
 ## 0.1.7 (2022-04-22)
 
 ### Changes
