@@ -16,8 +16,11 @@ export function forgetAccount(address: string): Promise<boolean> {
   return sendUIMessage('pri(accounts.forget)', { address })
 }
 
-export function approveAuthRequest(id: string): Promise<boolean> {
-  return sendUIMessage('pri(authorize.approve)', { id })
+export function approveAuthRequest(
+  id: string,
+  authorizedAccounts: string[]
+): Promise<boolean> {
+  return sendUIMessage('pri(authorize.approve)', { id, authorizedAccounts })
 }
 
 export function approveMetaRequest(id: string): Promise<boolean> {
@@ -47,8 +50,8 @@ export function createAccountExternal(
   })
 }
 
-export function rejectAuthRequest(id: string): Promise<boolean> {
-  return sendUIMessage('pri(authorize.reject)', { id })
+export function deleteAuthRequest(id: string): Promise<void> {
+  return sendUIMessage('pri(authorize.delete.request)', id)
 }
 
 export function rejectMetaRequest(id: string): Promise<boolean> {
