@@ -4,7 +4,8 @@ import { pageStore } from '../../stores/router'
 import { H1 } from '../components/H1'
 
 export const PhishingDetected = () => {
-  const { param: website } = useStore(pageStore)
+  const page = useStore(pageStore)
+  const { param: website = '' } = page || {}
   const decodedWebsite = decodeURIComponent(website)
 
   return (

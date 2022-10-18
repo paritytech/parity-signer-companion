@@ -19,3 +19,6 @@ export const accountNamesByAddressStore = computed(accountsStore, (list) =>
   }, {} as Record<string, string | undefined>)
 )
 export const orderedAccountsStore = computed(accountsStore, orderAccounts)
+export const addressesStore = computed(accountsStore, (accounts) =>
+  accounts.map((a) => a.address)
+)

@@ -10,7 +10,7 @@ type Page = {
   param: string
 }
 
-export const pageStore = atom<Page>()
+export const pageStore = atom<Page | undefined>()
 
 function parse() {
   const path = getPath()
@@ -30,7 +30,10 @@ type Route = 'auth' | 'meta' | 'sign' | 'import' | 'phishing' | 'accounts'
 
 export const routeStore = computed(
   [pageStore, authRequestsStore, metaRequestsStore, signRequestsStore],
-  ({ path }, authRequests, metaRequests, signRequests) => {
+  (page, authRequests, metaRequests, signRequests) => {
+    if (!page) return
+
+    const { path } = page
     if (exact(path, '') && authRequests?.length > 0) return 'auth'
     if (exact(path, '') && metaRequests?.length > 0) return 'meta'
     if (exact(path, '') && signRequests?.length > 0) return 'sign'
