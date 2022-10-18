@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.9 (2022-10-18)
+
+### Changes
+
+- [#128](https://github.com/paritytech/parity-signer-companion/pull/128), [#129](https://github.com/paritytech/parity-signer-companion/pull/129), [#130](https://github.com/paritytech/parity-signer-companion/pull/130): Update deps
+
 ## 0.1.8 (2022-04-25)
 
 ### Changes
