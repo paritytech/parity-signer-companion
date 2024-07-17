@@ -1,5 +1,10 @@
 [![GitLab Status](https://gitlab.parity.io/parity/parity-signer-companion/badges/main/pipeline.svg)](https://gitlab.parity.io/parity/parity-signer-companion/pipelines)
 
+# Development stopped
+Alternatively, use Polkadot extension for [Google Chrome](https://chrome.google.com/webstore/detail/polkadot%7Bjs%7D-extension/mopnmbcafieddcagagdcbnhejhlodfdd) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/polkadot-js-extension/)
+
+---
+
 # Parity Signer Companion
 
 The extension helps you to sign transactions with keys you store in the [Parity Signer](https://www.parity.io/technologies/signer/). To start using, you should go to the Signer and import keys.
